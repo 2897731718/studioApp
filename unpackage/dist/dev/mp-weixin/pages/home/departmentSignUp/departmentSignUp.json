@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "大创报名",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "rotate-card": "/components/content/RotateCard"
+  }
+}

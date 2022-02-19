@@ -1,0 +1,1024 @@
+/**
+ * @yzp
+ * 2021-1-14
+ */
+
+/* 
+ @zsw
+ 新增 css 特效样式
+ 2021-10-1 开始不定期更新
+ */
+
+/*
+==================================
+	@yzp
+	小程序前端公共样式库 v1.0.0
+	2020-1-14新建
+	2020-1-14更新一次
+	
+	@zsw
+	小程序前端公共样式库 v2.0.0
+	2021-10-4 发光按钮样式更新
+	2021-10-8 字体滚动样式更新
+	2021-10-14 旋转按钮样式更新
+	2021-10-25 毛玻璃遮罩层样式更新
+	2021-10-27 流动特效样式更新
+	2021-10-28 字体溢出样式更新
+	2021-10-29 切换渐变样式更新
+			   补充 padding 样式更新
+			   主题分割线样式更新
+	
+==================================
+*/
+
+view,
+scroll-view,
+swiper,
+button,
+input,
+textarea,
+label,
+navigator,
+image {
+	// 怪异盒子模型 先做盒子 然后 border padding content 由外向内
+	box-sizing: border-box;
+}
+
+text {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/*
+ 主题色
+ */
+
+// $primary-color: #C4E1C5;
+// $second-color: #78BB7B;
+// $third-color: #ff8a46;
+// $four-color: #ffc940;
+// $five-color: #4BBBFA
+// $six-color: #F8F8F8
+
+.bg-primary {
+	background-color: #C4E1C5;
+	// background-color: #F4F5F5
+}
+
+.bg-second {
+	background-color: #78BB7B;
+}
+
+.bg-third {
+	background-color: #ff8a46;
+}
+
+.bg-four {
+	background-color: #ffc940;
+}
+
+.bg-five {
+	background-color: #4BBBFA;
+}
+
+.bg-five {
+	background-color: #F8F8F8;
+}
+
+/*
+ 字体色
+ */
+.text-primary {
+	color: #C4E1C5;
+}
+
+.text-second {
+	color: #78BB7B;
+}
+
+.text-third {
+	color: #ff8a46;
+}
+
+.text-four {
+	color: #ffc940;
+}
+
+.text-five {
+	color: #4BBBFA;
+}
+
+.text-new {
+	color: #808b9f;
+}
+/* 
+ 主题分割线
+ */
+
+.line-primary {
+	width: inherit;
+	height: 4rpx;
+	background: linear-gradient(to right, #C4E1C5, #ffffff);
+}
+
+.line-second {
+	width: inherit;
+	height: 4rpx;
+	background: linear-gradient(to right, #78BB7B, #ffffff);
+}
+
+.line-third {
+	width: inherit;
+	height: 4rpx;
+	background: linear-gradient(to right, #ff8a46, #ffffff);
+}
+
+.line-four {
+	width: inherit;
+	height: 4rpx;
+	background: linear-gradient(to right, #ffc940, #ffffff);
+}
+
+.line-five {
+	width: inherit;
+	height: 2upx;
+	background: linear-gradient(to right, #4BBBFA, #ffffff);
+}
+
+.you-page {
+	width: 100vw;
+	min-height: 100vh;
+	height: auto;
+	// background-color: #ffffff;
+	background-color: #F4F5F5;
+	// color: #808b9f;
+	font-family: Helvetica, "PingFang SC", "Microsoft Yahei", sans-serif;
+	// background-color: #C4E1C5;
+	// background-color: #78BB7B;
+}
+
+/**
+ *  @dlz
+ * 2021-1-14
+ */
+/* 
+===== margin ==== 
+*/
+
+.margin-top-xs {
+	margin-top: 10rpx;
+}
+
+.margin-top-sm {
+	margin-top: 20rpx;
+}
+
+.margin-top-xl {
+	margin-top: 30rpx;
+}
+
+.margin-top-lg {
+	margin-top: 40rpx;
+}
+
+.margin-left-xs {
+	margin-left: 10rpx;
+}
+
+.margin-left-sm {
+	margin-left: 20rpx;
+}
+
+.margin-left-xl {
+	margin-left: 30rpx;
+}
+
+.margin-left-lg {
+	margin-left: 40px;
+}
+
+.margin-right-xs {
+	margin-left: 10rpx;
+}
+
+.margin-right-sm {
+	margin-right: 20rpx;
+}
+
+.margin-right-xl {
+	margin-right: 30rpx;
+}
+
+.margin-right-lg {
+	margin-right: 40rpx;
+}
+
+.margin-bottom-xs {
+	margin-bottom: 10rpx;
+}
+
+.margin-bottom-sm {
+	margin-bottom: 20rpx;
+}
+
+.margin-bottom-xl {
+	margin-bottom: 30rpx;
+}
+
+.margin-bottom-lg {
+	margin-bottom: 40rpx;
+}
+
+.margin-tb-xs {
+	margin: 10rpx 0;
+}
+
+.margin-tb-sm {
+	margin: 20rpx 0;
+}
+
+.margin-lr-xs {
+	margin: 0 10rpx;
+}
+
+.margin-lr-sm {
+	margin: 0 20rpx;
+}
+
+/* 
+==== padding ====
+ */
+
+.padding-top-xs {
+	padding-top: 10rpx;
+}
+
+.padding-top-sm {
+	padding-top: 20rpx;
+}
+
+.padding-top-xl {
+	padding-top: 30rpx;
+}
+
+.padding-top-lg {
+	padding-top: 40rpx;
+}
+
+.padding-left-xs {
+	padding-left: 10rpx;
+}
+
+.padding-left-sm {
+	padding-left: 20rpx;
+}
+
+.padding-left-xl {
+	padding-left: 30rpx;
+}
+
+.padding-left-lg {
+	padding-left: 40rpx;
+}
+
+.padding-right-xs {
+	padding-right: 10rpx;
+}
+
+.padding-right-sm {
+	padding-right: 20rpx;
+}
+
+.padding-right-xl {
+	padding-right: 30rpx;
+}
+
+.padding-right-lg {
+	padding-right: 40rpx;
+}
+
+.padding-bottom-xs {
+	padding-bottom: 10rpx;
+}
+
+.padding-bottom-sm {
+	padding-bottom: 20rpx;
+}
+
+.padding-bottom-xl {
+	padding-bottom: 30rpx;
+}
+
+.padding-bottom-lg {
+	padding-bottom: 40rpx;
+}
+
+.padding-tb-xs {
+	padding: 10rpx 0;
+}
+
+.padding-tb-sm {
+	padding: 20rpx 0;
+}
+
+/* 
+==== border ==== 
+ */
+
+.border {
+	border: 1rpx solid #f1f2f6;
+}
+
+.border-top {
+	border-top: 1rpx solid #f1f2f6;
+}
+
+.border-bottom {
+	border-bottom: 1rpx solid #f1f2f6;
+}
+
+.border-left {
+	border-left: 1rpx solid #f1f2f6;
+}
+
+.border-right {
+	border-right: 1rpx solid #f1f2f6;
+}
+
+.border-three {
+	border: 1rpx solid #f1f2f6;
+	border-top: none;
+	/* 三边有一边没有边框 */
+}
+
+/**
+ * @dym 
+ * 2021-1-14
+ */
+
+/*
+ ===== text =====
+ */
+
+.text-xxs {
+	font-size: 13px;
+}
+
+.text-xs {
+	font-size: 14px;
+}
+
+.text-sm {
+	font-size: 16px;
+}
+
+.text-xl {
+	font-size: 18px;
+}
+
+.text-lg {
+	font-size: 20px;
+}
+
+.text-normal {
+	font-weight: normal;
+}
+
+.text-300 {
+	font-weight: 300;
+}
+
+.text-bold {
+	font-weight: bold;
+}
+
+.text-bloder {
+	font-weight: bolder;
+}
+
+.text-family {
+	font-family: STHupo;
+}
+
+.text-indent2 {
+	text-indent: 2em;
+}
+
+.text-white {
+	color: #ffffff;
+}
+
+.text-yellow {
+	color: #FFD760;
+}
+
+.text-red {
+	color: red;
+}
+
+.text-gray {
+	color: #606266;
+}
+
+.text-cyan {
+	color: #535c68;
+}
+
+.text-yellow-accent {
+	color: rgb(253, 244, 231);
+}
+
+.text-black-accent {
+	color: $black-accent-color;
+}
+
+.text-orange {
+	color: #fdcb6e;
+}
+
+.text-green {
+	color: #55efc4;
+}
+
+.text-black {
+	color: #333333;
+}
+
+.text-pink {
+	color: #F0A8C0;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-none {
+	text-decoration: none;
+}
+
+.text-underline {
+	text-decoration: underline;
+}
+
+.text-price {
+	color: red;
+}
+
+.text-price::before {
+	content: '¥';
+	font-size: 14px;
+	margin-right: 10rpx;
+}
+
+.text-break {
+	word-wrap: word-break;  // 指定如果足够长得话，应该换行
+	word-break: break-all;  // 允许在单词内换行
+}
+
+.text-pre {
+	white-space:pre; //  识别回车 空格
+}
+
+.text-pre-wrap {
+	white-space:pre-wrap; // 保留空白但会换行
+}
+
+/*
+ ===== background-color =====
+ */
+
+.bg-mask {
+	background-color: rgba(0,0,0,0.5);
+}
+
+.bg-white {
+	background-color: white;
+}
+
+.bg-yellow {
+	background-color: #FFD760;
+}
+
+.bg-red {
+	background-color: #e74c3c;
+}
+
+.bg-gray {
+	background-color: #f1f2f6;
+}
+
+.bg-yellow-accent {
+	background-color: rgb(253, 244, 231);
+}
+
+.bg-orange {
+	background-color: #fab1a0;
+}
+
+.bg-pink {
+	background-color: #F0A8C0;
+}
+
+.bg-green {
+	background-color: #55efc4;
+}
+
+.bg-purple {
+	background-color: #574b90;
+}
+
+.bg-blue {
+	background-color: #1e90ff;
+}
+
+.bg-dark {
+	background-color: #2d3436;
+}
+
+/* 
+ @zsw
+ 2021-01-14
+*/
+
+/* 
+    =====flex====
+*/
+
+
+/* 父元素随子元素自我适应 */
+.flex-inline {
+    display: inline-flex;
+}
+
+/* 主轴 水平方向 */
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+/* 主轴 垂直方向 */
+.flex-column {
+	display: flex;
+    flex-direction: column;
+}
+
+/* 靠左 垂直居中 */
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+	justify-content: center;
+}
+
+/* 水平垂直居中 */
+.flex-center {
+	align-items: center;
+	justify-content: center;
+}
+
+.justify-around {
+	justify-content: space-around;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+/* 文本居中 */
+.text-center {
+    text-align: center;
+}
+
+.flex-wrap {
+    display: wrap;
+}
+
+/* 
+    ==== radius ====
+ */
+
+/* 
+    rpx 是微信小程序中 css 尺寸单位 
+    2rpx = 1px = 2物理像素      
+*/
+
+.radius-mi {
+    border-radius: 6rpx;
+}
+
+.radius-xs {
+    border-radius: 10rpx;
+}
+
+.radius-sm {
+    border-radius: 20rpx;
+}
+
+.radius-xl {
+    border-radius: 30rpx;
+}
+
+.radius-lg {
+    border-radius: 40rpx;
+}
+
+.radius-cr {
+    border-radius: 5000rpx;
+}
+
+/* 
+    ==== grid ====
+*/
+
+
+/* 二维布局 网格布局 */
+.grid {
+    display: grid;
+}
+
+/*
+    定义中重叠部分 可以用 repeat() 简化
+    fr 设置网格轨道大小
+*/
+
+.col-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.col-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.col-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.col-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.col-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.row-2 {
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.row-3 {
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.row-4 {
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.row-5 {
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.row-6 {
+    grid-template-rows: repeat(6, 1fr);
+}
+
+/* 间隔大小 */
+.gap-row-4 {
+    grid-row-gap: 3rpx;
+}
+
+.gap-row-8 {
+    grid-row-gap: 8rpx;
+}
+
+.gap-col-4 {
+    grid-column-gap: 4rpx;
+}
+
+.gap-col-8 {
+    grid-column-gap: 8rpx;
+}
+
+.place-center {
+    place-items: center;
+}
+
+
+/**
+ * 2021-1-15
+ * @yzp
+ */
+
+/* 
+    ==== shadow ====
+*/
+
+.shadow-xs {
+	box-shadow: 0 0 10rpx rgba(0, 0, 0, .1);
+}
+
+.shadow-sm {
+	box-shadow: 0 0 20rpx rgba(0, 0, 0, .1);
+}
+
+.shadow-xl {
+	box-shadow: 0 0 30rpx rgba(0, 0, 0, .1);
+}
+
+.shadow-lg {
+	box-shadow: 0 0 40rpx rgba(0, 0, 0, .1);
+}
+
+.shadow-mi {
+	box-shadow: 0 0 16rpx rgba(114, 114, 114, 0.5);
+}
+
+/* 
+    ==== avatar ====
+*/
+
+.avatar-xs {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+}
+
+.avatar-sm {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+}
+
+.avatar-xl {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 50%;
+}
+
+.avatar-lg {
+	width: 140rpx;
+	height: 140rpx;
+	border-radius: 50%;
+}
+
+/**
+ * ===== button =====
+ */
+.you-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10rpx;
+	font-weight: bold;
+	font-size: 16px;
+	transition: all .2s linear;
+}
+
+.you-btn:active {
+	transform: scale(0.95);
+	transition: all .2s linear;
+}
+
+/* 
+ @zsw
+ 2021-10-4
+ */
+
+/* 
+ 覆盖滚动条
+ 页面中 <scroll-view scroll-y="true" class="hsb"/> 用不了
+ */
+// .hsb {
+//   width: 6px;
+//   height: 100%;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   background: #fff;
+// }
+
+/* 
+ 发光按钮
+ */
+/* 
+ 小程序中 active 和 hover 的区别
+ active 点击松开后效果消失 hover 不会 一个及时的 一个持续的
+ */
+.btn-glow {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	// width: 32px;
+	// height: 32px;
+	// font-size: 16px;
+	text-align: center;
+	border-radius: 10%;
+	background: #2c3a47;
+	transition: 0.2s;
+	// transition: all .2s linear;
+	// border: 2px solid #28D1A2;	
+}
+.btn-glow:active {
+	text-shadow: 0 0 4px #25ccf7;
+	// color: yellow;
+	// transform: scale(0.95);
+	// transition: all .2s linear;
+		
+	}
+.btn-glow::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 10%;
+	background-color: #25ccf7;
+	transition: 0.2s; // 动画 0.6s
+	transform: scale(0.8); // 2D缩放
+	z-index: -1;
+		
+}
+.btn-glow:active::before {
+	box-shadow: 0 0 14px 2px #25ccf7;
+	transform: scale(1.05);
+}
+
+/* 
+ 字体滚动
+ */
+.text-roll {
+	// 字体颜色设置为透明
+	color: transparent;
+	// font-size: 40px;
+	background: linear-gradient(to right, #000, #fff, #000);
+	// 对背景做一个裁切 只在字体上显示背景
+	background-clip: text;
+	// 指定背景 修改背景颜色位置 会出现两个聚焦点
+	background-size: 80%;
+	background-repeat: no-repeat;
+	animation: move 5s linear infinite;
+	
+}
+
+@keyframes move {
+	0% {
+		background-position: -500%;
+	}
+	
+	100% {
+		background-position: 500%;
+	}
+}
+/* 
+	旋转按钮
+ */
+.btn-rotate {
+	font-size:20px;
+	color:#70a1ff;
+	// width:40px;
+	// height:40px;
+	// line-height:100px;
+	// margin:0 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: .2s linear;
+	// border: 2px solid #0FB9B1;
+	position: relative;
+}
+.btn-rotate::before {
+	content:"";
+	position: absolute;
+	box-sizing: border-box;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	transition: .2s linear;
+}
+
+.btn-rotate::after{
+	content:"";
+	position: absolute;
+	box-sizing: border-box;
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	transition: .2s linear;
+}
+
+.btn-rotate:active{
+	// 改变大小 原始宽度的 0.8 倍
+    transform: scale(.8);
+}
+
+.btn-rotate:active::before{
+    border-left:2px solid;
+    border-right:2px solid;
+	// 延 x 轴倾斜给定角度
+    transform: skewX(20deg);
+}
+
+.btn-rotate:active::after{
+    border-top:2px solid;
+    border-bottom:2px solid;
+    transform: skewY(-20deg);
+}
+
+.glass-morphism {
+	background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+	backdrop-filter: blur(4rpx);
+}
+
+/* 
+ 流动特效
+ */
+.slider {
+	width: inherit;
+	background-color: #C4E1C5;
+	position: absolute;
+	bottom: 0;
+	transition: all ease 0.4s;
+	animation: 2s ease-in-out waves infinite;
+}
+
+@keyframes waves {
+  from {
+	clip-path: polygon(
+	  0% 17%,
+	  9% 10%,
+	  18% 4%,
+	  30% 0%,
+	  43% 1%,
+	  49% 4%,
+	  57% 7%,
+	  66% 10%,
+	  78% 11%,
+	  89% 11%,
+	  96% 9%,
+	  100% 7%,
+	  100% 100%,
+	  0% 100%
+	);
+  }
+  50% {
+	clip-path: polygon(
+	  0% 4%,
+	  6% 9%,
+	  13% 13%,
+	  23% 15%,
+	  31% 16%,
+	  42% 15%,
+	  49% 13%,
+	  61% 10%,
+	  71% 5%,
+	  81% 3%,
+	  90% 2%,
+	  100% 5%,
+	  100% 100%,
+	  0% 100%
+	);
+  }
+  to {
+	clip-path: polygon(
+	  0% 17%,
+	  9% 10%,
+	  18% 4%,
+	  30% 0%,
+	  43% 1%,
+	  49% 4%,
+	  57% 7%,
+	  66% 10%,
+	  78% 11%,
+	  89% 11%,
+	  96% 9%,
+	  100% 7%,
+	  100% 100%,
+	  0% 100%
+	);
+  }
+}
+
+.fade-in {
+	animation: fadeIn 1.3s;
+}
+
+@keyframes fadeIn {
+	  from {
+	    opacity: 0;
+	  }
+	  to {
+	    opacity: 1;
+	  }
+}

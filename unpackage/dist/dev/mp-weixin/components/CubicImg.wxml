@@ -1,0 +1,1 @@
+<view class="cube"><image class="img1 _img" src="{{$root.m0}}"></image><image class="img2 _img" src="{{$root.m1}}"></image><image class="img3 _img" src="{{$root.m2}}"></image><image class="img4 _img" src="{{$root.m3}}"></image><image class="img5 _img" src="{{$root.m4}}"></image><image class="img6 _img" src="{{$root.m5}}"></image></view>

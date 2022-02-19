@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "比赛报名",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "rotate-card": "/components/content/RotateCard"
+  }
+}

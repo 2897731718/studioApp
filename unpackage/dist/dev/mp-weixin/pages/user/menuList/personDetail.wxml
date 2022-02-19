@@ -1,0 +1,1 @@
+<view><cu-custom vue-id="bc6cbb0e-1" isBack="{{true}}" bgColor="bg-shadeTop text-white" bind:__l="__l" vue-slots="{{['backText','content']}}"><view slot="backText">返回</view><view slot="content">个人详情</view></cu-custom><view class="you-page flex-column align-center">identity</view></view>
