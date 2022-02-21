@@ -51,6 +51,18 @@
         {
           "name": "pages/user/menuList/follow",
           "pathName": "pages/user/menuList/follow",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/menuList/identity",
+          "pathName": "pages/user/menuList/identity",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/menuList/personDetail",
+          "pathName": "pages/user/menuList/personDetail",
           "scene": null
         }
       ]

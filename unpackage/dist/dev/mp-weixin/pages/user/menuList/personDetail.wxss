@@ -24,34 +24,34 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.reply.data-v-c56bf040 {
-  width: 100%;
-  min-height: 100%;
-  padding: 10rpx;
+.you-page {
+  height: 800rpx;
 }
-.reply .reply-box.data-v-c56bf040 {
-  width: 100%;
+.you-page .left-box {
+  width: 60rpx;
+  position: fixed;
+  left: 30rpx;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 24px;
 }
-.reply .reply-box .reply-content.data-v-c56bf040 {
-  width: 100%;
+.you-page .bg-box {
+  width: 100vw;
+  min-height: 100rpx;
+  position: relative;
 }
-.reply .reply-box .reply-content .box-in.data-v-c56bf040 {
-  width: 80%;
-  height: 100rpx;
+.you-page .bg-box image {
+  width: 100vw;
+  height: 360rpx;
 }
-.reply .reply-box .reply-content .box-in .time.data-v-c56bf040 {
-  width: 100%;
-  height: 36rpx;
+.you-page .bg-box .hed-img {
+  position: absolute;
+  bottom: -60rpx;
+  left: 30rpx;
+  border: solid 4rpx #ffffff;
 }
-.reply .reply-box .reply-content .box-in .time .time-in.data-v-c56bf040 {
-  width: 120rpx;
+.you-page .bg-box .hed-img image {
   height: inherit;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.reply .reply-box .from-content.data-v-c56bf040 {
-  width: 100%;
-  padding: 10rpx 20rpx;
+  width: inherit;
 }
 

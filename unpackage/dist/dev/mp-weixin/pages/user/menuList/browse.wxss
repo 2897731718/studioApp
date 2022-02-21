@@ -24,34 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.reply.data-v-c56bf040 {
-  width: 100%;
-  min-height: 100%;
-  padding: 10rpx;
-}
-.reply .reply-box.data-v-c56bf040 {
-  width: 100%;
-}
-.reply .reply-box .reply-content.data-v-c56bf040 {
-  width: 100%;
-}
-.reply .reply-box .reply-content .box-in.data-v-c56bf040 {
-  width: 80%;
-  height: 100rpx;
-}
-.reply .reply-box .reply-content .box-in .time.data-v-c56bf040 {
-  width: 100%;
-  height: 36rpx;
-}
-.reply .reply-box .reply-content .box-in .time .time-in.data-v-c56bf040 {
-  width: 120rpx;
-  height: inherit;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-.reply .reply-box .from-content.data-v-c56bf040 {
-  width: 100%;
-  padding: 10rpx 20rpx;
+.you-page .posts-list {
+  width: 100vw;
 }
 

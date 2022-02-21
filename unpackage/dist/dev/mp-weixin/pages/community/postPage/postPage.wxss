@@ -83,12 +83,10 @@
   height: 100%;
 }
 .you-page .main-box .top-box {
-  border: 2rpx solid #0081FF;
   width: 94vw;
   height: 60rpx;
 }
 .you-page .main-box .comment-box {
-  border: 2rpx solid #0081FF;
   width: 94vw;
   height: 100%;
 }
@@ -122,11 +120,38 @@
 }
 .you-page .main-box .comment-box .content-box {
   padding: 20rpx;
-  margin-left: 100rpx;
 }
 .you-page .main-box .comment-box .content-box .content-in {
   letter-spacing: 4rpx;
   word-wrap: word-break;
   word-break: break-all;
+}
+.you-page .cu-bar {
+  padding: 20rpx 20rpx 20rpx 40rpx;
+  min-height: 100rpx;
+}
+.you-page .cu-bar .bottom-box {
+  width: 94%;
+}
+.you-page .cu-bar .bottom-box .fa-times {
+  font-size: 24px;
+}
+.you-page .cu-bar .solid-bottom {
+  padding: 20rpx 20rpx;
+  width: 90%;
+  height: 140rpx;
+}
+.you-page .bottom-fixed {
+  width: 100vw;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  padding: 20rpx;
+}
+.you-page .bottom-fixed .comment-click {
+  padding: 10rpx 20rpx;
+  font-weight: 200;
+  background-color: #f1f1f1;
+  width: 50%;
 }
 

@@ -10,7 +10,8 @@
 		<view class="information-box flex align-center">
 			<image class="shadow-sm margin-tb-sm radius-cr" src="../../static/logo.jpg" mode=""></image>
 			<text class="nickname margin-left-sm text-bloder text-lg">popopoppo</text>
-			<navigator url="/pages/user/menuList/personDetail" class="right-box flex flex-center text-xs">
+			<navigator url="/pages/user/menuList/personDetail" 
+					   class="right-box flex flex-center text-xs" hover-class="other-navigator-hover">
 				<text>个人主页</text>
 				<text class="fa fa-angle-right margin-left-sm"></text>
 			</navigator>
@@ -19,7 +20,8 @@
 		<view class="number-box margin-top-xs flex align-center justify-around">
 			<navigator class="item-box flex-column flex-center" 
 				  v-for="(item, index) in menuList" :key="index"
-				  :url="'/pages/user/menuList/' + item.path">
+				  :url="'/pages/user/menuList/' + item.path"
+				  hover-class="other-navigator-hover">
 				<text class="text-bloder text-xl">{{ item.count }}</text>
 				<text>{{ item.name }}</text>
 			</navigator>
