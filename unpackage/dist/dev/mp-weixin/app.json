@@ -12,7 +12,8 @@
     "pages/user/menuList/follow",
     "pages/user/menuList/personDetail",
     "pages/community/postPage/postPage",
-    "pages/community/sendDetail/sendDetail"
+    "pages/community/sendDetail/sendDetail",
+    "pages/user/modifyInformation/modifyInformation"
   ],
   "subPackages": [],
   "window": {

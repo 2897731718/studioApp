@@ -9,7 +9,11 @@
 		<!-- 个人信息 -->
 		<view class="information-box flex align-center">
 			<image class="shadow-sm margin-tb-sm radius-cr" src="../../static/logo.jpg" mode=""></image>
-			<text class="nickname margin-left-sm text-bloder text-lg">popopoppo</text>
+			<!-- <text class="nickname margin-left-sm text-bloder text-lg">popopoppo</text> -->
+			<view class="content-box margin-left-sm flex-column justify-center">
+				<text class="nickname text-bloder text-lg margin-bottom-sm">opopop</text>
+				<text>暂未填写签名</text>
+			</view>
 			<navigator url="/pages/user/menuList/personDetail" 
 					   class="right-box flex flex-center text-xs" hover-class="other-navigator-hover">
 				<text>个人主页</text>
@@ -38,7 +42,7 @@
 		</view> -->
 		<view class="menu-list flex-column align-center">
 			<navigator url="/pages/user/menuList/productIntroduction" class=" margin-top-sm box-in bg-white flex-row align-center" @click="toProductIntroduction">
-				<text class="fa fa-weibo margin-left-sm text-xl"></text>
+				<text class="fa fa-file-text-o margin-left-sm text-xl"></text>
 				<text class="margin-left-xs">产品简介</text>
 				<text class="fa fa-angle-right" aria-hidden="true"></text>
 			</navigator>
@@ -97,9 +101,6 @@
 					},
 				]
 			};
-		},
-		components: {
-			
 		},
 		methods: {
 			// 跳转菜单页
@@ -163,6 +164,10 @@
 			border: 4upx solid #ffffff;
 			height: 140upx;
 			width: 140upx;
+		}
+		
+		.content-box {
+			
 		}
 		
 		.right-box {

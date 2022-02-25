@@ -116,6 +116,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/user/modifyInformation/modifyInformation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
