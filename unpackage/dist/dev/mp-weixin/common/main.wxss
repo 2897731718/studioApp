@@ -1082,21 +1082,25 @@ text {
 .line-primary {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #C4E1C5, #ffffff);
 	background: linear-gradient(to right, #C4E1C5, #ffffff);
 }
 .line-second {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #78BB7B, #ffffff);
 	background: linear-gradient(to right, #78BB7B, #ffffff);
 }
 .line-third {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #ff8a46, #ffffff);
 	background: linear-gradient(to right, #ff8a46, #ffffff);
 }
 .line-four {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #ffc940, #ffffff);
 	background: linear-gradient(to right, #ffc940, #ffffff);
 }
 .you-page {
@@ -1106,7 +1110,8 @@ text {
 	background-color: #ffffff;
 	/* background-color: #C4E1C5;
  */
-	/* background-color: #78BB7B; */
+	/* background-color: #78BB7B;
+ */
 }
 .round {
 	border-radius: 5000rpx;
@@ -1177,6 +1182,7 @@ switch::before {
 	pointer-events: none;
 	-webkit-transform: scale(0, 0);
 	        transform: scale(0, 0);
+	-webkit-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 	z-index: 9;
 	bottom: 0;
@@ -1214,6 +1220,7 @@ checkbox::before {
 	pointer-events: none;
 	-webkit-transform: scale(1, 1);
 	        transform: scale(1, 1);
+	-webkit-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 	z-index: 9;
 }
@@ -1258,6 +1265,7 @@ switch .uni-switch-input::after {
 	position: absolute;
 	-webkit-transform: scale(0.9, 0.9);
 	        transform: scale(0.9, 0.9);
+	-webkit-transition: all 0.1s ease-in-out 0s;
 	transition: all 0.1s ease-in-out 0s;
 }
 switch .wx-switch-input.wx-switch-input-checked::after,
@@ -1638,9 +1646,15 @@ radio.white.checked .uni-radio-input {
 .cu-btn {
 	position: relative;
 	border: 0rpx;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
 	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	box-sizing: border-box;
 	padding: 0 30rpx;
 	font-size: 28rpx;
@@ -1729,6 +1743,8 @@ button.cuIcon.lg {
 	display: block;
 }
 .cu-btn.block {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 }
 .cu-btn[disabled] {
@@ -1742,9 +1758,15 @@ button.cuIcon.lg {
 	font-size: 24rpx;
 	vertical-align: middle;
 	position: relative;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
 	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	box-sizing: border-box;
 	padding: 0rpx 16rpx;
 	height: 48rpx;
@@ -1789,6 +1811,8 @@ button.cuIcon.lg {
 	height: 32rpx;
 }
 .cu-capsule {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
 	display: inline-flex;
 	vertical-align: middle;
 }
@@ -1857,10 +1881,16 @@ button.cuIcon.lg {
 	font-variant: small-caps;
 	margin: 0;
 	padding: 0;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
 	display: inline-flex;
 	text-align: center;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	background-color: #ccc;
 	color: #ffffff;
 	white-space: nowrap;
@@ -1912,8 +1942,12 @@ button.cuIcon.lg {
 	overflow: hidden;
 	height: 28rpx;
 	background-color: #ebeef5;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
 	display: inline-flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	width: 100%;
 }
 .cu-progress+view,
@@ -1929,16 +1963,26 @@ button.cuIcon.lg {
 .cu-progress view {
 	width: 0;
 	height: 100%;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	justify-items: flex-end;
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
 	font-size: 20rpx;
 	color: #ffffff;
+	-webkit-transition: width 0.6s ease;
 	transition: width 0.6s ease;
 }
 .cu-progress text {
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	font-size: 20rpx;
 	color: #333333;
@@ -1948,6 +1992,7 @@ button.cuIcon.lg {
 	padding-right: 60rpx;
 }
 .cu-progress.striped view {
+	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 	background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 	background-size: 72rpx 72rpx;
 }
@@ -2025,10 +2070,19 @@ to {
 	background-color: #ffffff;
 	border-radius: 10rpx;
 	box-shadow: 0 0 0rpx 2000rpx rgba(0, 0, 0, 0.5);
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	font-size: 28rpx;
 	z-index: 9999;
 	line-height: 2.4em;
@@ -2072,6 +2126,7 @@ to {
 	width: 100%;
 	height: 4rpx;
 	overflow: hidden;
+	-webkit-transition: all 200ms ease 0s;
 	transition: all 200ms ease 0s;
 }
 .load-progress .load-progress-spinner {
@@ -2125,6 +2180,7 @@ to {
 	margin-top: 30rpx
 }
 .cu-list>.cu-item {
+	-webkit-transition: all .6s ease-in-out 0s;
 	transition: all .6s ease-in-out 0s;
 	-webkit-transform: translateX(0rpx);
 	        transform: translateX(0rpx)
@@ -2136,6 +2192,8 @@ to {
 .cu-list>.cu-item .move {
 	position: absolute;
 	right: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	width: 260rpx;
 	height: 100%;
@@ -2143,22 +2201,36 @@ to {
 	        transform: translateX(100%)
 }
 .cu-list>.cu-item .move view {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	flex: 1;
-	justify-content: center;
-	align-items: center
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center
 }
 .cu-list.menu-avatar {
 	overflow: hidden;
 }
 .cu-list.menu-avatar>.cu-item {
 	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	padding-right: 10rpx;
 	height: 140rpx;
 	background-color: #ffffff;
-	justify-content: flex-end;
-	align-items: center
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	        justify-content: flex-end;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center
 }
 .cu-list.menu-avatar>.cu-item>.cu-avatar {
 	position: absolute;
@@ -2178,8 +2250,12 @@ to {
 }
 .cu-list.menu-avatar>.cu-item .content>view:first-child {
 	font-size: 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center
 }
 .cu-list.menu-avatar>.cu-item .content .cu-tag.sm {
 	display: inline-block;
@@ -2199,23 +2275,32 @@ to {
 	position: relative;
 	left: 0;
 	width: auto;
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 }
 .cu-list.menu-avatar.comment>.cu-item {
 	padding: 30rpx 30rpx 30rpx 120rpx;
 	height: auto
 }
 .cu-list.menu-avatar.comment .cu-avatar {
-	align-self: flex-start
+	-webkit-align-self: flex-start;
+	        align-self: flex-start
 }
 .cu-list.menu>.cu-item {
 	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	padding: 0 30rpx;
 	min-height: 100rpx;
 	background-color: #ffffff;
-	justify-content: space-between;
-	align-items: center
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center
 }
 .cu-list.menu>.cu-item:last-child:after {
 	border: none
@@ -2265,7 +2350,9 @@ to {
 .cu-list.menu>.cu-item button.content {
 	padding: 0;
 	background-color: transparent;
-	justify-content: flex-start
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start
 }
 .cu-list.menu>.cu-item button.content:after {
 	display: none
@@ -2274,8 +2361,12 @@ to {
 	border-color: #ffffff
 }
 .cu-list.menu>.cu-item .content>view:first-child {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center
 }
 .cu-list.menu>.cu-item .content>text[class*=cuIcon] {
 	display: inline-block;
@@ -2293,7 +2384,9 @@ to {
 .cu-list.menu>.cu-item .content {
 	font-size: 30rpx;
 	line-height: 1.6em;
-	flex: 1
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1
 }
 .cu-list.menu>.cu-item .content .cu-tag.sm {
 	display: inline-block;
@@ -2315,10 +2408,16 @@ to {
 }
 .cu-list.grid>.cu-item {
 	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	padding: 20rpx 0 30rpx;
-	transition-duration: 0s;
-	flex-direction: column
+	-webkit-transition-duration: 0s;
+	        transition-duration: 0s;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column
 }
 .cu-list.grid>.cu-item:after {
 	position: absolute;
@@ -2385,17 +2484,29 @@ to {
           操作条
  ==================== */
 .cu-bar {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	position: relative;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	min-height: 100rpx;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 .cu-bar .action {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	height: 100%;
-	justify-content: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	max-width: 100%;
 }
 .cu-bar .action.border-title {
@@ -2496,13 +2607,16 @@ to {
 	line-height: 30px;
 }
 .cu-bar.btn-group {
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
 }
 .cu-bar.btn-group button {
 	padding: 20rpx 32rpx;
 }
 .cu-bar.btn-group button {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	margin: 0 20rpx;
 	max-width: 50%;
 }
@@ -2512,16 +2626,24 @@ to {
 	height: 64rpx;
 	font-size: 24rpx;
 	color: #333333;
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	margin: 0 30rpx;
 }
 .cu-bar .search-form+.action {
 	margin-right: 30rpx;
 }
 .cu-bar .search-form input {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	padding-right: 30rpx;
 	height: 64rpx;
 	line-height: 64rpx;
@@ -2564,7 +2686,9 @@ to {
 .cu-bar.tabbar .action {
 	font-size: 22rpx;
 	position: relative;
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	text-align: center;
 	padding: 0;
 	display: block;
@@ -2576,7 +2700,9 @@ to {
 }
 .cu-bar.tabbar.shop .action {
 	width: 140rpx;
-	flex: initial;
+	-webkit-box-flex: initial;
+	-webkit-flex: initial;
+	        flex: initial;
 }
 .cu-bar.tabbar .action.add-action {
 	position: relative;
@@ -2624,10 +2750,17 @@ to {
 	z-index: 1;
 }
 .cu-bar.tabbar .btn-group {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	justify-content: space-around;
-	align-items: center;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	padding: 0 10rpx;
 }
 .cu-bar.tabbar button.action::after {
@@ -2651,19 +2784,32 @@ to {
 	display: inline-block;
 }
 .cu-bar.tabbar .submit {
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	justify-content: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	text-align: center;
 	position: relative;
-	flex: 2;
-	align-self: stretch;
+	-webkit-box-flex: 2;
+	-webkit-flex: 2;
+	        flex: 2;
+	-webkit-align-self: stretch;
+	        align-self: stretch;
 }
 .cu-bar.tabbar .submit:last-child {
-	flex: 2.6;
+	-webkit-box-flex: 2.6;
+	-webkit-flex: 2.6;
+	        flex: 2.6;
 }
 .cu-bar.tabbar .submit+.submit {
-	flex: 2;
+	-webkit-box-flex: 2;
+	-webkit-flex: 2;
+	        flex: 2;
 }
 .cu-bar.tabbar.border .action::before {
 	content: " ";
@@ -2691,7 +2837,9 @@ to {
 	line-height: 64rpx;
 	height: 64rpx;
 	min-height: 64rpx;
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	font-size: 30rpx;
 	margin: 0 20rpx;
 }
@@ -2773,7 +2921,9 @@ to {
 }
 .cu-custom .cu-bar .border-custom text {
 	display: block;
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	margin: auto !important;
 	text-align: center;
 	font-size: 34rpx;
@@ -2875,10 +3025,17 @@ to {
          聊天
  ==================== */
 .cu-chat {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
 }
 .cu-chat .cu-item {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	padding: 30rpx 30rpx 70rpx;
 	position: relative;
@@ -2890,8 +3047,12 @@ to {
 .cu-chat .cu-item>.main {
 	max-width: calc(100% - 260rpx);
 	margin: 0 40rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 }
 .cu-chat .cu-item>image {
 	height: 320rpx;
@@ -2899,9 +3060,13 @@ to {
 .cu-chat .cu-item>.main .content {
 	padding: 20rpx;
 	border-radius: 6rpx;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
 	display: inline-flex;
 	max-width: 100%;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	font-size: 30rpx;
 	position: relative;
 	min-height: 80rpx;
@@ -2922,8 +3087,12 @@ to {
 }
 .cu-chat .cu-item .action {
 	padding: 0 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 }
 .cu-chat .cu-item>.main .content::after {
 	content: "";
@@ -2971,7 +3140,9 @@ to {
 	right: -12rpx;
 }
 .cu-chat .cu-item.self {
-	justify-content: flex-end;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	        justify-content: flex-end;
 	text-align: right;
 }
 .cu-chat .cu-info {
@@ -3077,6 +3248,8 @@ to {
 	padding: 0 30rpx;
 }
 .cu-card.article>.cu-item .content {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 	padding: 0 30rpx;
 }
@@ -3087,10 +3260,19 @@ to {
 	border-radius: 6rpx;
 }
 .cu-card.article>.cu-item .content .desc {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 .cu-card.article>.cu-item .content .text-content {
 	font-size: 28rpx;
@@ -3104,10 +3286,16 @@ to {
 .cu-form-group {
 	background-color: #ffffff;
 	padding: 1rpx 30rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	min-height: 100rpx;
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 .cu-form-group+.cu-form-group {
 	border-top: 1rpx solid #eee;
@@ -3121,7 +3309,9 @@ to {
 	line-height: 60rpx;
 }
 .cu-form-group input {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	font-size: 30rpx;
 	color: #555;
 	padding-right: 20rpx;
@@ -3136,7 +3326,9 @@ to {
 	height: 4.6em;
 	width: 100%;
 	line-height: 1.2em;
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	font-size: 28rpx;
 	padding: 0;
 }
@@ -3146,7 +3338,9 @@ to {
 	line-height: 1em;
 }
 .cu-form-group picker {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	padding-right: 40rpx;
 	overflow: hidden;
 	position: relative;
@@ -3199,6 +3393,7 @@ to {
 	-webkit-perspective: 2000rpx;
 	        perspective: 2000rpx;
 	background: rgba(0, 0, 0, 0.6);
+	-webkit-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 	pointer-events: none;
 }
@@ -3210,7 +3405,8 @@ to {
 }
 .cu-modal.show {
 	opacity: 1;
-	transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	        transition-duration: 0.3s;
 	-webkit-transform: scale(1);
 	        transform: scale(1);
 	overflow-x: hidden;
@@ -3245,6 +3441,8 @@ to {
 .cu-modal.drawer-modal {
 	-webkit-transform: scale(1);
 	        transform: scale(1);
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 }
 .cu-modal.drawer-modal .cu-dialog {
@@ -3252,7 +3450,8 @@ to {
 	min-width: 200rpx;
 	border-radius: 0;
 	margin: initial;
-	transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+	        transition-duration: 0.3s;
 }
 .cu-modal.drawer-modal.justify-start .cu-dialog {
 	-webkit-transform: translateX(-100%);
@@ -3285,10 +3484,16 @@ swiper .a-swiper-dot {
 swiper[class*="-dot"] .wx-swiper-dots,
 swiper[class*="-dot"] .a-swiper-dots,
 swiper[class*="-dot"] .uni-swiper-dots {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	width: 100%;
-	justify-content: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 swiper.square-dot .wx-swiper-dot,
 swiper.square-dot .a-swiper-dot,
@@ -3365,12 +3570,14 @@ swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {
 	border-radius: 10rpx;
 	-webkit-transform: scale(0.9);
 	        transform: scale(0.9);
+	-webkit-transition: all 0.2s ease-in 0s;
 	transition: all 0.2s ease-in 0s;
 	overflow: hidden;
 }
 .card-swiper swiper-item.cur .swiper-item {
 	-webkit-transform: none;
 	        transform: none;
+	-webkit-transition: all 0.2s ease-in 0s;
 	transition: all 0.2s ease-in 0s;
 }
 .tower-swiper {
@@ -3387,6 +3594,7 @@ swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {
 	bottom: 0;
 	left: 50%;
 	margin: auto;
+	-webkit-transition: all 0.2s ease-in 0s;
 	transition: all 0.2s ease-in 0s;
 	opacity: 1;
 }
@@ -3403,6 +3611,8 @@ swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {
           步骤条
  ==================== */
 .cu-steps {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 }
 scroll-view.cu-steps {
@@ -3413,7 +3623,9 @@ scroll-view.cu-steps .cu-item {
 	display: inline-block;
 }
 .cu-steps .cu-item {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 	text-align: center;
 	position: relative;
 	min-width: 100rpx;
@@ -3461,6 +3673,7 @@ scroll-view.cu-steps .cu-item {
 .cu-steps .cu-item::after {
 	border-bottom: 1px solid currentColor;
 	width: 0px;
+	-webkit-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 }
 .cu-steps .cu-item[class*="text-"]::after {
@@ -3494,6 +3707,7 @@ scroll-view.cu-steps .cu-item {
 	top: 0;
 	bottom: 0;
 	margin: auto;
+	-webkit-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 	-webkit-transform: translateY(0rpx);
 	        transform: translateY(0rpx);
@@ -3507,6 +3721,7 @@ scroll-view.cu-steps .cu-item {
 	-webkit-transform: translateY(40rpx);
 	        transform: translateY(40rpx);
 	color: #ffffff;
+	-webkit-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
 }
 .cu-steps .cu-item[class*="text-"] .num::after {
@@ -3524,84 +3739,127 @@ scroll-view.cu-steps .cu-item {
  ==================== */
 /*  -- flex弹性布局 -- */
 .flex {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
 }
 .basis-xs {
-	flex-basis: 20%;
+	-webkit-flex-basis: 20%;
+	        flex-basis: 20%;
 }
 .basis-sm {
-	flex-basis: 40%;
+	-webkit-flex-basis: 40%;
+	        flex-basis: 40%;
 }
 .basis-df {
-	flex-basis: 50%;
+	-webkit-flex-basis: 50%;
+	        flex-basis: 50%;
 }
 .basis-lg {
-	flex-basis: 60%;
+	-webkit-flex-basis: 60%;
+	        flex-basis: 60%;
 }
 .basis-xl {
-	flex-basis: 80%;
+	-webkit-flex-basis: 80%;
+	        flex-basis: 80%;
 }
 .flex-sub {
-	flex: 1;
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
 }
 .flex-twice {
-	flex: 2;
+	-webkit-box-flex: 2;
+	-webkit-flex: 2;
+	        flex: 2;
 }
 .flex-treble {
-	flex: 3;
+	-webkit-box-flex: 3;
+	-webkit-flex: 3;
+	        flex: 3;
 }
 .flex-direction {
-	flex-direction: column;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
 }
 .flex-wrap {
-	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
 }
 .align-start {
-	align-items: flex-start;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	        align-items: flex-start;
 }
 .align-end {
-	align-items: flex-end;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	        align-items: flex-end;
 }
 .align-center {
-	align-items: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 }
 .align-stretch {
-	align-items: stretch;
+	-webkit-box-align: stretch;
+	-webkit-align-items: stretch;
+	        align-items: stretch;
 }
 .self-start {
-	align-self: flex-start;
+	-webkit-align-self: flex-start;
+	        align-self: flex-start;
 }
 .self-center {
-	align-self: flex-center;
+	-webkit-align-self: flex-center;
+	        align-self: flex-center;
 }
 .self-end {
-	align-self: flex-end;
+	-webkit-align-self: flex-end;
+	        align-self: flex-end;
 }
 .self-stretch {
-	align-self: stretch;
+	-webkit-align-self: stretch;
+	        align-self: stretch;
 }
 .align-stretch {
-	align-items: stretch;
+	-webkit-box-align: stretch;
+	-webkit-align-items: stretch;
+	        align-items: stretch;
 }
 .justify-start {
-	justify-content: flex-start;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start;
 }
 .justify-end {
-	justify-content: flex-end;
+	-webkit-box-pack: end;
+	-webkit-justify-content: flex-end;
+	        justify-content: flex-end;
 }
 .justify-center {
-	justify-content: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 .justify-between {
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 .justify-around {
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
 }
 /* grid布局 */
 .grid {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	flex-wrap: wrap;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
 }
 .grid.grid-square {
 	overflow: hidden;
@@ -3624,10 +3882,19 @@ scroll-view.cu-steps .cu-item {
 	bottom: 0;
 	left: 0;
 	right: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
 }
 .grid.grid-square>view {
 	margin-right: 20rpx;
@@ -4063,10 +4330,12 @@ scroll-view.cu-steps .cu-item {
 	color: #666666;
 }
 .bg-shadeTop {
+	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01));
 	background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01));
 	color: #ffffff;
 }
 .bg-shadeBottom {
+	background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));
 	background-image: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));
 	color: #ffffff;
 }
@@ -4119,26 +4388,32 @@ scroll-view.cu-steps .cu-item {
 	background-color: #e7ebed;
 }
 .bg-gradual-red {
+	background-image: -webkit-linear-gradient(45deg, #f43f3b, #ec008c);
 	background-image: linear-gradient(45deg, #f43f3b, #ec008c);
 	color: #ffffff;
 }
 .bg-gradual-orange {
+	background-image: -webkit-linear-gradient(45deg, #ff9700, #ed1c24);
 	background-image: linear-gradient(45deg, #ff9700, #ed1c24);
 	color: #ffffff;
 }
 .bg-gradual-green {
+	background-image: -webkit-linear-gradient(45deg, #39b54a, #8dc63f);
 	background-image: linear-gradient(45deg, #39b54a, #8dc63f);
 	color: #ffffff;
 }
 .bg-gradual-purple {
+	background-image: -webkit-linear-gradient(45deg, #9000ff, #5e00ff);
 	background-image: linear-gradient(45deg, #9000ff, #5e00ff);
 	color: #ffffff;
 }
 .bg-gradual-pink {
+	background-image: -webkit-linear-gradient(45deg, #ec008c, #6739b6);
 	background-image: linear-gradient(45deg, #ec008c, #6739b6);
 	color: #ffffff;
 }
 .bg-gradual-blue {
+	background-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);
 	background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 	color: #ffffff;
 }
@@ -4695,35 +4970,58 @@ scroll-view.cu-steps .cu-item {
 */
 /* 父元素随子元素自我适应 */
 .flex-inline {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
     display: inline-flex;
 }
 /* 主轴 水平方向 */
 .flex-row {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	flex-direction: row;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
 }
 /* 主轴 垂直方向 */
 .flex-column {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
 }
 /* 靠左 垂直居中 */
 .align-center {
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
 }
 .justify-center {
-	justify-content: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 /* 水平垂直居中 */
 .flex-center {
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 .justify-around {
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
 }
 .justify-between {
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 /* 文本居中 */
 .text-center {
@@ -4863,17 +5161,25 @@ scroll-view.cu-steps .cu-item {
  * ===== button =====
  */
 .you-btn {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	border-radius: 10rpx;
 	font-weight: bold;
 	font-size: 16px;
+	-webkit-transition: all .2s linear;
 	transition: all .2s linear;
 }
 .you-btn:active {
 	-webkit-transform: scale(0.95);
 	        transform: scale(0.95);
+	-webkit-transition: all .2s linear;
 	transition: all .2s linear;
 }
 /* 
@@ -4884,13 +5190,20 @@ scroll-view.cu-steps .cu-item {
  覆盖滚动条
  页面中 <scroll-view scroll-y="true" class="hsb"/> 用不了
  */
-/* .hsb { */
-/*   width: 6px; */
-/*   height: 100%; */
-/*   position: fixed; */
-/*   top: 0; */
-/*   right: 0; */
-/*   background: #fff; */
+/* .hsb {
+ */
+/*   width: 6px;
+ */
+/*   height: 100%;
+ */
+/*   position: fixed;
+ */
+/*   top: 0;
+ */
+/*   right: 0;
+ */
+/*   background: #fff;
+ */
 /* }
  */
 /* 
@@ -4902,9 +5215,15 @@ scroll-view.cu-steps .cu-item {
  */
 .btn-glow {
 	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	color: white;
 	/* width: 32px;
  */
@@ -4915,6 +5234,7 @@ scroll-view.cu-steps .cu-item {
 	text-align: center;
 	border-radius: 10%;
 	background: #2c3a47;
+	-webkit-transition: 0.2s;
 	transition: 0.2s;
 	/* transition: all .2s linear;
  */
@@ -4939,6 +5259,7 @@ scroll-view.cu-steps .cu-item {
 	left: 0;
 	border-radius: 10%;
 	background-color: #25ccf7;
+	-webkit-transition: 0.2s;
 	transition: 0.2s; /* 动画 0.6s
  */
 	-webkit-transform: scale(0.8);
@@ -4960,6 +5281,7 @@ scroll-view.cu-steps .cu-item {
 	color: transparent;
 	/* font-size: 40px;
  */
+	background: -webkit-linear-gradient(left, #000, #fff, #000);
 	background: linear-gradient(to right, #000, #fff, #000);
 	/* 对背景做一个裁切 只在字体上显示背景
  */
@@ -5002,9 +5324,16 @@ scroll-view.cu-steps .cu-item {
  */
 	/* margin:0 16px;
  */
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-transition: .2s linear;
 	transition: .2s linear;
 	/* border: 2px solid #0FB9B1;
  */
@@ -5018,6 +5347,7 @@ scroll-view.cu-steps .cu-item {
 	height:100%;
 	left:0;
 	top:0;
+	-webkit-transition: .2s linear;
 	transition: .2s linear;
 }
 .btn-rotate::after{
@@ -5028,17 +5358,20 @@ scroll-view.cu-steps .cu-item {
 	height:100%;
 	left:0;
 	top:0;
+	-webkit-transition: .2s linear;
 	transition: .2s linear;
 }
 .btn-rotate:active{
-	/* 改变大小 原始宽度的 0.8 倍 */
+	/* 改变大小 原始宽度的 0.8 倍
+ */
     -webkit-transform: scale(.8);
             transform: scale(.8);
 }
 .btn-rotate:active::before{
     border-left:2px solid;
     border-right:2px solid;
-	/* 延 x 轴倾斜给定角度 */
+	/* 延 x 轴倾斜给定角度
+ */
     -webkit-transform: skewX(20deg);
             transform: skewX(20deg);
 }
@@ -5049,6 +5382,7 @@ scroll-view.cu-steps .cu-item {
             transform: skewY(-20deg);
 }
 .glass-morphism {
+	background: -webkit-linear-gradient(left top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 	background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 	-webkit-backdrop-filter: blur(4rpx);
 	        backdrop-filter: blur(4rpx);
@@ -5062,6 +5396,7 @@ scroll-view.cu-steps .cu-item {
 	background-color: #C4E1C5;
 	position: absolute;
 	bottom: 0;
+	-webkit-transition: all ease 0.4s;
 	transition: all ease 0.4s;
 	-webkit-animation: 2s ease-in-out waves infinite;
 	        animation: 2s ease-in-out waves infinite;
@@ -5408,26 +5743,31 @@ text {
 .line-primary {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #C4E1C5, #ffffff);
 	background: linear-gradient(to right, #C4E1C5, #ffffff);
 }
 .line-second {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #78BB7B, #ffffff);
 	background: linear-gradient(to right, #78BB7B, #ffffff);
 }
 .line-third {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #ff8a46, #ffffff);
 	background: linear-gradient(to right, #ff8a46, #ffffff);
 }
 .line-four {
 	width: inherit;
 	height: 4rpx;
+	background: -webkit-linear-gradient(left, #ffc940, #ffffff);
 	background: linear-gradient(to right, #ffc940, #ffffff);
 }
 .line-five {
 	width: inherit;
 	height: 2rpx;
+	background: -webkit-linear-gradient(left, #4BBBFA, #ffffff);
 	background: linear-gradient(to right, #4BBBFA, #ffffff);
 }
 .you-page {
@@ -5750,35 +6090,58 @@ text {
 */
 /* 父元素随子元素自我适应 */
 .flex-inline {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
     display: inline-flex;
 }
 /* 主轴 水平方向 */
 .flex-row {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	flex-direction: row;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
 }
 /* 主轴 垂直方向 */
 .flex-column {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
 }
 /* 靠左 垂直居中 */
 .align-center {
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
 }
 .justify-center {
-	justify-content: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 /* 水平垂直居中 */
 .flex-center {
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 }
 .justify-around {
-	justify-content: space-around;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
 }
 .justify-between {
-	justify-content: space-between;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
 }
 /* 文本居中 */
 .text-center {
@@ -5918,17 +6281,25 @@ text {
  * ===== button =====
  */
 .you-btn {
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
 	border-radius: 10rpx;
 	font-weight: bold;
 	font-size: 16px;
+	-webkit-transition: all .2s linear;
 	transition: all .2s linear;
 }
 .you-btn:active {
 	-webkit-transform: scale(0.95);
 	        transform: scale(0.95);
+	-webkit-transition: all .2s linear;
 	transition: all .2s linear;
 }
 /* 
@@ -5964,9 +6335,15 @@ text {
  */
 .btn-glow {
 	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
 	color: white;
 	/* width: 32px;
  */
@@ -5978,6 +6355,7 @@ text {
 	border-radius: 10%;
 	/* background: #2c3a47;
  */
+	-webkit-transition: 0.2s;
 	transition: 0.2s;
 	/* transition: all .2s linear;
  */
@@ -6002,6 +6380,7 @@ text {
 	left: 0;
 	border-radius: 10%;
 	background-color: #25ccf7;
+	-webkit-transition: 0.2s;
 	transition: 0.2s; /* 动画 0.6s
  */
 	-webkit-transform: scale(0.8);
@@ -6023,6 +6402,7 @@ text {
 	color: transparent;
 	/* font-size: 40px;
  */
+	background: -webkit-linear-gradient(left, #000, #fff, #000);
 	background: linear-gradient(to right, #000, #fff, #000);
 	/* 对背景做一个裁切 只在字体上显示背景
  */
@@ -6057,9 +6437,16 @@ text {
  */
 	/* margin:0 16px;
  */
+	display: -webkit-box;
+	display: -webkit-flex;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-transition: .2s linear;
 	transition: .2s linear;
 	/* border: 2px solid #0FB9B1;
  */
@@ -6073,6 +6460,7 @@ text {
 	height:100%;
 	left:0;
 	top:0;
+	-webkit-transition: .2s linear;
 	transition: .2s linear;
 }
 .btn-rotate::after{
@@ -6083,6 +6471,7 @@ text {
 	height:100%;
 	left:0;
 	top:0;
+	-webkit-transition: .2s linear;
 	transition: .2s linear;
 }
 .btn-rotate:active{
@@ -6106,6 +6495,7 @@ text {
             transform: skewY(-20deg);
 }
 .glass-morphism {
+	background: -webkit-linear-gradient(left top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 	background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 	-webkit-backdrop-filter: blur(4rpx);
 	        backdrop-filter: blur(4rpx);
@@ -6118,6 +6508,7 @@ text {
 	background-color: #C4E1C5;
 	position: absolute;
 	bottom: 0;
+	-webkit-transition: all ease 0.4s;
 	transition: all ease 0.4s;
 	-webkit-animation: 2s ease-in-out waves infinite;
 	        animation: 2s ease-in-out waves infinite;

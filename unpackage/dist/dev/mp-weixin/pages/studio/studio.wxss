@@ -34,6 +34,7 @@
   top: 0;
   height: 13vh;
   z-index: 999;
+  background: -webkit-linear-gradient(top, #56ccf2, #2f80ed);
   background: linear-gradient(to bottom, #56ccf2, #2f80ed);
 }
 .content .header .titlePart.data-v-1fe59df4 {
@@ -92,7 +93,8 @@
   background-color: white;
   border-radius: 20px;
   text-align: center;
-  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
   box-shadow: 0px 2px 23px 0px #E4E4E4;
 }
 .content .related_box .submit_answer .submit_name.data-v-1fe59df4 {
@@ -100,18 +102,30 @@
   color: white;
   font-weight: bold;
   font-size: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   margin: auto;
   width: 100%;
   background-color: #4bbbfa;
   border-radius: 0 0 20px 20px;
 }
 .content .related_box .submit_answer button.data-v-1fe59df4 {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   width: 26vw;
   height: 5vh;
   font-size: 1rem;
@@ -124,21 +138,30 @@
   width: 45vw;
 }
 .content .related_box .stu_infor .stu_introduce.data-v-1fe59df4 {
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
   width: 45vw;
   height: 9vh;
   box-shadow: 0px 2px 23px 0px #E4E4E4;
   background-color: white;
-  align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   border-radius: 8px;
 }
 .content .related_box .stu_infor .stu_introduce .img_bac.data-v-1fe59df4 {
   width: 8vw;
   height: 8vw;
   border-radius: 8vw;
+  background-image: -webkit-linear-gradient(330deg, #f6d365 0%, #fda085 100%);
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
   margin-left: 5vw;
 }
 .content .related_box .stu_infor .stu_introduce .img_bac .intro_img.data-v-1fe59df4 {
@@ -156,6 +179,8 @@
   height: 6vh;
   border: none;
   border-bottom: 1px #caccce solid;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
 }
 .content .check_box .choose_title .condition_title.data-v-1fe59df4 {
@@ -171,10 +196,17 @@
 .content .check_area.data-v-1fe59df4 {
   margin-top: 2vh;
   width: 100vw;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .content .check_area .check_card.data-v-1fe59df4 {
   width: 92vw;
@@ -194,8 +226,12 @@
   padding-left: 1vh;
   padding-bottom: 1vh;
   color: #8a8a8a;
+  display: -webkit-box;
+  display: -webkit-flex;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
   position: relative;
 }
 .content .check_area .check_card .check_time .check_state.data-v-1fe59df4 {
