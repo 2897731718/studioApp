@@ -6,10 +6,10 @@
 <template name="home">
 	<view class="you-page flex-column align-center">
 		
-		<view class="graphical-top bg-primary"></view>
+		<view class="graphical-top bg-five"></view>
 		<!-- 大创简介名片 -->
-		<view class="header-box bg-primary radius-sm margin-top-sm">
-			<view class="top-box radius-sm flex-row flex-center bg-second">
+		<view class="header-box radius-sm margin-top-sm bg-white">
+			<view class="top-box bg-five shadow-xs radius-sm  flex-row flex-center">
 				<view class="img-box">
 					<!-- <image src="../../static/logo.png" mode=""></image> -->
 					<cubic-img class="img"></cubic-img>
@@ -18,8 +18,8 @@
 					<text class="margin-bottom-xs text-lg text-bold">软件学院</text>
 					<text>大学生创新创业中心</text>
 				</view>
-				<view class="btn-box flex-column flex-center">
-					<navigator class="text-lg text-white" hover-class="other-navigator-hover" :url="'/pages/home/departmentSignUp/departmentSignUp'" navigateTo>
+				<view class="btn-box radius-xs bg-white shadow-xs flex-column flex-center">
+					<navigator class="text-xl text-seven" hover-class="other-navigator-hover" :url="'/pages/home/departmentSignUp/departmentSignUp'" navigateTo>
 						报名
 					</navigator>
 				</view>
@@ -42,7 +42,7 @@
 				
 				<view class="department-box margin-top-lg flex-row flex-center" v-for="item in departmentList" :key="item.id">
 					<navigator :url="'/pages/home/departmentProfile/departmentProfile?index=' + encodeURIComponent(JSON.stringify(item.id))" 
-							   class="btn-glow" hover-class="other-navigator-hover">
+							   class="btn-glow bg-five" hover-class="other-navigator-hover">
 						<view class="">{{ item.name }}</view>
 					</navigator>
 				</view>
@@ -369,13 +369,13 @@
 		// border: 2upx solid #333333;
 		width: 90vw;
 		min-height: 500upx;
-		box-shadow: 0 0 16upx rgba(114, 114, 114, 0.5);
+		// box-shadow: 0 0 16upx rgba(114, 114, 114, 0.5);
 		z-index: 3;
 		
 		.top-box {
 			width: 100%;
 			height: 200upx;
-			// border: 2upx solid #333333;
+			border: 2px solid #333333;
 			padding: 20upx;
 			
 			.img-box {
@@ -398,9 +398,9 @@
 			.btn-box {
 				// position: absolute;
 				// top: ;
-				width: 140upx;
-				height: 140upx;
-				// border: 2px solid #333333;
+				width: 120upx;
+				height: 80upx;
+				
 				z-index: 25;
 				
 				// .btn-glow {
@@ -469,7 +469,7 @@
 				.btn-glow {
 					width: 120upx;
 					height: 60upx;
-					background-color: #78BB7B;
+					// background-color: #78BB7B;
 					font-size: 22upx;
 					// margin:6upx;
 					// padding: 20upx;

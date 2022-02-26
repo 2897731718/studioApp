@@ -1,6 +1,6 @@
 <template>
 <view class="page">
-	<cu-custom class="top-return" :isBack="true" :style="{opacity: opacityNum}" bgColor="bg-primary text-white" v-show="topShow">
+	<cu-custom class="top-return" :isBack="true" :style="{opacity: opacityNum}" bgColor="bg-five text-white" v-show="topShow">
 		<block slot="backText">返回</block>
 		<block slot="content">个人详情</block>
 	</cu-custom>
@@ -241,7 +241,7 @@
 		}
 		
 		.activeTab {
-			color: #78BB7B;
+			color: #4BBBFA;
 			animation: click 1.3s;
 			// transition: .5s;
 			
@@ -250,7 +250,7 @@
 				width: 80upx;
 				height: 10upx;
 				border-radius: 10upx;
-				background-color: #78BB7B;
+				background-color: #4BBBFA;
 				position: absolute;
 				left: 50%;
 				transform: translateX(-50%);

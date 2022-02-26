@@ -5,7 +5,7 @@
 
 <template>
 <view >
-	<cu-custom :isBack="true" bgColor="bg-shadeTop text-white">
+	<cu-custom :isBack="true" bgColor="bg-five text-white">
 		<block slot="backText">返回</block>
 		<block slot="content">比赛报名</block>
 	</cu-custom>
@@ -260,8 +260,8 @@
 		
 		<!-- 顶部 tab 栏 -->
 		<view class="fixed-bottom flex-column flex-center">
-			<view class="tab-box shadow-mi glass bg-primary radius-sm flex-row align-center justify-around">
-				<view class="tab text-primary text-sm text-white flex-column flex-center" v-for="(item, index) in competitionKind" 
+			<view class="tab-box bg-white shadow-mi glass radius-sm flex-row align-center justify-around">
+				<view class="tab text-sm flex-column flex-center" v-for="(item, index) in competitionKind" 
 					  :key="index"
 					  :class="{'active': competitionIndex == index }"
 					  @click="selectTab(index)">{{ item }}</view>
@@ -465,11 +465,12 @@
 				width: 100%;
 				height: inherit;
 				font-size: 16px;
+				color: #c8d6e5;
 			}
 			
 			.active {
 				transform: scale(1.1);
-				color: #78BB7B;
+				color: #4BBBFA;
 			}
 		}
 	}

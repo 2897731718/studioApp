@@ -13,7 +13,11 @@
     "pages/user/menuList/personDetail",
     "pages/community/postPage/postPage",
     "pages/community/sendDetail/sendDetail",
-    "pages/user/modifyInformation/modifyInformation"
+    "pages/user/modifyInformation/modifyInformation",
+    "pages/studio/asseDetail",
+    "pages/studio/introduction",
+    "pages/studio/submit",
+    "pages/studio/teacher"
   ],
   "subPackages": [],
   "window": {

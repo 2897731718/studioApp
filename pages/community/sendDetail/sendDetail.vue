@@ -4,7 +4,7 @@
  -->
 <template>
 <view>
-	<cu-custom :isBack="true" bgColor="bg-shadeTop text-white">
+	<cu-custom :isBack="true" bgColor="bg-five text-white">
 		<block slot="backText">返回</block>
 		<block slot="content"></block>
 	</cu-custom>
@@ -15,7 +15,7 @@
 		 图片
 		 链接
 		 -->
-		<view class="box-in bg-primary radius-xs flex-row align-center justify-between">
+		<view class="box-in margin-tb-xs radius-xs bg-five flex-row align-center justify-between">
 			<view class="">选择类型</view>
 			<picker class="text-black margin-right-sm" :range="kindData" mode="selector" @change="choseThirdKind">
 				{{ kindData[kindIndex] }}

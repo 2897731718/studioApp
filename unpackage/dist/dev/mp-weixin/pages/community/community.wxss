@@ -40,14 +40,14 @@
   position: relative;
 }
 .you-page .head-tab .activeTab {
-  color: #222222;
+  color: #4BBBFA;
 }
 .you-page .head-tab .activeTab::after {
   content: '';
   width: 80rpx;
   height: 10rpx;
   border-radius: 10rpx;
-  background-color: #78BB7B;
+  background-color: #4BBBFA;
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);

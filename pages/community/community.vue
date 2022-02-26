@@ -9,7 +9,7 @@
 				  v-for="(tabItem, index) in tabList" :key="index"
 				  :class="{'activeTab': currentIndex == index, 'text-black-accent': currentIndex != index}"
 				  @click="tabSelect(index)">
-				<text :class="{'text-second': currentIndex == index}">{{ tabItem }}</text>
+				<text :class="{'text-five': currentIndex == index}">{{ tabItem }}</text>
 			</view>
 		</view>
 		<view class="posts-list flex-column align-center" >
@@ -27,7 +27,7 @@
 						 @encourage='handleEncourage'></post-detail>
 		</view>
 		<navigator url="/pages/community/sendDetail/sendDetail"
-				   class="send-box bg-primary radius-cr shadow-mi flex flex-center">
+				   class="send-box bg-five radius-cr shadow-mi flex flex-center">
 			<view class="send text-white fa fa-send-o"></view>
 		</navigator>
 	</view>
@@ -126,14 +126,14 @@
 		}
 		
 		.activeTab {
-			color: #222222;
+			color: #4BBBFA;
 			
 			&::after {
 				content: '';
 				width: 80upx;
 				height: 10upx;
 				border-radius: 10upx;
-				background-color: #78BB7B;
+				background-color: #4BBBFA;
 				position: absolute;
 				left: 50%;
 				transform: translateX(-50%);

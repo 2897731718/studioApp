@@ -24,12 +24,190 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.you-page {
-  position: relative;
-  margin-bottom: 140rpx;
+.content.data-v-1fe59df4 {
+  background-color: white;
+  height: 100vh;
 }
-.you-page .bottom-tab {
-  position: fixed;
-  top: 90vh;
+.content .header.data-v-1fe59df4 {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 13vh;
+  z-index: 999;
+  background: linear-gradient(to bottom, #56ccf2, #2f80ed);
+}
+.content .header .titlePart.data-v-1fe59df4 {
+  position: absolute;
+  left: 0;
+  bottom: -2rpx;
+  mix-blend-mode: screen;
+  width: 100vw;
+  height: 13vh;
+}
+.content .choose_box.data-v-1fe59df4 {
+  width: 95vw;
+  height: 15vh;
+  border-radius: 10px;
+  white-space: nowrap;
+  box-shadow: 0px 2px 23px 0px #E4E4E4;
+}
+.content .choose_box .studio_box.data-v-1fe59df4 {
+  width: 80px;
+  height: 12vh;
+  position: relative;
+  top: 50%;
+  /*偏移*/
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: inline-block;
+  margin: 0 auto;
+  margin-left: 15rpx;
+}
+.content .choose_box .studio_box .round_box.data-v-1fe59df4 {
+  width: 10vh;
+  height: 10vh;
+  border-radius: 10vh;
+  display: block;
+  background-color: #4bbbfa;
+  margin: 0 auto;
+  /*水平居中*/
+}
+.content .choose_box .studio_box .studio_text.data-v-1fe59df4 {
+  display: block;
+  margin: 0 auto;
+  /*水平居中*/
+  text-align: center;
+}
+.content .twkle_text.data-v-1fe59df4 {
+  width: 95vw;
+  height: 2vh;
+  padding-left: 10rpx;
+}
+.content .related_box.data-v-1fe59df4 {
+  width: 100%;
+}
+.content .related_box .submit_answer.data-v-1fe59df4 {
+  width: 40vw;
+  height: 20vh;
+  background-color: white;
+  border-radius: 20px;
+  text-align: center;
+  flex-wrap: wrap;
+  box-shadow: 0px 2px 23px 0px #E4E4E4;
+}
+.content .related_box .submit_answer .submit_name.data-v-1fe59df4 {
+  height: 5vh;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  background-color: #4bbbfa;
+  border-radius: 0 0 20px 20px;
+}
+.content .related_box .submit_answer button.data-v-1fe59df4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 26vw;
+  height: 5vh;
+  font-size: 1rem;
+  font-weight: bolder;
+  background-color: #4bbbfa;
+  border-radius: 20px;
+  color: white;
+}
+.content .related_box .stu_infor.data-v-1fe59df4 {
+  width: 45vw;
+}
+.content .related_box .stu_infor .stu_introduce.data-v-1fe59df4 {
+  display: flex;
+  width: 45vw;
+  height: 9vh;
+  box-shadow: 0px 2px 23px 0px #E4E4E4;
+  background-color: white;
+  align-items: center;
+  border-radius: 8px;
+}
+.content .related_box .stu_infor .stu_introduce .img_bac.data-v-1fe59df4 {
+  width: 8vw;
+  height: 8vw;
+  border-radius: 8vw;
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  display: flex;
+  justify-content: center;
+  margin-left: 5vw;
+}
+.content .related_box .stu_infor .stu_introduce .img_bac .intro_img.data-v-1fe59df4 {
+  width: 6vw;
+  height: 6vw;
+  margin: auto;
+}
+.content .related_box .stu_infor .stu_introduce .intro_text.data-v-1fe59df4 {
+  font-size: 0.9rem;
+  padding-left: 5vw;
+  font-weight: bold;
+}
+.content .check_box .choose_title.data-v-1fe59df4 {
+  width: 90vw;
+  height: 6vh;
+  border: none;
+  border-bottom: 1px #caccce solid;
+  display: flex;
+}
+.content .check_box .choose_title .condition_title.data-v-1fe59df4 {
+  height: 6vh;
+  width: 30vw;
+  line-height: 6vh;
+  text-align: center;
+}
+.content .check_box .choose_title .choosed.data-v-1fe59df4 {
+  border-bottom: 2px solid #4bbbfa;
+  color: #4bbbfa;
+}
+.content .check_area.data-v-1fe59df4 {
+  margin-top: 2vh;
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.content .check_area .check_card.data-v-1fe59df4 {
+  width: 92vw;
+  height: 15vh;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 23px 0px #E4E4E4;
+  margin-bottom: 2vh;
+}
+.content .check_area .check_card .check_title.data-v-1fe59df4 {
+  font-size: 20px;
+  padding: 1vh;
+  font-weight: bold;
+}
+.content .check_area .check_card .check_time.data-v-1fe59df4 {
+  font-size: 15px;
+  padding-left: 1vh;
+  padding-bottom: 1vh;
+  color: #8a8a8a;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.content .check_area .check_card .check_time .check_state.data-v-1fe59df4 {
+  position: absolute;
+  width: 15vw;
+  height: 3vh;
+  background-color: rgba(75, 187, 250, 0.7);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  right: 5vw;
+  top: 2vh;
+  font-weight: bold;
 }
 

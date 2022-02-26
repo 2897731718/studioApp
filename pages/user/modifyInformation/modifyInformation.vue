@@ -1,8 +1,8 @@
 <template name="studio">
 <view>
-	<cu-custom class="top-return" :isBack="true" bgColor="bg-primary text-white">
+	<cu-custom class="top-return" :isBack="true" bgColor="bg-five text-white">
 		<block slot="backText">返回</block>
-		<block slot="content">个人详情</block>
+		<block slot="content">修改信息</block>
 	</cu-custom>
 	<view class="you-page flex-column align-center">
 		

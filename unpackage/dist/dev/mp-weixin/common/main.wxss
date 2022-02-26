@@ -5372,8 +5372,11 @@ text {
 .bg-five {
 	background-color: #4BBBFA;
 }
-.bg-five {
+.bg-six {
 	background-color: #F8F8F8;
+}
+.bg-seven {
+	background-color: #0abde3;
 }
 /*
  字体色
@@ -5392,6 +5395,9 @@ text {
 }
 .text-five {
 	color: #4BBBFA;
+}
+.text-seven {
+	color: #0984e3;
 }
 .text-new {
 	color: #808b9f;
@@ -5436,7 +5442,8 @@ text {
 	font-family: Helvetica, "PingFang SC", "Microsoft Yahei", sans-serif;
 	/* background-color: #C4E1C5;
  */
-	/* background-color: #78BB7B; */
+	/* background-color: #78BB7B;
+ */
 }
 /**
  *  @dlz
@@ -5932,13 +5939,20 @@ text {
  覆盖滚动条
  页面中 <scroll-view scroll-y="true" class="hsb"/> 用不了
  */
-/* .hsb { */
-/*   width: 6px; */
-/*   height: 100%; */
-/*   position: fixed; */
-/*   top: 0; */
-/*   right: 0; */
-/*   background: #fff; */
+/* .hsb {
+ */
+/*   width: 6px;
+ */
+/*   height: 100%;
+ */
+/*   position: fixed;
+ */
+/*   top: 0;
+ */
+/*   right: 0;
+ */
+/*   background: #fff;
+ */
 /* }
  */
 /* 
@@ -5962,7 +5976,8 @@ text {
  */
 	text-align: center;
 	border-radius: 10%;
-	background: #2c3a47;
+	/* background: #2c3a47;
+ */
 	transition: 0.2s;
 	/* transition: all .2s linear;
  */
@@ -6071,14 +6086,16 @@ text {
 	transition: .2s linear;
 }
 .btn-rotate:active{
-	/* 改变大小 原始宽度的 0.8 倍 */
+	/* 改变大小 原始宽度的 0.8 倍
+ */
     -webkit-transform: scale(.8);
             transform: scale(.8);
 }
 .btn-rotate:active::before{
     border-left:2px solid;
     border-right:2px solid;
-	/* 延 x 轴倾斜给定角度 */
+	/* 延 x 轴倾斜给定角度
+ */
     -webkit-transform: skewX(20deg);
             transform: skewX(20deg);
 }

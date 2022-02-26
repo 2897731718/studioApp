@@ -91,13 +91,13 @@
 		// border: 1px solid #2C405A;
 		
 		.isSelected {
-			color: #78BB7B;
+			color: #4BBBFA;
 		}
 	}
 	
 	.tab>view {
 		font-size: 30px;
-		color: #C4E1C5;
+		color: #c8d6e5;
 	}
 	
 	
@@ -107,7 +107,7 @@
 	
 	.middle {
 		position: relative;
-		background-color: #C4E1C5;
+		background-color: #c8d6e5;
 		border-radius: 50%;
 		border: 10px solid #e5e5e5;
 		transform: translateY(-50%);
@@ -134,7 +134,7 @@
 		}
 		
 		.add:hover {
-			background-color: #78BB7B;
+			background-color: #4BBBFA;
 		}
 		
 		.add:hover>view {
@@ -163,7 +163,7 @@
 	}
 	
 	.open {
-		background-color: #78BB7B;
+		background-color: #4BBBFA;
 	}
 	
 	.open::after {

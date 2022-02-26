@@ -6,13 +6,13 @@
 
 <template>
 	<view>
-		<cu-custom :isBack="true" bgColor="bg-shadeTop text-white">
+		<cu-custom :isBack="true" bgColor="bg-five text-white">
 			<block slot="backText">返回</block>
 			<block slot="content">垂直导航</block>
 		</cu-custom>
 		<view class="you-page">
 				<!-- 部门简介 -->
-				<view class="top-box shadow-lg shadow-sm bg-primary flex-row flex-center">
+				<view class="top-box shadow-lg shadow-sm flex-row flex-center">
 					<view class="side-bar shadow-mi radius-sm bg-white grid row-6">
 						<!-- <view class="btn text-sm text-primary flex-row flex-center"
 							  :class="[]"

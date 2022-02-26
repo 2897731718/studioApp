@@ -16,7 +16,7 @@
  -->
 <template>
 <view>
-	<cu-custom :isBack="true" bgColor="bg-shadeTop text-white">
+	<cu-custom :isBack="true" bgColor="bg-five text-white">
 		<block slot="backText">返回</block>
 		<block slot="content">大创报名</block>
 	</cu-custom>
@@ -79,15 +79,15 @@
 						<text v-else class="input-content border bg-white radius-xs">{{ reason }}</text>
 					</view>
 				</view>
-				<view class="you-btn margin-bottom-sm text-white bg-second flex-row flex-center" @click="confirmSignUp">
+				<view class="you-btn margin-bottom-sm text-white bg-five flex-row flex-center" @click="confirmSignUp">
 					提交报名
 				</view>
 				<view class="mask flex-column flex-center" v-show="submitShow" @touchmove.stop.prevent>
 					<view class="prompt-box bg-white radius-xs flex-column flex-center">
 						<text>是否确认提交</text>
 						<view class="btn-box margin-top-xl flex-row">
-							<view class="you-btn bg-gray text-primary" @click.stop.prevent="cancelSubmit()">取消</view>
-							<view class="you-btn bg-second text-white margin-left-sm" @click.stop.prevent="submit()">确认</view>
+							<view class="you-btn bg-gray text-five" @click.stop.prevent="cancelSubmit()">取消</view>
+							<view class="you-btn bg-five text-white margin-left-sm" @click.stop.prevent="submit()">确认</view>
 						</view>
 					</view>
 				</view>

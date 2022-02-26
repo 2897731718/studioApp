@@ -7,7 +7,7 @@
  -->
 <template>
 <view>
-	<cu-custom :isBack="false" bgColor="bg-primary text-white"></cu-custom>
+	<cu-custom :isBack="false" bgColor="bg-five text-white"></cu-custom>
 	<view class="you-page flex-column align-center">
 		
 		<home v-if="pageName=='home'"></home>
