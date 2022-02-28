@@ -30,11 +30,8 @@
   font-size: 1.2rem;
 }
 .award_box.data-v-36660b4a {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-flex-wrap: wrap;
-          flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 .award_box .title.data-v-36660b4a {
   width: 1vw;

@@ -25,9 +25,11 @@ export function postRequest(url, data) {
 			method: "POST",
 			header: {
 				"content-type": "application/json",
-				Authorization: uni.getStorageSync("sessionId")
+				token: uni.getStorageSync("token"),
+				// Authorization: uni.getStorageSync("sessionId")
 			},
 			success: function(res) {
+				console.log(res.header.token)
 				uni.hideLoading();
 				//返回什么就相应的做调整
 				if (res.statusCode == 200) {
@@ -67,7 +69,8 @@ export function getRequest(url, data) {
 			dataType: "json",
 			header: {
 				"content-type": "application/json",
-				Authorization: uni.getStorageSync("sessionId"),
+				token: uni.getStorageSync("token"),
+				// Authorization: uni.getStorageSync("sessionId"),
 				// 'Origin': 'http://47.119.155.5:8081'
 			},
 			success: function(res) {

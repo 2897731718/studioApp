@@ -49,14 +49,12 @@
 .you-page .top-box .side-bar .isSelect text {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
-  -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 .you-page .top-box .content-box {
   width: 64vw;
   height: 360rpx;
   padding: 20rpx;
-  -webkit-transition: 0.5s;
   transition: 0.5s;
 }
 .you-page .top-box .content-box .instroduce-content {

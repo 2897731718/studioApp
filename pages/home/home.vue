@@ -9,7 +9,7 @@
 		<view class="graphical-top bg-five"></view>
 		<!-- 大创简介名片 -->
 		<view class="header-box radius-sm margin-top-sm bg-white">
-			<view class="top-box bg-five shadow-xs radius-sm  flex-row flex-center">
+			<view class="top-box bg-five shadow-sm radius-sm  flex-row flex-center">
 				<view class="img-box">
 					<!-- <image src="../../static/logo.png" mode=""></image> -->
 					<cubic-img class="img"></cubic-img>
@@ -375,7 +375,7 @@
 		.top-box {
 			width: 100%;
 			height: 200upx;
-			border: 2px solid #333333;
+			// border: 2px solid #333333;
 			padding: 20upx;
 			
 			.img-box {
@@ -396,20 +396,11 @@
 			}
 			
 			.btn-box {
-				// position: absolute;
-				// top: ;
-				width: 120upx;
-				height: 80upx;
+				
+				width: 126upx;
+				height: 70upx;
 				
 				z-index: 25;
-				
-				// .btn-glow {
-				// 	width: 100upx;
-				// 	height: 100upx;
-				// 	background-color: #78BB7B;
-				// 	font-size: 20upx;
-				// 	// padding: 20upx;
-				// }
 				
 				.btn-rotate {
 					width: 60px;

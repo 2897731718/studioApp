@@ -10,10 +10,10 @@
 			<text class="cuIcon-loading2 cuIconfont-spin" v-if="loadingShow"></text>
 			<text class="fa fa-weixin margin-lr-xs"></text>
 			微信授权登录</button>
-		<view class="login-box flex-column flex-center" @tap="goLogin">
+		<!-- <view class="login-box flex-column flex-center" @tap="goLogin">
 			<text class="fa fa-weixin margin-bottom-xs"></text>
 			<text>一键登录</text>
-		</view>
+		</view> -->
 		<text class="studio-name text-sm">--- 由 π 工作室技术支持 ---</text>
 	</view>
 </view>
@@ -35,9 +35,8 @@
 		},
 		methods: {
 			login:function() {
-				console.log('ok')
 				this.loadingShow = !this.loadingShow
-				 
+				// 获取微信信息
 				uni.getUserProfile({
 					desc: 'weixin',
 					lang: 'zh_CN',
@@ -48,19 +47,35 @@
 								console.log(loginRes.code)
 								this.WChatInfo = e.userInfo;
 								uni.setStorageSync('WChatInfo', e.userInfo);
-								this.$post('user/login/authorize', {
-									code: loginRes.code
-								}).then(res => {
-									uni.setStorageSync('openid', res.data.openid)
-									uni.setStorageSync('sessionKey', res.data.session_key)
-									uni.redirectTo({
-									    url: '/pages/index/index'
-									});
-								}) 
+								uni.request({
+									url: 'https://test.kabubuda.xyz:8443/user/login/authorize',
+									method: 'POST',
+									data: {
+										code: loginRes.code
+									},
+									dataType: "json",
+									header: {
+										'content-type': 'application/json',
+									},
+									success: res => {
+										// console.log(res)
+										uni.setStorageSync('token', res.header.token)
+										uni.setStorageSync('openid', res.data.data.openid)
+										uni.setStorageSync('sessionKey', res.data.data.session_key)
+										uni.redirectTo({
+											url: '/pages/index/index'
+										});
+									}
+								})
+								this.$get('user/login', {}) // 获取身份信息
+								.then(res => {
+									// console.log(res.data.identity)
+									uni.setStorageSync('identity', res.data.identity)
+								})
 								this.loadingShow = !this.loadingShow
-								// setTimeout(() => {
-									
-								// }, 1000)
+								uni.redirectTo({
+								    url: '/pages/index/index'
+								});
 							}
 						})
 					}

@@ -36,15 +36,9 @@
 .tab-box .tab {
   width: 60px;
   height: 60px;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 .tab-box .tab .isSelected {
   color: #4BBBFA;
@@ -60,7 +54,6 @@
   border: 10px solid #e5e5e5;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 .tab-box .middle .add {
@@ -69,16 +62,9 @@
   height: 30px;
   border-radius: 50%;
   background-color: #fff;
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-transition: 0.3s;
+  justify-content: center;
+  align-items: center;
   transition: 0.3s;
   opacity: 0;
   box-shadow: 0 0 20px rgba(114, 114, 114, 0.5);
@@ -86,7 +72,6 @@
 .tab-box .middle .add > view {
   font-size: 14px;
   color: #686868;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 .tab-box .middle .add:hover {
@@ -102,7 +87,6 @@
   height: 3px;
   border-radius: 3px;
   background-color: #fff;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 .tab-box .middle::before {
@@ -112,7 +96,6 @@
   height: 3px;
   border-radius: 3px;
   background-color: #fff;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);

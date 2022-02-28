@@ -38,7 +38,6 @@
 .wrap .swiper .swiper-item .item.data-v-5e06e1ba {
   width: 100%;
   height: 100%;
-  -webkit-transition: 1.2s;
   transition: 1.2s;
 }
 .wrap .swiper .swiper-item .item-img.data-v-5e06e1ba {
@@ -55,8 +54,6 @@
           transform: scale(1);
 }
 .wrap .dots.data-v-5e06e1ba {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   position: absolute;
   left: 50%;
