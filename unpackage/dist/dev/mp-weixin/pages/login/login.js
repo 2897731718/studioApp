@@ -204,19 +204,17 @@ var _default =
                   uni.setStorageSync('token', res.header.token);
                   uni.setStorageSync('openid', res.data.data.openid);
                   uni.setStorageSync('sessionKey', res.data.data.session_key);
-                  uni.redirectTo({
-                    url: '/pages/index/index' });
-
                 } });
 
               _this.$get('user/login', {}) // 获取身份信息
               .then(function (res) {
                 // console.log(res.data.identity)
                 uni.setStorageSync('identity', res.data.identity);
+                _this.loadingShow = !_this.loadingShow;
+                uni.redirectTo({
+                  url: '/pages/index/index' });
+
               });
-              _this.loadingShow = !_this.loadingShow;
-              uni.redirectTo({
-                url: '/pages/index/index' });
 
             } });
 

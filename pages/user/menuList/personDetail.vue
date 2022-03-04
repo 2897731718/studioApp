@@ -179,10 +179,10 @@
 				if (e.detail.scrollTop < 100) {
 					this.topShow = false
 					this.tabShow = false
-				}else if (e.detail.scrollTop >= 100 && e.detail.scrollTop < 244) {
+				}else if (e.detail.scrollTop >= 100 && e.detail.scrollTop < 277) {
 					this.topShow = true
 					this.tabShow = false
-				}else if (e.detail.scrollTop >= 244) {
+				}else if (e.detail.scrollTop >= 277) {
 					this.topShow = true
 					this.tabShow = true
 				}
@@ -390,7 +390,7 @@
 			}
 			
 			.activeTab {
-				color: #78BB7B;
+				color: #4BBBFA;
 				animation: click 1.3s;
 				// transition: .5s;
 				
@@ -399,7 +399,7 @@
 					width: 80upx;
 					height: 10upx;
 					border-radius: 10upx;
-					background-color: #78BB7B;
+					background-color: #4BBBFA;
 					position: absolute;
 					left: 50%;
 					transform: translateX(-50%);

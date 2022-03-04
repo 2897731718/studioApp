@@ -23,7 +23,7 @@
 						报名
 					</navigator>
 				</view>
-			</view>
+			</view>                                                                     
 			<view class="instroduce-detail flex-column align-center">
 				<view class="title text-bloder">
 					大创简介
@@ -176,7 +176,7 @@
 					<text class="fa fa-angle-right"></text>
 				</view>
 				<view class="main-box margin-top-sm radius-xs flex-column align-center">
-					<text class=" margin-top-sm">自我介绍</text>
+					<text class=" margin-top-sm">活动介绍</text>
 					<view class="detail-box radius-xs flex-column align-center">
 						<textarea class="input-content border bg-white radius-xs" v-model="eventIntroduction" 
 								  placeholder="例如:第XX次举办啥的"></textarea>
@@ -339,6 +339,13 @@
 				
 				
 				this.addEventShow = !this.addEventShow
+			},
+			getEventList() {
+				this.$get('', {
+					
+				}).then(res => {
+					console.log(res)
+				})
 			}
 		},
 		components: {

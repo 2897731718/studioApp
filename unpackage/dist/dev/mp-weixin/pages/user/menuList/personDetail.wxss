@@ -161,7 +161,7 @@ to {
   position: relative;
 }
 .scoll-box .page .head-tab .activeTab {
-  color: #78BB7B;
+  color: #4BBBFA;
   -webkit-animation: click 1.3s;
           animation: click 1.3s;
 }
@@ -170,7 +170,7 @@ to {
   width: 80rpx;
   height: 10rpx;
   border-radius: 10rpx;
-  background-color: #78BB7B;
+  background-color: #4BBBFA;
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);

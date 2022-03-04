@@ -34,5 +34,6 @@
     "community": "/pages/community/community",
     "studio": "/pages/studio/studio",
     "user": "/pages/user/user"
-  }
+  },
+  "sitemapLocation": "sitemap49.json"
 }

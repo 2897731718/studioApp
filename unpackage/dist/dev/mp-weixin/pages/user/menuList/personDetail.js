@@ -340,10 +340,10 @@ __webpack_require__.r(__webpack_exports__);
       if (e.detail.scrollTop < 100) {
         this.topShow = false;
         this.tabShow = false;
-      } else if (e.detail.scrollTop >= 100 && e.detail.scrollTop < 244) {
+      } else if (e.detail.scrollTop >= 100 && e.detail.scrollTop < 277) {
         this.topShow = true;
         this.tabShow = false;
-      } else if (e.detail.scrollTop >= 244) {
+      } else if (e.detail.scrollTop >= 277) {
         this.topShow = true;
         this.tabShow = true;
       }

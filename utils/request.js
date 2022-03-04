@@ -25,7 +25,7 @@ export function postRequest(url, data) {
 			method: "POST",
 			header: {
 				"content-type": "application/json",
-				token: uni.getStorageSync("token"),
+				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId")
 			},
 			success: function(res) {
@@ -69,7 +69,7 @@ export function getRequest(url, data) {
 			dataType: "json",
 			header: {
 				"content-type": "application/json",
-				token: uni.getStorageSync("token"),
+				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId"),
 				// 'Origin': 'http://47.119.155.5:8081'
 			},
