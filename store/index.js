@@ -8,6 +8,7 @@ const store = new Vuex.Store({
 	state: {
 		pageName: 'home',
 		departmentIndex: 0,
+		studioName:'π'
 		
 	},
 	mutations: {
@@ -20,6 +21,10 @@ const store = new Vuex.Store({
 		changeDepartmentIndex(state, index) {
 			state.departmentIndex = index
 			console.log(index)
+		},
+		changeStudioName(state,studioName) {
+			state.studioName = studioName
+			console.log(state.studioName)
 		}
 	}
 })

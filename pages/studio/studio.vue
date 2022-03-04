@@ -8,9 +8,9 @@
 		<!-- 工作室选择框 -->
 		<view class="flex align-center justify-center flex-wrap">
 			<scroll-view scroll-x="true" class="choose_box shadow margin-top-sm">
-				<view class="studio_box">
-					<img src="" alt="" class="round_box">
-					<text class="studio_text">π</text>
+				<view class="studio_box" v-for="(item,index) in studioBox" @click="studioClick(item,index)">
+					<img :src='item.picture' alt="" class="round_box" :class="index==studioIndex?'round_box twinkle':'round_box'" :key="item.name">
+					<text class="studio_text">{{item.name}}</text>
 				</view>
 			</scroll-view>
 		</view>
@@ -73,15 +73,45 @@
 			return {
 				title: 'Hello',
 				chooseTitle:['考核题','已提交','答案'],
-				menuIndex:0
-			}
+				menuIndex:0,
+				studioBox:[
+					{
+						picture:'/static/logo.png',
+						name:'π'
+					},
+					{
+						picture:'/static/logo.png',
+						name:'764'
+					},
+					{
+						picture:'/static/logo.png',
+						name:'brunin home'
+					},
+					{
+						picture:'/static/logo.png',
+						name:'kdd'
+					}
+					],
+					studioIndex:0,
+					currentStudio:'π'
+				}
+				
 		},
-		onLoad() {
-
+		mounted() {
+			console.log("1111111111111")
+			// this.$get('studio/list').then(res => {
+			//     console.log('请求成功')}).catch(err => {console.log(err)})
+			this.getStudioList()
 		},
 		methods: {
 			chooseChange(index) {
-				this.menuIndex = index;
+				this.menuIndex = index
+			},
+			studioClick(item,index){
+				this.studioIndex = index
+				this.currentStudio = item.name
+				this.$store.commit('changeStudioName',item.name)
+				//console.log(this.currentStudio)
 			},
 			submitClick() {
 				uni.navigateTo({
@@ -103,6 +133,18 @@
 				uni.navigateTo({
 					url:"asseDetail"
 				})
+			},
+			getStudioList() {
+				uni.request({
+				    url: 'https://test.kabubuda.xyz:8443/studio/list', 
+					header: {
+						'content-type': 'application/json',
+					},
+				    success: (res) => {
+				        console.log(res)
+						console.log("66666")
+				    }
+				});
 			}
 		}
 	}
@@ -143,13 +185,13 @@
 				//background-color: red;
 				display: inline-block;
 				margin: 0 auto;
-				margin-left: 15rpx;
+				margin-left: 25rpx;
 				.round_box {
 					width: 10vh;
 					height: 10vh;
 					border-radius: 10vh;
 					display:block;
-					background-color:rgb(75,187,250);
+					//background-color:rgb(75,187,250);
 					margin: 0 auto; /*水平居中*/
 				}
 				.studio_text {
@@ -158,8 +200,12 @@
 					//background-color: blue;
 					text-align:center
 				}
+				.twinkle {
+					box-shadow: 0 0 4px 4px rgba(71,167,235,.86);
+				}
 			}
 		}
+		
 		.twkle_text {
 			width: 95vw;
 			height: 2vh;
