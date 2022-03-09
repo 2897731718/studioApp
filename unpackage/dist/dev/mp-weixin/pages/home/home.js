@@ -473,6 +473,13 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumera
 
 
       this.addEventShow = !this.addEventShow;
+    },
+    getEventList: function getEventList() {
+      this.$get('', {}).
+
+      then(function (res) {
+        console.log(res);
+      });
     } }),
 
   components: {
