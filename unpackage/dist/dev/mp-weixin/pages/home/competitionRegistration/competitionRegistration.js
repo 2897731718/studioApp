@@ -410,7 +410,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   data: function data() {
     return {
       tipsContent: '',
-      competitionKind: ['软件创新', '科技乐评', '算法比赛', '码上学习'],
+      competitionKind: ['科技乐评', '软件创新', '码上学习', '算法比赛'],
       competitionIndex: 0,
       firstKindData: ['嵌入式', '软件组(web/小程序)'],
       firstKindIndex: 0,
@@ -419,10 +419,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       thirdKindData: ['个人赛', '小组赛'],
       thirdKindIndex: 0,
       projectName: '1',
-      stdNumberLeader: '2',
-      classNumberLeader: '3',
-      realNameLeader: '4',
-      qNumberLeader: '5',
+      stdNumberLeader: '2', // 组长学号
+      classNumberLeader: '3', // 组长班级
+      realNameLeader: '4', // 组长姓名
+      qNumberLeader: '5', // 组长qq
       classNameOne: '8',
       realNameOne: '9',
       classNameTwo: '8',
@@ -438,6 +438,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       realNameStuding: 'r' };
 
 
+  },
+  onLoad: function onLoad(option) {
+    // this.competitionIndex = JSON.parse(decodeURIComponent(option.item))
   },
   components: {
     RotateCard: RotateCard },
@@ -458,16 +461,38 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       console.log(this.thirdKindIndex);
     },
     confirmSignUpTechnology: function confirmSignUpTechnology() {// 科技月评软件组比赛报名
+      this.$post('/contest/enroll', {}).
 
+      then(function (res) {
+        console.log(res);
+      });
     },
     confirmSignUpInnovate: function confirmSignUpInnovate() {// 软件创新软件组比赛报名
+      this.$post('/contest/enroll', {}).
 
-    },
-    confirmSignUpAlgorithm: function confirmSignUpAlgorithm() {// 算法比赛报名
-
+      then(function (res) {
+        console.log(res);
+      });
     },
     confirmSignUpStuding: function confirmSignUpStuding() {// 码上学习报名
-
+      // this.$post('/contest/enroll', {
+      // 	className: this.classNumberLeader,
+      // 	name: this.realNameLeader,
+      // 	contact: this.qNumberLeader,
+      // 	// groupId: 
+      // }).then(res => {
+      // 	console.log(res)
+      // })
+    },
+    confirmSignUpAlgorithm: function confirmSignUpAlgorithm() {// 算法比赛报名
+      this.$post('/contest/enroll', {
+        className: this.classNumberLeader,
+        name: this.realNameLeader,
+        contact: this.qNumberLeader
+        // groupId: 
+      }).then(function (res) {
+        console.log(res);
+      });
     } } };exports.default = _default;
 
 /***/ }),

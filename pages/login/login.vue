@@ -44,11 +44,12 @@
 						uni.login({
 							provider: 'weixin',
 							success: (loginRes) => {
+								console.log(1)
 								console.log(loginRes.code)
 								this.WChatInfo = e.userInfo;
 								uni.setStorageSync('WChatInfo', e.userInfo);
 								uni.request({
-									url: 'https://test.kabubuda.xyz:8443/user/login/authorize',
+									url: 'https://test.kabubuda.xyz/user/login/authorize',
 									method: 'POST',
 									data: {
 										code: loginRes.code
@@ -64,10 +65,26 @@
 										uni.setStorageSync('sessionKey', res.data.data.session_key)
 									}
 								})
-								this.$get('user/login', {}) // 获取身份信息
+								this.$get('/user/login', {}) // 获取身份信息
 								.then(res => {
-									// console.log(res.data.identity)
+									// console.log(uni.getStorageSync('WChatInfo').avatarUrl)
 									uni.setStorageSync('identity', res.data.identity)
+									if (res.data.identity == -1) {
+										this.$post('/user/info/add', {
+											nickname: uni.getStorageSync('WChatInfo').nickName,
+											avatarUrl: uni.getStorageSync('WChatInfo').avatarUrl,
+											sex: uni.getStorageSync('WChatInfo').gender
+										}).then(res => {
+											console.log(res)
+											
+										})
+									}
+									if (uni.getStorageSync('identity') == -1) {
+										this.$get('/user/login', {})
+										.then(res => {
+											uni.setStorageSync('identity', res.data.identity)
+										})
+									}
 									this.loadingShow = !this.loadingShow
 									uni.redirectTo({
 									    url: '/pages/index/index'
@@ -92,6 +109,7 @@
 <style lang="scss" scoped>
 .you-page {
 	position: relative;
+	background-color: #FFFFFF;
 	.logo-img {
 		width: 140upx;
 		height: 140upx;

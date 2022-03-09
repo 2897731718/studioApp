@@ -91,11 +91,17 @@ var render = function() {
     }
   })
 
+  var m1 = encodeURIComponent(JSON.stringify(_vm.currentIndex))
+  var m2 = encodeURIComponent(JSON.stringify(_vm.currentIndex))
+  var m3 = encodeURIComponent(JSON.stringify(_vm.currentIndex))
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        l0: l0
+        l0: l0,
+        m1: m1,
+        m2: m2,
+        m3: m3
       }
     }
   )
@@ -397,7 +403,22 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       tabList: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
       currentIndex: 0,
       eventList: [],
-      eventShowList: [
+      // eventShowList: 
+      identity: 0,
+      addEventShow: false,
+      kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
+      kindIndex: 0,
+      address: '',
+      startTime: '',
+      endTime: '',
+      eventIntroduction: '' };
+
+
+  },
+  props: {
+    eventShowList: {
+      type: Array,
+      default: [
       {
         id: 0,
         eventName: '码上开讲',
@@ -420,23 +441,11 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
         address: 'e教899',
         startTime: '2021-10-1',
         endTime: '2021-10-29',
-        introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台' }],
+        introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台' }] } },
 
 
-      identity: 0,
-      addEventShow: false,
-      kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
-      kindIndex: 0,
-      address: '',
-      startTime: '',
-      endTime: '',
-      eventIntroduction: '' };
 
 
-  },
-  onLoad: function onLoad() {
-
-  },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['departmentIndex'])),
 
@@ -475,7 +484,8 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       this.addEventShow = !this.addEventShow;
     },
     getEventList: function getEventList() {
-      this.$get('', {}).
+      console.log('1');
+      this.$get('/contest/info', {}).
 
       then(function (res) {
         console.log(res);

@@ -13,32 +13,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/login/login",
-          "pathName": "pages/login/login",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/index/index",
           "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/community/postPage/postPage",
-          "pathName": "pages/community/postPage/postPage",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/community/sendDetail/sendDetail",
-          "pathName": "pages/community/sendDetail/sendDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/user/menuList/identity",
-          "pathName": "pages/user/menuList/identity",
           "query": "",
           "scene": null
         },
@@ -49,20 +25,21 @@
           "scene": null
         },
         {
-          "name": "pages/user/menuList/follow",
-          "pathName": "pages/user/menuList/follow",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/user/menuList/identity",
-          "pathName": "pages/user/menuList/identity",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/user/menuList/personDetail",
           "pathName": "pages/user/menuList/personDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/departmentSignUp/departmentSignUp",
+          "pathName": "pages/home/departmentSignUp/departmentSignUp",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/competitionRegistration/competitionRegistration",
+          "pathName": "pages/home/competitionRegistration/competitionRegistration",
+          "query": "",
           "scene": null
         }
       ]

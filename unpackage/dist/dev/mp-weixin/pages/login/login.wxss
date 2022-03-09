@@ -26,6 +26,7 @@
 /* 文章场景相关 */
 .you-page.data-v-b237504c {
   position: relative;
+  background-color: #FFFFFF;
 }
 .you-page .logo-img.data-v-b237504c {
   width: 140rpx;

@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var RotateCard = function RotateCard() {__webpack_require__.e(/*! require.ensure | components/content/RotateCard */ "components/content/RotateCard").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/RotateCard.vue */ 205));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var RotateCard = function RotateCard() {__webpack_require__.e(/*! require.ensure | components/content/RotateCard */ "components/content/RotateCard").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/RotateCard.vue */ 205));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -236,17 +236,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   data: function data() {
     return {
       tipsContent: '请按照下方示例格式填写报名信息，注意空格逗号等，提交过后无法查看提交信息，提示提交成功就是成功，如有疑问可以去QQ群问学长学姐，最后欢迎大家报名大创，加油！！！',
-      classNumber: '',
-      realName: '',
-      qNumber: '',
+      classNumber: '1910',
+      realName: 'zsw',
+      qNumber: '2897732',
       genderData: ['男', '女'],
       genderIndex: 0,
       firstKindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
       firstKindIndex: 0,
       secondKindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
       secondKindIndex: 0,
-      selfIntroduction: "",
-      reason: "",
+      selfIntroduction: "fdsfsd",
+      reason: "sdfadsfds",
       submitShow: false };
 
 
@@ -257,6 +257,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   methods: {
     choseGender: function choseGender(e) {
+      console.log(e);
       this.genderIndex = e.detail.value;
     },
     choseFirstKind: function choseFirstKind(e) {
@@ -271,10 +272,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     cancelSubmit: function cancelSubmit() {
       this.submitShow = !this.submitShow;
     },
-    submit: function submit() {
-
+    submit: function submit() {var _this = this;
+      console.log(uni.getStorageSync("token"));
+      this.$post('/cosi/enroll/department', {
+        name: this.realName,
+        gender: this.genderIndex,
+        className: this.classNumber,
+        contact_number: this.qNumber,
+        self_introduction: this.selfIntroduction,
+        reason: this.reason,
+        firstWish: this.firstKindIndex,
+        secondWish: this.secondKindIndex }).
+      then(function (res) {
+        console.log(res);
+        _this.$toast('报名成功', 2000, 'success', true);
+        _this.realName = '';
+        _this.genderIndex = '';
+        _this.classNumber,
+        _this.qNumber = '';
+        _this.selfIntroduction = '';
+        _this.reason = '';
+        _this.firstKindIndex = '';
+        _this.secondKindIndex = '';
+      });
       this.submitShow = !this.submitShow;
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
