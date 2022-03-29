@@ -32,16 +32,28 @@
 			...mapState(['pageName']),
 			
 		},
+		created() {
+			// this.getPostList()
+		},
 		onLoad() {
-			this.$toast('登陆成功', 2000, 'success', true);
-			this.getEventList()
+			this.$toast('登陆成功', 1000, 'success', true);
+			// this.getEventList()
+			// this.getPostList()
 		},
 		methods: {
 			getEventList() {
-				this.$get('/contest/info', {
-					
+				this.$get('/cosi/contest/info', {
+					openId: uni.getStorageInfoSync('openid')
 				}).then(res => {
-					console.log(res)
+					console.log(res, 3)
+				})
+				
+			},
+			getPostList() {
+				this.$get('/community/post/list', {
+					openId: uni.getStorageInfoSync('openid')
+				}).then(res => {
+					console.log(res, 4)
 				})
 			}
 		}

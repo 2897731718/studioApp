@@ -187,7 +187,7 @@ var _default =
             provider: 'weixin',
             success: function success(loginRes) {
               console.log(1);
-              console.log(loginRes.code);
+              // console.log(loginRes.code)
               _this.WChatInfo = e.userInfo;
               uni.setStorageSync('WChatInfo', e.userInfo);
               uni.request({
@@ -201,37 +201,42 @@ var _default =
                   'content-type': 'application/json' },
 
                 success: function success(res) {
-                  // console.log(res)
+                  console.log(res.header.token);
                   uni.setStorageSync('token', res.header.token);
                   uni.setStorageSync('openid', res.data.data.openid);
                   uni.setStorageSync('sessionKey', res.data.data.session_key);
+
+                  _this.$get('/user/login', {}) // 获取身份信息
+                  .then(function (res) {
+                    console.log(res, 1);
+                    uni.setStorageSync('identity', res.data.identity);
+                    // 刚开始身份为空 新用户 就要添加身份
+                    if (res.data.identity == -1) {
+                      _this.$post('/user/info/add', {
+                        nickname: uni.getStorageSync('WChatInfo').nickName,
+                        avatarUrl: uni.getStorageSync('WChatInfo').avatarUrl,
+                        sex: uni.getStorageSync('WChatInfo').gender }).
+                      then(function (res) {
+                        console.log(res, 2);
+                        uni.setStorageSync('identity', res.data.identity);
+                        // 添加完
+                      });
+                    }
+                    // 获取到的身份发生改变 重新获取
+                    if (res.data.identity != uni.getStorageSync('identity')) {
+                      _this.$get('/user/login', {}).
+                      then(function (res) {
+                        uni.setStorageSync('identity', res.data.identity);
+                      });
+                    }
+
+                    _this.loadingShow = !_this.loadingShow;
+                    uni.redirectTo({
+                      url: '/pages/index/index' });
+
+                  });
                 } });
 
-              _this.$get('/user/login', {}) // 获取身份信息
-              .then(function (res) {
-                // console.log(uni.getStorageSync('WChatInfo').avatarUrl)
-                uni.setStorageSync('identity', res.data.identity);
-                if (res.data.identity == -1) {
-                  _this.$post('/user/info/add', {
-                    nickname: uni.getStorageSync('WChatInfo').nickName,
-                    avatarUrl: uni.getStorageSync('WChatInfo').avatarUrl,
-                    sex: uni.getStorageSync('WChatInfo').gender }).
-                  then(function (res) {
-                    console.log(res);
-
-                  });
-                }
-                if (uni.getStorageSync('identity') == -1) {
-                  _this.$get('/user/login', {}).
-                  then(function (res) {
-                    uni.setStorageSync('identity', res.data.identity);
-                  });
-                }
-                _this.loadingShow = !_this.loadingShow;
-                uni.redirectTo({
-                  url: '/pages/index/index' });
-
-              });
 
             } });
 

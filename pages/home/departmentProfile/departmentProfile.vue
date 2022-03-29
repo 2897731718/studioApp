@@ -100,7 +100,7 @@
 						<view class="member-box text-lg text-new shadow-xl radius-sm flex-row align-center justify-around">
 							<view class="">{{ item.grade }}级</view>
 							<view class="">{{ item.position }}</view>
-							<view class="">{{ item.name }}</view>
+							<view class="">{{ item.realName }}</view>
 							<view class="you-btn text-white bg-red flex-column flex-center" v-show="delectBtnShow" @click="delectMember">删除</view>
 						</view>
 					</view>
@@ -114,11 +114,16 @@
 					<view class="member-page shadow-mi bg-white radius-sm flex-column flex-center">
 						<text class="fa fa-times text-lg" @click="cancelSendMember"></text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center">
-							<text class="margin-left-sm text-sm">职位</text>
+							<text class="margin-left-sm text-sm">部门划分</text>
 							<picker class="text-black" :range="kindData" mode="selector" @change="choseKind">
 								{{ kindData[kindIndex] }}
 							</picker>
 							<text class="fa fa-angle-right" aria-hidden="true"></text>
+						</view>
+						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
+							<text class="margin-left-sm text-sm">具体职位</text>
+							<input class="text-black-accent text-xxs" type="text" placeholder="竞赛部部长" v-model="positionName" maxlength="15"/>
+							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">年级</text>
@@ -189,68 +194,7 @@
 						name: '工联部'
 					}
 				],
-				memberList: [
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟123'
-					},
-				],
+				memberList: [],
 				bottomBarShow: false,
 				delectBtnShow: false,
 				delectConfirmShow: false, // 删除确认遮罩层
@@ -258,8 +202,9 @@
 				identity: 0,
 				animationData: {},
 				kindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
-				kindIndex: 0,
-				grade: 2019,
+				kindIndex: '0',
+				positionName: '理事长',
+				grade: '2019',
 				realName: '曾书伟',
 				
 			};
@@ -274,6 +219,7 @@
 				
 			})
 			this.animationData = animation
+			this.getMember()
 		},
 		computed: {
 			...mapState(['departmentIndex'])
@@ -282,6 +228,7 @@
 			...mapMutations(['changeDepartmentIndex']),
 			changeOccupationInstroduce(index) {
 				this.$store.commit('changeDepartmentIndex', index)
+				this.getMember(index)
 				// setTimeout(() => {
 				// 	this.animationData.width('62vw').step()
 				// 	this.animationData.height(`340upx`).step()
@@ -313,8 +260,26 @@
 				this.kindIndex= e.detail.value;
 			},
 			sendMember() { // 要添加成员接口 
-				
+				this.$post('/cosi/dep/member/add', {
+					grade: this.grade,
+					realName: this.realName,
+					depId: this.kindIndex + 1,
+					position: this.positionName,
+					
+				}).then(res => {
+					this.$toast('添加成功', 1000, 'success', true)
+					console.log(res)
+					this.getMember()
+				})
 				this.addConfirmShow = !this.addConfirmShow
+			},
+			getMember(index) {
+				this.$get('/cosi/dep/member/list', {
+					depId: index + 1
+				}).then(res => {
+					this.memberList = res.data
+					console.log(this.memberList)
+				})
 			},
 			cancelSendMember() {
 				this.addConfirmShow = !this.addConfirmShow
@@ -423,7 +388,8 @@
 		
 		.member-page {
 			width: 70vw;
-			height: 500upx;
+			min-height: 660upx;
+			height: auto;
 			position: relative;
 			
 			text:only-of-type {

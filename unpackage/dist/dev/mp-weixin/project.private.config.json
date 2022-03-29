@@ -41,6 +41,17 @@
           "pathName": "pages/home/competitionRegistration/competitionRegistration",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/community/sendDetail/sendDetail",
+          "pathName": "pages/community/sendDetail/sendDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/addEvent",
+          "pathName": "pages/home/addEvent",
+          "scene": null
         }
       ]
     }

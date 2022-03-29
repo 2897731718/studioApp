@@ -35,6 +35,9 @@
 			<text>{{ link }}</text>
 			<view class="clipboard-btn radius-sm text-sm bg-gray margin-left-sm flex flex-center" @tap.stop="clipboardClick">复制</view>
 		</view>
+		<view class="btn-box">
+			<view class="you-btn bg-five comment-btn" @click="addPost()">发布</view>
+		</view>
 		<view class="cu-bar foot input flex-column align-center" v-show="linkShow" :style="[{bottom:InputBottom+'px'}]">
 			<view class="top-box margin-bottom-sm flex-row align-center justify-between">
 				<text class="fa fa-times" @tap="clickLink"></text>
@@ -68,6 +71,7 @@
 				link: 'https://uniapp.dcloud.io/api/system/clipboard',
 				content: '',
 				imageList: [],
+				postId: '',
 				
 			};
 		},
@@ -104,24 +108,28 @@
 					// 	that.imageList.push (res.tempFilePaths); // push 是将新元素加到数组里
 					// }
 					success: (res => {
-						// console.log(res.tempFiles);
-						// this.imageList = res.tempFilePaths;
+						console.log(res.tempFiles);
+						this.imageList = res.tempFilePaths;
 						// this.imageList.unshift(res.tempFilePaths); // 加到数组开头的 第一个
 						// // let _imageList = this.imageList[0]
-						// this.sendPicture(this.imageList[0])
+						this.sendPicture(this.imageList)
 						
 						// this.newImageList = []
 						
 					})
 				})
 			},
-			sendPicture() {
+			sendPicture: function(path) {
+				// console.log(path)
+				// let imageList = path
+				console.log(this.postId, 111)
+				console.log(path[0])
 				uni.uploadFile({
-					url: '', //仅为示例，非真实的接口地址
+					url: 'https://test.kabubuda.xyz/community/image/upload', //仅为示例，非真实的接口地址
 					filePath: path[0],
 					name: 'file',
 					formData: {
-						orderId: this.orderId,
+						postId: this.postId,
 					},
 					header: {
 						'content-type': 'application/form-data',
@@ -138,6 +146,17 @@
 			},
 			confirmAddLink() {
 				this.linkShow = !this.linkShow
+			},
+			addPost() {
+				this.$post('/community/post/publish', {
+					postContent: this.content,
+					postType: this.kindIndex,
+					postTag: '帖子1',
+				}).then(res => {
+					console.log(res)
+					this.postId = res.data.postId
+					console.log(this.postId)
+				})
 			}
 			
 		}
@@ -205,6 +224,17 @@
 			font-size: 24upx;
 			padding: 4upx 0;
 		}
+	}
+	
+	.btn-box {
+		width: 100vw;
+		height: 80rpx;
+		
+		.you-btn {
+			width: 100rpx;
+			height: 80rpx;
+		}
+		
 	}
 	
 	.cu-bar {

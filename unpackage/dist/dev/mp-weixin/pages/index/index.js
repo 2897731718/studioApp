@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -164,18 +164,31 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
   (0, _vuex.mapState)(['pageName'])),
 
 
+  created: function created() {
+    // this.getPostList()
+  },
   onLoad: function onLoad() {
-    this.$toast('登陆成功', 2000, 'success', true);
-    this.getEventList();
+    this.$toast('登陆成功', 1000, 'success', true);
+    // this.getEventList()
+    // this.getPostList()
   },
   methods: {
     getEventList: function getEventList() {
-      this.$get('/contest/info', {}).
-
+      this.$get('/cosi/contest/info', {
+        openId: uni.getStorageInfoSync('openid') }).
       then(function (res) {
-        console.log(res);
+        console.log(res, 3);
+      });
+
+    },
+    getPostList: function getPostList() {
+      this.$get('/community/post/list', {
+        openId: uni.getStorageInfoSync('openid') }).
+      then(function (res) {
+        console.log(res, 4);
       });
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

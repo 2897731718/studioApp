@@ -88,6 +88,9 @@
 			postDetail,
 			
 		},
+		created() {
+			this.getPostList()
+		},
 		methods: {
 			tabSelect: function(index) {
 				this.currentIndex = index;
@@ -101,7 +104,13 @@
 			clipboardClick() {
 				
 			},
-			
+			getPostList() {
+				this.$get('/community/post/list', {
+					openId: uni.getStorageInfoSync('openid')
+				}).then(res => {
+					console.log(res)
+				})
+			}
 		}
 	}
 </script>

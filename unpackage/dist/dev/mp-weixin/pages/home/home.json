@@ -3,7 +3,7 @@
   "usingComponents": {
     "cubic-img": "/components/CubicImg",
     "ls-swiper": "/components/LsSwiper",
-    "event-card": "/components/content/EventCard",
-    "studio-card": "/components/content/StudioCard"
+    "studio-card": "/components/content/StudioCard",
+    "event-list": "/pages/home/EventList"
   }
 }

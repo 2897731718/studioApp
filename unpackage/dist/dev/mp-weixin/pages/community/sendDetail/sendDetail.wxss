@@ -72,6 +72,14 @@
   font-size: 24rpx;
   padding: 4rpx 0;
 }
+.you-page .btn-box {
+  width: 100vw;
+  height: 80rpx;
+}
+.you-page .btn-box .you-btn {
+  width: 100rpx;
+  height: 80rpx;
+}
 .you-page .cu-bar {
   padding: 20rpx 20rpx 20rpx 40rpx;
   height: 160rpx;

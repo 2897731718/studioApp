@@ -27,6 +27,8 @@ export function postRequest(url, data) {
 				"content-type": "application/json",
 				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId")
+				'Origin': 'https://test.kabubuda.xyz',
+				
 			},
 			success: function(res) {
 				// console.log(res.header.token)

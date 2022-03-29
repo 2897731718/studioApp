@@ -78,118 +78,14 @@
 		 地点
 		 简介
 		 -->
-		<view class="event-box margin-top-sm flex-column align-center">
-			<text class="title text-lg">赛事信息</text>
-			<view class="tabs margin-top-sm display-grid col-5">
-				<view class="tab text-xs radius-xs flex-column flex-center" 
-					  v-for="(item,index) in tabList" 
-					  :key="index"
-					  :class="{'active': currentIndex == index }"
-					  @click="selectTab(index)">{{ item }}</view>
-				
-			</view>
-			
-			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 0">
-				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名科技月评</navigator>
-				<!-- 科技月评  -->
-				<event-card v-for="item in eventShowList" :key="item.id"
-							:eventName="item.eventName"
-							:address="item.address"
-							:startTime="item.startTime"
-							:endTime="item.endTime"
-							:introduce="item.introduce"></event-card>
-				
-			</view>
-			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 1">
-				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名软件创新</navigator>
-				<!-- 软件创新  -->
-				<event-card v-for="item in eventShowList" :key="item.id"
-							:eventName="item.eventName"
-							:address="item.address"
-							:startTime="item.startTime"
-							:endTime="item.endTime"
-							:introduce="item.introduce"></event-card>
-				
-			</view>
-			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 2">
-				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名码上学习</navigator>
-				<!-- 马上学习  -->
-				<event-card v-for="item in eventShowList" :key="item.id"
-							:eventName="item.eventName"
-							:address="item.address"
-							:startTime="item.startTime"
-							:endTime="item.endTime"
-							:introduce="item.introduce"></event-card>
-				
-			</view>
-			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 3">
-				<!-- 马上开奖  -->
-				<event-card v-for="item in eventShowList" :key="item.id"
-							:eventName="item.eventName"
-							:address="item.address"
-							:startTime="item.startTime"
-							:endTime="item.endTime"
-							:introduce="item.introduce"></event-card>
-				
-			</view>
-			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 4">
-				<!-- 先导课  -->
-				<event-card v-for="item in eventShowList" :key="item.id"
-							:eventName="item.eventName"
-							:address="item.address"
-							:startTime="item.startTime"
-							:endTime="item.endTime"
-							:introduce="item.introduce"></event-card>
-				
-			</view>
-		</view>
+		<event-list></event-list>
 		
 		<!-- 悬浮按钮 控制添加赛事信息显示隐藏 -->
-		<view class="fixed-box radius-cr text-white flex-column flex-center" @click="showAddEvent"></view>
+		<navigator :url="'/pages/home/addEvent'" class="fixed-box radius-cr text-white flex-column flex-center" ></navigator>
 		
 		<!-- 添加赛事信息 -->
 		<view class="you-mask glass-morphism flex-column align-center" v-show="addEventShow" @touchmove.stop.prevent>
-			<view class="add-page bg-gray flex-column align-center">
-				<view class="cancel-box flex-row align-center">
-					<text class="fa fa-times text-lg" @click="cancelSendEvent"></text>
-				</view>
-				<view class="box-in margin-top-sm radius-xs flex-row align-center">
-					<text class="margin-left-sm text-sm">活动类型</text>
-					<picker class="text-black" :range="kindData" mode="selector" @change="choseKind">
-						{{ kindData[kindIndex] }}
-					</picker>
-					<text class="fa fa-angle-right" aria-hidden="true"></text>
-				</view>
-				<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
-					<text class="margin-left-sm text-sm">地点</text>
-					<input class="text-black-accent text-xxs" type="text" v-model="address" placeholder="e教415" maxlength="15"/>
-					<text class="fa fa-angle-right"></text>
-				</view>
-				<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
-					<text class="margin-left-sm text-sm">开始时间</text>
-					<input class="text-black-accent text-xxs" type="text" v-model="startTime" placeholder="2021-10-1 7:00" maxlength="15"/>
-					<text class="fa fa-angle-right"></text>
-				</view>
-				<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
-					<text class="margin-left-sm text-sm">结束时间</text>
-					<input class="text-black-accent text-xxs" type="text" v-model="endTime" placeholder="2021-10-1 9:00" maxlength="15"/>
-					<text class="fa fa-angle-right"></text>
-				</view>
-				<view class="main-box margin-top-sm radius-xs flex-column align-center">
-					<text class=" margin-top-sm">活动介绍</text>
-					<view class="detail-box radius-xs flex-column align-center">
-						<textarea class="input-content border bg-white radius-xs" v-model="eventIntroduction" 
-								  placeholder="例如:第XX次举办啥的"></textarea>
-						<!-- <text v-else class="input-content border bg-white radius-xs">{{ selfIntroduction }}</text> -->
-					</view>
-				</view>
-				<view class="you-btn bg-second text-white text-sm" @click="sendEvent">确认添加</view>
-				<!-- <view class="btn-box margin-top-lg margin-bottom-sm flex-row flex-center">
-					<view class="you-btn bg-four text-white text-sm" @click="cancelSendEvent">确认添加</view>
-					
-				</view> -->
-				
-			</view>
+			
 		</view>
 		
 		<!-- <bottom-tab-bar class="bottom-tab"></bottom-tab-bar> -->
@@ -200,8 +96,9 @@
 	// import BottomTabBar from '../../components/BottomTabBar.vue'
 	import CubicImg from '../../components/CubicImg.vue'
 	import LsSwiper from '../../components/LsSwiper.vue'
-	import EventCard from '../../components/content/EventCard.vue'
+	// import EventCard from '../../components/content/EventCard.vue'
 	import StudioCard from '../../components/content/StudioCard.vue'
+	import EventList from './EventList.vue'
 	
 	import { mapState, mapMutations } from 'vuex'
 	export default {
@@ -260,51 +157,14 @@
 						name: '工联部'
 					}
 				],
-				tabList: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
-				currentIndex: 0,
 				eventList: [],
-				// eventShowList: 
 				identity: 0,
-				addEventShow: false,
-				kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
-				kindIndex: 0,
-				address: '',
-				startTime: '',
-				endTime: '',
-				eventIntroduction: '',
+				
 				
 			}
 		},
 		props: {
-			eventShowList: {
-				type: Array,
-				default: [
-					{
-						id: 0,
-						eventName: '码上开讲',
-						address: 'e教899',
-						startTime: '2021-10-1',
-						endTime: '2021-10-29',
-						introduce: '大学生创新创业中心成立于2017年',
-					},
-					{
-						id: 1,
-						eventName: '码上开讲',
-						address: 'e教899',
-						startTime: '2021-10-1',
-						endTime: '2021-10-29',
-						introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台',
-					},
-					{
-						id: 2,
-						eventName: '码上开讲',
-						address: 'e教899',
-						startTime: '2021-10-1',
-						endTime: '2021-10-29',
-						introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台',
-					},
-				],
-			}
+			
 		},
 		computed: {
 			...mapState(['departmentIndex']),
@@ -328,37 +188,17 @@
 				this.currentIndex = index
 				
 			},
-			choseKind: function(e) {
-				console.log(e)
-				this.kindIndex= e.detail.value;
-			},
-			showAddEvent() {
-				this.addEventShow = !this.addEventShow
-			},
-			cancelSendEvent() {
-				this.addEventShow = !this.addEventShow
-			},
-			sendEvent() { // 写发送接口
-				
-				
-				this.addEventShow = !this.addEventShow
-			},
-			getEventList() {
-				console.log('1')
-				this.$get('/contest/info', {
-					
-				}).then(res => {
-					console.log(res)
-				})
-			}
+			
+			
 		},
 		components: {
+			
 			CubicImg,
 			// BottomTabBar,
 			LsSwiper,
-			EventCard,
+			// EventCard,
 			StudioCard,
-			
+			EventList
 		}
 	}
 </script>
@@ -510,52 +350,6 @@
 		}
 	}
 	
-	.event-box {
-		width: 92vw;
-		min-height: 400px;
-		height: auto;
-		// background: #f0f0f3;
-		color: #808b9f;
-		font-family: Helvetica, "PingFang SC", "Microsoft Yahei", sans-serif;
-		
-		.tabs {
-			width: 100%;
-			padding: 4px;
-			border-radius: 5px;
-			background-color: #C4E1C5;
-			box-shadow: -1px -1px 3px #FFFFFF, 1.5px 1.5px 3px rgba(174, 174, 192, 0.4);
-			
-			
-			.tab {
-				height: 60upx;
-				transition: 0.3s;
-			}
-			
-			.active {
-				background: #eeeeee;
-				box-shadow: inset -1px -1px 1px rgba(255, 255, 255, 0.7),
-				  inset 1px 1px 2px rgba(174, 174, 192, 0.2);
-				color: #78BB7B;
-			}
-		}
-		
-		.tab-content {
-			width: 100%;
-			min-height: 100%;
-			height: auto;
-			// background: #C4E1C5;
-			padding: 20upx 0;
-			// box-shadow: -10px -10px 30px #ffffff, 10px 10px 30px rgba(174, 174, 192, 0.4);
-			
-			.you-btn {
-				width: 40%;
-				height: 80upx;
-			}
-			
-			
-		}
-	}
-	
 	.fixed-box {
 		width: 100upx;
 		height: 100upx;
@@ -588,89 +382,6 @@
 	    transform: rotate(90deg);
 	}
 	
-	.you-mask {
-		width: 100vw;
-		height: 100vh;
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 99;
-		
-		.add-page {
-			width: 94vw;
-			height: calc(100% - 300upx);
-			position: absolute;
-			bottom: 0;
-			// left: 0;
-			z-index: 199;
-			border-radius: 30upx 30upx 0 0;
-			
-			.cancel-box {
-				width: 100%;
-				height: 40upx;
-				position: relative;
-				
-				text:only-of-type {
-					position: absolute;
-					top: 20upx;
-					right: 26upx;
-					font-size: 20px;
-				}
-			}
-			
-			.box-in {
-				width: 88%;
-				height: 80upx;
-				font-size: 14px;
-				position: relative;
-				
-				picker,
-				input {
-					position: absolute;
-					right: 40upx;
-				}
-				
-				input {
-					text-align: right; //控制 input 的显示方向
-					width: 420upx;
-					color: #606266;
-				}
-				
-				.fa-angle-right {
-					position: absolute;
-					right: 20upx;
-				}
-			}
-			
-			.main-box {
-				// background-color: #f1f2f6;
-				width: 88%;
-				min-height: 200upx;
-				height: auto;
-				
-				.detail-box {
-					width: 96%;
-					min-height: 50upx;
-					height: auto;
-					padding: 20upx;
-					
-					.input-content {
-						width: 100%;
-						min-height: 260upx;
-						height: auto;
-						padding: 10upx;
-						word-wrap: word-break;
-						word-break: break-all;
-					}
-				}
-			}
-			
-			.you-btn {
-				width: 86%;
-				height: 80upx;
-			}
-		}
-	}
 	
 }
 </style>

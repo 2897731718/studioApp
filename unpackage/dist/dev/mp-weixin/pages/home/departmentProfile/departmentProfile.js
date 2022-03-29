@@ -296,6 +296,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
@@ -321,68 +326,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
         name: '工联部' }],
 
 
-      memberList: [
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟' },
-
-      {
-        id: '0',
-        grade: 2019,
-        position: '副理事长',
-        name: '曾书伟123' }],
-
-
+      memberList: [],
       bottomBarShow: false,
       delectBtnShow: false,
       delectConfirmShow: false, // 删除确认遮罩层
@@ -390,8 +334,9 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       identity: 0,
       animationData: {},
       kindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
-      kindIndex: 0,
-      grade: 2019,
+      kindIndex: '0',
+      positionName: '理事长',
+      grade: '2019',
       realName: '曾书伟' };
 
 
@@ -406,6 +351,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
 
 
     this.animationData = animation;
+    this.getMember();
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['departmentIndex'])),
@@ -414,6 +360,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
   (0, _vuex.mapMutations)(['changeDepartmentIndex'])), {}, {
     changeOccupationInstroduce: function changeOccupationInstroduce(index) {
       this.$store.commit('changeDepartmentIndex', index);
+      this.getMember(index);
       // setTimeout(() => {
       // 	this.animationData.width('62vw').step()
       // 	this.animationData.height(`340upx`).step()
@@ -444,9 +391,27 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       console.log(e);
       this.kindIndex = e.detail.value;
     },
-    sendMember: function sendMember() {// 要添加成员接口 
+    sendMember: function sendMember() {var _this = this; // 要添加成员接口 
+      this.$post('/cosi/dep/member/add', {
+        grade: this.grade,
+        realName: this.realName,
+        depId: this.kindIndex + 1,
+        position: this.positionName }).
 
+      then(function (res) {
+        _this.$toast('添加成功', 1000, 'success', true);
+        console.log(res);
+        _this.getMember();
+      });
       this.addConfirmShow = !this.addConfirmShow;
+    },
+    getMember: function getMember(index) {var _this2 = this;
+      this.$get('/cosi/dep/member/list', {
+        depId: index + 1 }).
+      then(function (res) {
+        _this2.memberList = res.data;
+        console.log(_this2.memberList);
+      });
     },
     cancelSendMember: function cancelSendMember() {
       this.addConfirmShow = !this.addConfirmShow;

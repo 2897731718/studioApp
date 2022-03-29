@@ -29,19 +29,16 @@
 			</view>
 		</navigator>
 		<view class="bottom-box margin-lr-sm flex justify-between" v-if="true">
-			<view class="btn-box flex flex-center" @tap.stop="handleShare">
+			<!-- <view class="btn-box flex flex-center" @tap.stop="handleShare">
 				<view class="fa fa-share-alt"></view>
-				<!-- <view class="">分享</view> -->
 			</view>
 			<navigator :url="'/pages/community/postPage/postPage?post_id=' + postId" 
 					   class="btn-box flex flex-center" @tap.stop="handleComment" hover-class="other-navigator-hover">
 				<view class="fa fa-commenting-o"></view>
-				<!-- <view class="">0</view> -->
 			</navigator>
 			<view class="btn-box flex flex-center" @tap.stop="handleEncourage">
 				<view class="fa fa-thumbs-o-up" :class="{'': encourageState == 0, 'text-second': encourageState == 1}"></view>
-				<!-- <view class="">0</view> -->
-			</view>	
+			</view>	 -->
 		</view>
 	</view>
 </template>
