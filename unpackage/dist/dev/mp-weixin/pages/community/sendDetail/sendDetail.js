@@ -192,17 +192,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      kindData: ['技术墙', '表白墙'],
+      kindData: ['技术帖', '生活帖'],
       kindIndex: 0,
+      postTag: '技术帖',
       InputBottom: 0,
       linkShow: false,
       link: 'https://uniapp.dcloud.io/api/system/clipboard',
       content: '',
       imageList: [],
+      imageShow: false,
       postId: '' };
 
 
@@ -210,6 +231,11 @@ var _default =
   methods: {
     choseThirdKind: function choseThirdKind(e) {
       this.kindIndex = e.detail.value;
+      if (this.kindIndex == 0) {
+        this.postTag = '技术帖';
+      } else {
+        this.postTag = '生活帖';
+      }
     },
     clipboardClick: function clipboardClick() {
       uni.setClipboardData({
@@ -231,22 +257,15 @@ var _default =
     InputBlur: function InputBlur(e) {
       this.InputBottom = 0;
     },
-    addPicture: function addPicture() {var _this = this;
+    // 第一次添加图片时 会先发布帖子 获取 postId  
+    firstAddPicture: function firstAddPicture() {var _this = this;
       uni.chooseImage({
         count: 1,
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'],
-        // success: function(res) {
-        // 	that.imageList.push (res.tempFilePaths); // push 是将新元素加到数组里
-        // }
         success: function success(res) {
-          console.log(res.tempFiles);
-          _this.imageList = res.tempFilePaths;
-          // this.imageList.unshift(res.tempFilePaths); // 加到数组开头的 第一个
-          // // let _imageList = this.imageList[0]
-          _this.sendPicture(_this.imageList);
-
-          // this.newImageList = []
+          _this.imageList.unshift(res.tempFilePaths);
+          console.log(_this.imageList);
 
         } });
 
@@ -255,7 +274,7 @@ var _default =
       // console.log(path)
       // let imageList = path
       console.log(this.postId, 111);
-      console.log(path[0]);
+      console.log(path[0], 11);
       uni.uploadFile({
         url: 'https://test.kabubuda.xyz/community/image/upload', //仅为示例，非真实的接口地址
         filePath: path[0],
@@ -273,22 +292,63 @@ var _default =
         } });
 
     },
+    deleteImage: function deleteImage(index) {
+      this.imageList.splice(index, 1);
+    },
+    // 预览图片
+    previewImage: function previewImage(index) {
+      var imgList = this.imageList[index];
+      console.log(imgList);
+      uni.previewImage({
+        // 如果 是电脑相对路径的话 会一直转圈 无法预览
+        current: index,
+        urls: imgList,
+        loop: true,
+        success: function success(res) {
+
+        } });
+
+
+    },
     clickLink: function clickLink() {
       this.linkShow = !this.linkShow;
     },
     confirmAddLink: function confirmAddLink() {
       this.linkShow = !this.linkShow;
     },
-    addPost: function addPost() {var _this2 = this;
+    firstAddPost: function firstAddPost() {var _this2 = this;
+      console.log(this.content, +this.kindIndex + 1, this.postTag);
       this.$post('/community/post/publish', {
         postContent: this.content,
-        postType: this.kindIndex,
-        postTag: '帖子1' }).
+        postType: +this.kindIndex + 1,
+        postTag: this.postTag }).
       then(function (res) {
         console.log(res);
         _this2.postId = res.data.postId;
+        // this.sendPicture(this.imageList)
+        _this2.imageList.forEach(function (e) {
+          console.log(e[0]);
+          _this2.sendPicture(e);
+        });
         console.log(_this2.postId);
       });
+    },
+    modifyPost: function modifyPost() {var _this3 = this;
+      console.log(this.content, +this.kindIndex + 1, this.postTag);
+      this.$post('/community/post/publish', {
+        postContent: this.content,
+        postType: this.kindIndex + 1,
+        postTag: this.postTag,
+        postId: this.postId }).
+      then(function (res) {
+        console.log(res);
+        // this.postId = res.data.postId
+        // this.sendPicture(this.imageList)
+        console.log(_this3.postId);
+      });
+    },
+    handleDelete: function handleDelete() {
+      this.$emit('deleteEvent');
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

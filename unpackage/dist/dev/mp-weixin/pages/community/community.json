@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "post-detail": "/components/content/postDetail"
+    "post-detail": "/components/content/postDetail",
+    "list-scroll": "/components/ListScroll"
   }
 }

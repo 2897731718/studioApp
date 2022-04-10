@@ -18,6 +18,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.user.signature.toString()
+
+  var l0 = _vm.__map(_vm.postList, function(item, __i2__) {
+    var $orig = _vm.__get_orig(item)
+
+    var g1 = item.postTime.toString()
+    var g2 = item.postContent.toString()
+    return {
+      $orig: $orig,
+      g1: g1,
+      g2: g2
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        g0: g0,
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -51,7 +74,20 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var postDetail = function postDetail() {__webpack_require__.e(/*! require.ensure | components/content/postDetail */ "components/content/postDetail").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/postDetail.vue */ 166));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var postDetail = function postDetail() {__webpack_require__.e(/*! require.ensure | components/content/postDetail */ "components/content/postDetail").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/postDetail.vue */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -167,50 +203,21 @@ __webpack_require__.r(__webpack_exports__);
         name: '关注' }],
 
 
-      tabList: ['技术墙', '表白墙'],
+      tabList: [
+      {
+        name: '技术帖',
+        tabId: 0 },
+
+      {
+        name: '生活帖',
+        tabId: 1 }],
+
+
+      currentList: [],
       currentIndex: 0,
-      postList: [
-      {
-        postId: 1,
-        headImg: '../../static/logo.jpg',
-        nickname: 'popopo',
-        autograph: 'uiqureiwtuqietuioq',
-        time: '2021-1-7',
-        postContent: "hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa\n\t\t\t\n\t\t\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u65E0\uD83D\uDE0A\uD83D\uDE0A",
-
-
-        link: 'https://uniapp.dcloud.io/api/system/clipboard',
-        contentImg: '',
-        encourageState: 0 },
-
-
-      {
-        postId: 1,
-        headImg: '../../static/logo.jpg',
-        nickname: 'popopo',
-        autograph: 'uiqureiwtuqietuioq',
-        time: '2021-1-7',
-        postContent: "hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa\n\t\t\t\n\t\t\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u65E0\uD83D\uDE0A\uD83D\uDE0A",
-
-
-        link: 'https://uniapp.dcloud.io/api/system/clipboardsfddfsdf',
-        contentImg: '../../static/background.jpeg',
-        encourageState: 1 },
-
-      {
-        postId: 1,
-        headImg: '../../static/logo.jpg',
-        nickname: 'popopo',
-        autograph: 'uiqureiwtuqietuioq',
-        time: '2021-1-7',
-        postContent: "hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa\n\t\t\t\n\t\t\taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\u65E0\uD83D\uDE0A\uD83D\uDE0A",
-
-
-        link: 'https://uniapp.dcloud.io/api/system/clipboardsafdsfsdfsadfdfdsf',
-        contentImg: '../../static/background.jpeg',
-        encourageState: 1 }] };
-
-
+      openId: '',
+      user: {},
+      postList: [] };
 
 
   },
@@ -218,7 +225,12 @@ __webpack_require__.r(__webpack_exports__);
     postDetail: postDetail },
 
   mounted: function mounted() {
-
+    this.getUser();
+    // this.getMyPosts()
+  },
+  onLoad: function onLoad(e) {
+    this.openId = JSON.parse(decodeURIComponent(e.openid));
+    console.log(this.openId);
   },
   methods: {
     BackPage: function BackPage() {
@@ -263,9 +275,40 @@ __webpack_require__.r(__webpack_exports__);
 
     },
     tabSelect: function tabSelect(index) {
-      console.log(index);
       this.currentIndex = index;
-    } } };exports.default = _default;
+      if (index == 0) {
+        this.currentList = this.postList.filter(function (item) {
+          console.log(item.postType);
+          return item.postType == 0;
+        });
+      } else if (index == 1) {
+        this.currentList = this.postList.filter(function (item) {
+          return item.postType == 1;
+        });
+      }
+    },
+    getUser: function getUser() {var _this = this;
+      this.$get('/community/user/home', {
+        openId: this.openId }).
+      then(function (res) {
+        // console.log(res)
+        _this.postList = res.data.posts.reverse();
+        _this.user = res.data.user;
+        console.log(_this.postList);
+        console.log(_this.postList[1].images);
+      });
+    }
+    // getMyPosts() {
+    // 	this.$get('/community/post/list', {
+    // 		openId: this.openId
+    // 	}).then(res => {
+    // 		console.log(res,1111)
+    // 		// this.postList = res.data.posts
+    // 		// this.user = res.data.user
+    // 		// console.log(this.postList)
+    // 	})
+    // }
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

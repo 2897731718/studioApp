@@ -19,7 +19,7 @@ const store = new Vuex.Store({
 		// sideTabbar
 		changeDepartmentIndex(state, index) {
 			state.departmentIndex = index
-			console.log(index)
+			// console.log(index)
 		}
 	}
 })

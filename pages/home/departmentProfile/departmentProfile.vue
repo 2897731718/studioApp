@@ -96,12 +96,12 @@
 				<!-- 成员信息 -->
 				<scroll-view class="scroll-view margin-top-sm"
 							 scroll-y="true" show-scrollbar="false">
-					<view class="content-box flex-column align-center" v-for="item in memberList" :key="item.id">
+					<view class="content-box flex-column align-center" v-for="item in memberList" :key="item.mid">
 						<view class="member-box text-lg text-new shadow-xl radius-sm flex-row align-center justify-around">
 							<view class="">{{ item.grade }}级</view>
 							<view class="">{{ item.position }}</view>
 							<view class="">{{ item.realName }}</view>
-							<view class="you-btn text-white bg-red flex-column flex-center" v-show="delectBtnShow" @click="delectMember">删除</view>
+							<view class="you-btn text-white bg-red flex-column flex-center" v-show="delectBtnShow" @click="delectMember(item.mid)">删除</view>
 						</view>
 					</view>
 				</scroll-view>
@@ -206,6 +206,7 @@
 				positionName: '理事长',
 				grade: '2019',
 				realName: '曾书伟',
+				deleteMid: -1,
 				
 			};
 		},
@@ -219,7 +220,7 @@
 				
 			})
 			this.animationData = animation
-			this.getMember()
+			this.getMember(this.departmentIndex)
 		},
 		computed: {
 			...mapState(['departmentIndex'])
@@ -228,12 +229,13 @@
 			...mapMutations(['changeDepartmentIndex']),
 			changeOccupationInstroduce(index) {
 				this.$store.commit('changeDepartmentIndex', index)
-				this.getMember(index)
 				// setTimeout(() => {
 				// 	this.animationData.width('62vw').step()
 				// 	this.animationData.height(`340upx`).step()
 				// 	this.animationData.export()
 				// }, 300)
+				// console.log(this.departmentIndex)
+				this.getMember(index)
 			},
 			delectSelect() {
 				this.delectBtnShow = !this.delectBtnShow
@@ -241,49 +243,62 @@
 			cancelDelectSelect() {
 				this.delectBtnShow = !this.delectBtnShow
 			},
-			delectMember() {
+			delectMember(mid) {
+				this.deleteMid = mid
+				// console.log(this.deleteMid, mid)
 				this.delectConfirmShow = !this.delectConfirmShow
 			},
 			cancelDelect() {
 				this.delectConfirmShow = !this.delectConfirmShow
 			},
 			confirmDelect() { // 要写删除接口
-				
-				
+				console.log(this.deleteMid)
+				this.$get('/cosi/dep/member/delete', {
+					mId: this.deleteMid
+				}).then(res => {
+					console.log(res)
+					this.getMember(this.departmentIndex)
+					this.$toast('删除成功', 500, 'success', true)
+				})
 				this.delectConfirmShow = !this.delectConfirmShow
 			},
 			addSelect() {
 				this.addConfirmShow = !this.addConfirmShow
 			},
 			choseKind: function(e) {
-				console.log(e)
+				// console.log(e)
 				this.kindIndex= e.detail.value;
 			},
 			sendMember() { // 要添加成员接口 
 				this.$post('/cosi/dep/member/add', {
 					grade: this.grade,
 					realName: this.realName,
-					depId: this.kindIndex + 1,
+					depId: +this.kindIndex + 1,
 					position: this.positionName,
 					
 				}).then(res => {
 					this.$toast('添加成功', 1000, 'success', true)
 					console.log(res)
-					this.getMember()
+					this.getMember(this.departmentIndex)
 				})
 				this.addConfirmShow = !this.addConfirmShow
 			},
 			getMember(index) {
+				// console.log(index+1)
 				this.$get('/cosi/dep/member/list', {
-					depId: index + 1
+					depId: +index + 1
 				}).then(res => {
-					this.memberList = res.data
+					this.memberList = res.data.reverse()
+					// this.memberList
 					console.log(this.memberList)
 				})
 			},
 			cancelSendMember() {
 				this.addConfirmShow = !this.addConfirmShow
 			},
+			deleteMember(index) {
+				
+			}
 			
 		}
 	}

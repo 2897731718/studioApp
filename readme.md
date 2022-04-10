@@ -30,3 +30,5 @@ console.log(uni.getStorageSync("token"))
 					}
 				})
 问题：分享 点赞是否显示点赞数 这样就要做组件
+
+scrollView 

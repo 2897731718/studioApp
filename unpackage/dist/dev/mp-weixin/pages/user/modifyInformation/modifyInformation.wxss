@@ -24,8 +24,32 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.you-page {
+.you-page .box-in {
+  width: 100vw;
+  height: 80rpx;
+  font-size: 14px;
   position: relative;
-  margin-bottom: 140rpx;
+  background-color: #ffffff;
+}
+.you-page .box-in picker,
+.you-page .box-in input {
+  position: absolute;
+  right: 40rpx;
+}
+.you-page .box-in input {
+  text-align: right;
+  width: 420rpx;
+  color: #606266;
+}
+.you-page .box-in .fa-angle-right {
+  position: absolute;
+  right: 20rpx;
+}
+.you-page .btn-box {
+  width: 100vw;
+}
+.you-page .btn-box .you-btn {
+  width: 90%;
+  height: 80rpx;
 }
 

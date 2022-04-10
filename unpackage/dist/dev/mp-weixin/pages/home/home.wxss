@@ -60,8 +60,8 @@
   margin-left: 20rpx;
 }
 .you-page .header-box .top-box .btn-box.data-v-92bb8f34 {
-  width: 126rpx;
-  height: 70rpx;
+  width: 116rpx;
+  height: 64rpx;
   z-index: 25;
 }
 .you-page .header-box .top-box .btn-box .btn-rotate.data-v-92bb8f34 {

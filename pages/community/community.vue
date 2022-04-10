@@ -3,29 +3,37 @@
  2022-1-27
  -->
 <template name="community">
-	<view class="you-page flex-column align-center">
+	<view class="my-page flex-column align-center">
 		<view class="head-tab bg-white display-grid col-2">
 			<view class="tab-item flex-row flex-center fade-in" 
-				  v-for="(tabItem, index) in tabList" :key="index"
-				  :class="{'activeTab': currentIndex == index, 'text-black-accent': currentIndex != index}"
-				  @click="tabSelect(index)">
-				<text :class="{'text-five': currentIndex == index}">{{ tabItem }}</text>
+				  v-for="tabItem in tabList" :key="tabItem.tabId"
+				  :class="{'activeTab': currentIndex == tabItem.tabId, 'text-black-accent': currentIndex != tabItem.tabId}"
+				  @click="tabSelect(tabItem.tabId)">
+				<text :class="{'text-five': currentIndex == tabItem.tabId}">{{ tabItem.name }}</text>
 			</view>
 		</view>
-		<view class="posts-list flex-column align-center" >
-			<post-detail v-for="item in postList" :key="item.postId"
-						 :postId='item.postId'
-						 :img='item.headImg'
-						 :nickname='item.nickname'
-						 :autograph='item.autograph'
-						 :time="item.time"
-						 :postContent='item.postContent'
-						 :link='item.link'
-						 :contentImg='item.contentImg'
-						 :encourageState='item.encourageState'
-						 @share='handleShare'
-						 @encourage='handleEncourage'></post-detail>
-		</view>
+		<list-scroll @loadMore="loadMore">
+			<view class="posts-list flex-column align-center" >
+				<post-detail v-for="item in currentList" :key="item.post.postId"
+							 :openId="item.post.openid"
+							 :postId='item.post.postId'
+							 :headImg='item.user.avatar'
+							 :nickname='item.user.nickName'
+							 :autograph='item.user.sign'
+							 :time='item.post.postTime'
+							 :postContent='item.postContent' 
+							 :contentImg='item.images'
+							 :encourageState='item.post.postStatus'
+							 @share='handleShare'
+							 @encourage='handleEncourage'
+							 @deletePost='handleDelete(item.post.postId)'></post-detail>
+			</view>
+			<view class="loding-box flex-column align-center">
+				<view class="" v-show="!isLoading">加载中....</view>
+				<view class="" v-show="isLoading">没有更多了</view>
+			</view>
+		</list-scroll>
+		
 		<navigator url="/pages/community/sendDetail/sendDetail"
 				   class="send-box bg-five radius-cr shadow-mi flex flex-center">
 			<view class="send text-white fa fa-send-o"></view>
@@ -35,57 +43,32 @@
 
 <script>
 	import postDetail from '../../components/content/postDetail.vue'
+	import ListScroll from '../../components/ListScroll.vue'
 	export default {
 		data() {
 			return {
-				tabList: ['技术墙', '表白墙'],
+				tabList: [
+					{
+						name: '技术帖',
+						tabId: 0
+					},
+					{
+						name: '生活帖',
+						tabId: 1
+					},
+				],
 				currentIndex: 0,
-				postList:[
-					{
-						postId: 1,
-						headImg: '../../static/logo.jpg',
-						nickname: 'popopo',
-						autograph: 'uiqureiwtuqietuioq',
-						time: '2021-1-7',
-						postContent: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
+				currentList: [],
+				postList:[],
+				pageCurrent: 1,
+				pageSize: 10,
+				isLoading: true,
 				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
-						link: 'https://uniapp.dcloud.io/api/system/clipboard',
-						contentImg: '',
-						encourageState: 0,
-						
-					},
-					{
-						postId: 1,
-						headImg: '../../static/logo.jpg',
-						nickname: 'popopo',
-						autograph: 'uiqureiwtuqietuioq',
-						time: '2021-1-7',
-						postContent: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
-				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
-						link: 'https://uniapp.dcloud.io/api/system/clipboardsfddfsdf',
-						contentImg: '../../static/background.jpeg',
-						encourageState: 1,
-					},
-					{
-						postId: 1,
-						headImg: '../../static/logo.jpg',
-						nickname: 'popopo',
-						autograph: 'uiqureiwtuqietuioq',
-						time: '2021-1-7',
-						postContent: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
-				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
-						link: 'https://uniapp.dcloud.io/api/system/clipboardsafdsfsdfsadfdfdsf',
-						contentImg: '../../static/background.jpeg',
-						encourageState: 1,
-					},
-				]
 			};
 		},
 		components: {
 			postDetail,
+			ListScroll,
 			
 		},
 		created() {
@@ -94,6 +77,17 @@
 		methods: {
 			tabSelect: function(index) {
 				this.currentIndex = index;
+				if (index == 0) {
+					this.currentList = this.postList.filter(item => {
+						console.log(item.post.postType)
+						return item.post.postType == 0
+					})
+				} else if (index == 1) {
+					this.currentList = this.postList.filter(item => {
+						console.log(item.post.postType)
+						return item.post.postType == 1
+					})
+				}
 			},
 			handleShare: function() {
 				console.log('handleShare')
@@ -104,20 +98,46 @@
 			clipboardClick() {
 				
 			},
+			loadMore() {
+				console.log('加载更多')
+				this.pageCurrent++
+				this.isLoading = false
+				this.getPostList()
+				// this.page
+			},
 			getPostList() {
-				this.$get('/community/post/list', {
-					openId: uni.getStorageInfoSync('openid')
+				/* 
+				 加载更多的时候 会页数增加 但是之前的数据要保留才行
+				 所以要拼接
+				 */
+				this.$get('/community/post/posts', {
+					current: this.pageCurrent,
+					size: this.pageSize
+				}).then(res => {
+					let oldPostList = this.postList
+					this.postList = [...oldPostList, ...res.data.posts]
+					this.isLoading = true
+					console.log(this.postList)
+					// console.log(res)
+				})
+			},
+			handleDelete(postId) {
+				this.$get('/community/post/delete', {
+					postId 
 				}).then(res => {
 					console.log(res)
 				})
-			}
+			},
+			
+			
 		}
 	}
 </script>
 
 <style lang="scss">
-.you-page {
+.my-page {
 	position: relative;
+	padding-bottom: 70upx;
 	
 	.head-tab {
 		width: 100vw;
@@ -165,6 +185,11 @@
 		width: 100vw;
 		padding-top: 110upx;
 		
+	}
+	
+	.loding-box {
+		width: 100vw;
+		height: 120upx;
 	}
 	
 	.send-box {

@@ -45,20 +45,40 @@
 				datetimerange: [],
 				endTime: '',
 				eventIntroduction: '',
+				address: 'e教207',
+				eventIntroduction: '无',
+				contestName: '科技月评',
 				
 			};
 		},
 		methods: {
 			choseKind: function(e) {
 				this.kindIndex= e.detail.value;
+				if(e.detail.value == 0) {
+					this.contestName = '科技月评'
+				} else if (e.detail.value == 1) {
+					this.contestName = '软件创新'
+				} else if (e.detail.value == 2) {
+					this.contestName = '码上学习'
+				} else if (e.detail.value == 3) {
+					this.contestName = '码上开讲'
+				} else if (e.detail.value == 4) {
+					this.contestName = '先导课'
+				}
 			},
 			sendEvent() { // 写发送接口
-				// this.$post('', {
-					
-				// }).then(res => {
-					
-				// })
-				console.log(this.datetimerange[0].substring(0, 16))
+				console.log(this.contestName, this.datetimerange[1])
+				this.$post('/cosi/contest/open', {
+					contestName: this.contestName,
+					place: this.address,
+					introduction: this.eventIntroduction,
+					beginTime: this.datetimerange[0],
+					endTime: this.datetimerange[1]
+
+				}).then(res => {
+					console.log(res)
+				})
+				// console.log(this.datetimerange[0].substring(0, 16))
 				
 				this.addEventShow = !this.addEventShow
 			},

@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var fansBox = function fansBox() {__webpack_require__.e(/*! require.ensure | components/content/fansBox */ "components/content/fansBox").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/fansBox.vue */ 215));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var fansBox = function fansBox() {__webpack_require__.e(/*! require.ensure | components/content/fansBox */ "components/content/fansBox").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/fansBox.vue */ 223));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 

@@ -4,6 +4,8 @@
 			<view class="top-box margin-tb-xs flex-row align-center">
 				<text class="event-name margin-left-sm">{{ eventName }}</text>
 			</view>
+			<view class="comment-btn you-btn bg-red text-xxs radius-sm shadow-xs text-white flex flex-center"
+				  @click="handleDelete()">删除</view>
 			<text class="line-four"></text>
 			<view class="center-box flex-column flex-center">
 				<view class="box-in margin-tb-xs flex-row justify-between align-center">
@@ -37,30 +39,34 @@
 		},
 		props: {
 			eventName: {
-				type: String,
+				// type: String,
 				default: '码上学习'
 			},
 			address: {
-				type: String,
+				// type: String,
 				default: 'E教415'
 			},
 			startTime: {
-				type: String,
+				// type: String,
 				default: '2021-10-24 7:00'
 			},
 			endTime: {
-				type: String,
+				// type: String,
 				default: '2021-10-24 7:00'
 			},
 			introduce: {
-				type: String,
+				// type: String,
 				default: `大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台
 				大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台
 				大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台`
 			},
 			
 		},
-		
+		methods: {
+			handleDelete() {
+				this.$emit('deleteEvent')
+			}
+		}
 	}
 </script>
 
@@ -73,6 +79,17 @@
 		min-height: 300upx;
 		padding: 20upx 0;
 		background-color: #ffffff;
+		position: relative;
+		
+		.comment-btn {
+			width: 100upx;
+			height: 50upx;
+			position: absolute;
+			top: 20upx;
+			right: 20upx;
+			font-size: 14px;
+			
+		}
 		
 		.top-box {
 			// border: 2upx solid #333333;

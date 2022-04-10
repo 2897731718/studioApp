@@ -1,4 +1,4 @@
-<!-- 
+ <!-- 
  @zsw
  2021-09-14
  -->
@@ -19,7 +19,7 @@
 					<text>大学生创新创业中心</text>
 				</view>
 				<view class="btn-box radius-xs bg-white shadow-xs flex-column flex-center">
-					<navigator class="text-xl text-seven" hover-class="other-navigator-hover" :url="'/pages/home/departmentSignUp/departmentSignUp'" navigateTo>
+					<navigator class="text-sm text-seven" hover-class="other-navigator-hover" :url="'/pages/home/departmentSignUp/departmentSignUp'" navigateTo>
 						报名
 					</navigator>
 				</view>
@@ -248,8 +248,8 @@
 			
 			.btn-box {
 				
-				width: 126upx;
-				height: 70upx;
+				width: 116upx;
+				height: 64upx;
 				
 				z-index: 25;
 				

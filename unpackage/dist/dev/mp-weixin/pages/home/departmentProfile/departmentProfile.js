@@ -337,7 +337,8 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       kindIndex: '0',
       positionName: '理事长',
       grade: '2019',
-      realName: '曾书伟' };
+      realName: '曾书伟',
+      deleteMid: -1 };
 
 
   },
@@ -351,7 +352,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
 
 
     this.animationData = animation;
-    this.getMember();
+    this.getMember(this.departmentIndex);
   },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['departmentIndex'])),
@@ -360,12 +361,13 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
   (0, _vuex.mapMutations)(['changeDepartmentIndex'])), {}, {
     changeOccupationInstroduce: function changeOccupationInstroduce(index) {
       this.$store.commit('changeDepartmentIndex', index);
-      this.getMember(index);
       // setTimeout(() => {
       // 	this.animationData.width('62vw').step()
       // 	this.animationData.height(`340upx`).step()
       // 	this.animationData.export()
       // }, 300)
+      // console.log(this.departmentIndex)
+      this.getMember(index);
     },
     delectSelect: function delectSelect() {
       this.delectBtnShow = !this.delectBtnShow;
@@ -373,48 +375,61 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
     cancelDelectSelect: function cancelDelectSelect() {
       this.delectBtnShow = !this.delectBtnShow;
     },
-    delectMember: function delectMember() {
+    delectMember: function delectMember(mid) {
+      this.deleteMid = mid;
+      // console.log(this.deleteMid, mid)
       this.delectConfirmShow = !this.delectConfirmShow;
     },
     cancelDelect: function cancelDelect() {
       this.delectConfirmShow = !this.delectConfirmShow;
     },
-    confirmDelect: function confirmDelect() {// 要写删除接口
-
-
+    confirmDelect: function confirmDelect() {var _this = this; // 要写删除接口
+      console.log(this.deleteMid);
+      this.$get('/cosi/dep/member/delete', {
+        mId: this.deleteMid }).
+      then(function (res) {
+        console.log(res);
+        _this.getMember(_this.departmentIndex);
+        _this.$toast('删除成功', 500, 'success', true);
+      });
       this.delectConfirmShow = !this.delectConfirmShow;
     },
     addSelect: function addSelect() {
       this.addConfirmShow = !this.addConfirmShow;
     },
     choseKind: function choseKind(e) {
-      console.log(e);
+      // console.log(e)
       this.kindIndex = e.detail.value;
     },
-    sendMember: function sendMember() {var _this = this; // 要添加成员接口 
+    sendMember: function sendMember() {var _this2 = this; // 要添加成员接口 
       this.$post('/cosi/dep/member/add', {
         grade: this.grade,
         realName: this.realName,
-        depId: this.kindIndex + 1,
+        depId: +this.kindIndex + 1,
         position: this.positionName }).
 
       then(function (res) {
-        _this.$toast('添加成功', 1000, 'success', true);
+        _this2.$toast('添加成功', 1000, 'success', true);
         console.log(res);
-        _this.getMember();
+        _this2.getMember(_this2.departmentIndex);
       });
       this.addConfirmShow = !this.addConfirmShow;
     },
-    getMember: function getMember(index) {var _this2 = this;
+    getMember: function getMember(index) {var _this3 = this;
+      // console.log(index+1)
       this.$get('/cosi/dep/member/list', {
-        depId: index + 1 }).
+        depId: +index + 1 }).
       then(function (res) {
-        _this2.memberList = res.data;
-        console.log(_this2.memberList);
+        _this3.memberList = res.data.reverse();
+        // this.memberList
+        console.log(_this3.memberList);
       });
     },
     cancelSendMember: function cancelSendMember() {
       this.addConfirmShow = !this.addConfirmShow;
+    },
+    deleteMember: function deleteMember(index) {
+
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

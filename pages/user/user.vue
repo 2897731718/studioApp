@@ -8,20 +8,20 @@
 	<view class="you-page flex-column align-center">
 		<!-- 个人信息 -->
 		<view class="information-box flex align-center">
-			<image class="shadow-sm margin-tb-sm radius-cr" src="../../static/logo.jpg" mode=""></image>
+			<image class="shadow-sm margin-tb-sm radius-cr" :src="user.avatar" mode=""></image>
 			<!-- <text class="nickname margin-left-sm text-bloder text-lg">popopoppo</text> -->
 			<view class="content-box margin-left-sm flex-column justify-center">
-				<text class="nickname text-bloder text-lg margin-bottom-sm">opopop</text>
-				<text>暂未填写签名</text>
+				<text class="nickname text-bloder text-lg margin-bottom-sm">{{ user.nickName }}</text>
+				<text>{{ user.signature }}</text>
 			</view>
-			<navigator url="/pages/user/menuList/personDetail" 
+			<navigator :url="'/pages/user/menuList/personDetail?openid=' + encodeURIComponent(JSON.stringify(user.openid))" 
 					   class="right-box flex flex-center text-xs" hover-class="other-navigator-hover">
 				<text>个人主页</text>
 				<text class="fa fa-angle-right margin-left-sm"></text>
 			</navigator>
 		</view>
 		<!-- 信息统计 -->
-		<view class="number-box margin-top-xs flex align-center justify-around">
+		<!-- <view class="number-box margin-top-xs flex align-center justify-around">
 			<navigator class="item-box flex-column flex-center" 
 				  v-for="(item, index) in menuList" :key="index"
 				  :url="'/pages/user/menuList/' + item.path"
@@ -29,7 +29,7 @@
 				<text class="text-bloder text-xl">{{ item.count }}</text>
 				<text>{{ item.name }}</text>
 			</navigator>
-		</view>
+		</view> -->
 		<!-- 菜单 -->
 		<!-- <view class="menu-list margin-top-xl radius-xs">
 			<view class="menu-item flex-row align-center bg-white radius-xs" 
@@ -99,8 +99,14 @@
 						count: 9999,
 						name: '关注'
 					},
-				]
+				],
+				openId: uni.getStorageSync('openid'),
+				user: {},
+				
 			};
+		},
+		created() {
+			this.getUser()
 		},
 		methods: {
 			// 跳转菜单页
@@ -147,13 +153,20 @@
 					this.vitifyShow = !this.vitifyShow;
 				}, 1000)
 			},
+			getUser() {
+				this.$get('/user/info/get', {
+					openId: uni.getStorageSync('openid')
+				}).then(res => {
+					console.log(res, 111)
+					this.user = res.data
+				})
+			}
 		}
 	}
 </script>
 
 <style lang="scss">
 .you-page {
-	
 	.information-box {
 		// border: 2upx solid #0FB9B1;
 		width: 94vw;

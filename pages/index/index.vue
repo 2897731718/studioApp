@@ -16,11 +16,22 @@
 		<user v-if="pageName=='user'"></user>
 		<bottom-tab-bar class="bottom-tab"></bottom-tab-bar>
 	</view>
+	<!-- <list-scroll>
+		<view class="you-page flex-column align-center">
+			
+			<home v-if="pageName=='home'"></home>
+			<studio v-if="pageName=='studio'"></studio>
+			<community v-if="pageName=='community'"></community>
+			<user v-if="pageName=='user'"></user>
+			<bottom-tab-bar class="bottom-tab"></bottom-tab-bar>
+		</view>
+	</list-scroll> -->
 </view>
 </template>
 
 <script>
 	import { mapState, mapMutations } from 'vuex'
+	import ListScroll from '../../components/ListScroll.vue'
 	export default {
 		data() {
 			return {
@@ -55,16 +66,23 @@
 				}).then(res => {
 					console.log(res, 4)
 				})
+			},
+			loadmore(e) {
+				console.log(e, 11)
+				this.$emit('loadMore')
 			}
+		},
+		components: {
+			ListScroll
 		}
+		
 	}
 </script>
 
 <style lang="scss">
 .you-page {
 	position: relative;
-	margin-bottom: 70upx;
-	height: 100%;
+	padding-bottom: 70upx;
 	
 	.bottom-tab {
 		position: fixed;

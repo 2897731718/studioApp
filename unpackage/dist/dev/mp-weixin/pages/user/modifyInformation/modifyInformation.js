@@ -130,7 +130,31 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -148,11 +172,34 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   data: function data() {
-    return {};
-
+    return {
+      nickName: '',
+      // userName: '',
+      signature: '',
+      contactNumber: '',
+      sno: '' };
 
   },
-  components: {} };exports.default = _default;
+  components: {},
+
+
+  methods: {
+    sendChange: function sendChange() {var _this = this;
+      this.$post('/user/info/update', {
+        nickName: this.nickName,
+        // userName: this.userName,
+        signature: this.signature,
+        contactNumber: this.contactNumber,
+        sno: this.sno }).
+      then(function (res) {
+        console.log(res);
+        _this.$toast('修改信息成功', 1000, 'success', true);
+        uni.navigateBack({
+          delta: 1 });
+
+      });
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

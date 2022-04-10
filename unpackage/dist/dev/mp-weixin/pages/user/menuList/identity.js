@@ -199,46 +199,49 @@ var _default =
 {
   data: function data() {
     return {
-      className: '',
-      realName: '',
-      positionName: '',
+      className: '1910',
+      realName: 'zs',
+      positionName: '理事长',
       manageKindData: ['大创管理员', '工作室管理员'],
       kindIndex: 0,
-      content: '' };
-
+      content: '',
+      imageList: [],
+      imageShow: false,
+      applyId: 0 };
 
   },
   methods: {
     choseKind: function choseKind(e) {
       this.kindIndex = e.detail.value;
     },
-    addPicture: function addPicture() {
+    addPicture: function addPicture() {var _this = this;
       uni.chooseImage({
         count: 1,
         sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
         sourceType: ['album', 'camera'],
-        // success: function(res) {
-        // 	that.imageList.push (res.tempFilePaths); // push 是将新元素加到数组里
-        // }
         success: function success(res) {
-          // console.log(res.tempFiles);
-          // this.imageList = res.tempFilePaths;
+          console.log(res.tempFiles);
+          _this.imageList = res.tempFilePaths;
+          _this.imageShow = !_this.imageShow;
           // this.imageList.unshift(res.tempFilePaths); // 加到数组开头的 第一个
-          // // let _imageList = this.imageList[0]
-          // this.sendPicture(this.imageList[0])
+          // let _imageList = this.imageList[0]
 
-          // this.newImageList = []
+          // this.sendPicture(this.imageList)
 
         } });
 
     },
-    sendPicture: function sendPicture() {
+    sendPicture: function sendPicture(path) {
+      // console.log(path)
+      // let imageList = path
+      // console.log(this.postId, 111)
+      console.log(path[0]);
       uni.uploadFile({
-        url: '', //仅为示例，非真实的接口地址
+        url: 'https://test.kabubuda.xyz/user/identity/img', //仅为示例，非真实的接口地址
         filePath: path[0],
         name: 'file',
         formData: {
-          orderId: this.orderId },
+          aid: this.applyId },
 
         header: {
           'content-type': 'application/form-data',
@@ -249,6 +252,18 @@ var _default =
 
         } });
 
+    },
+    sendApply: function sendApply() {var _this2 = this;
+      this.$post('/user/identity/apply', {
+        className: this.className,
+        name: this.realName,
+        applyIId: +this.kindIndex + 1,
+        position: this.positionName,
+        content: this.content }).
+      then(function (res) {
+        _this2.applyId = res.data.aid;
+        _this2.sendPicture(_this2.imageList);
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
