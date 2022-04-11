@@ -60,7 +60,7 @@
   width: 90vw;
   margin-top: 2vh;
 }
-.container .award_box ._p.data-v-169d00e2 {
+.container .award_box ._li.data-v-169d00e2 {
   font-size: 0.9rem;
   padding-left: 5vw;
   padding-right: 5vw;

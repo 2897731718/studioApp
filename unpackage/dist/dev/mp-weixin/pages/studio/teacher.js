@@ -127,8 +127,10 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/DELL/Desktop/gitee项目/studio-app/pages/studio/teacher.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -158,7 +160,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+var _default =
+{
+  data: function data() {
+    return {
+      picture: "",
+      teacherName: "",
+      position: "",
+      introduction: "主讲《物联网概论》、《单片机原理与应用》、《数字逻辑》等本科课程。自2009年入校创办软件学院大学生创新工作室——764工作室以来，他一直利用自己休息时间指导学生进行学习，在学校的支持下，十年间共获得了全国、全省奖项近100项，为学校争得了荣誉。",
+      awards: [] };
+
+  },
+  mounted: function mounted() {
+    this.getTeacherInfor();
+  },
+  methods: {
+    getTeacherInfor: function getTeacherInfor() {var _this = this;
+      this.$get('/studio/info/teacher', {
+        studioName: this.$store.state.studioName }).
+      then(function (res) {
+        console.log('请求成功');
+        console.log(res);
+        _this.introduction = res.data.introduction;
+        _this.picture = res.data.picture,
+        _this.teacherName = res.data.name,
+        _this.position = res.data.title,
+        _this.awards = res.data.awards;
+      }).catch(function (err) {
+        console.log("请求失败");
+        console.log(err);
+      });
+    } } };exports.default = _default;
 
 /***/ }),
 

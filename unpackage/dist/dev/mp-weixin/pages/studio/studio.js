@@ -114,7 +114,40 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -191,34 +224,43 @@ var _default =
       chooseTitle: ['考核题', '已提交', '答案'],
       menuIndex: 0,
       studioBox: [
-      {
-        picture: '/static/logo.png',
-        name: 'π' },
-
-      {
-        picture: '/static/logo.png',
-        name: '764' },
-
-      {
-        picture: '/static/logo.png',
-        name: 'brunin home' },
-
-      {
-        picture: '/static/logo.png',
-        name: 'kdd' }],
-
-
+        // {
+        // 	picture: '/static/logo.png',
+        // 	name: 'π'
+        // },
+        // {
+        // 	picture: '/static/logo.png',
+        // 	name: '764'
+        // },
+        // {
+        // 	picture: '/static/logo.png',
+        // 	name: 'brunin home'
+        // },
+        // {
+        // 	picture: '/static/logo.png',
+        // 	name: 'kdd'
+        // }
+      ],
       studioIndex: 0,
-      currentStudio: 'π' };
+      currentStudio: '764',
+      asseBox: [],
+      compledBox: [],
+      answerBox: [] };
 
 
   },
   mounted: function mounted() {
-    console.log("1111111111111");
-    // this.$get('studio/list').then(res => {
-    //     console.log('请求成功')}).catch(err => {console.log(err)})
     this.getStudioList();
   },
+  watch: {
+    currentStudio: {
+      handler: function handler(newStudio, oldStudio) {
+        this.getAsseList();
+        this.getCompledList();
+      },
+      immediate: true } },
+
+
   methods: {
     chooseChange: function chooseChange(index) {
       this.menuIndex = index;
@@ -227,42 +269,35 @@ var _default =
       this.studioIndex = index;
       this.currentStudio = item.name;
       this.$store.commit('changeStudioName', item.name);
-      //console.log(this.currentStudio)
     },
-    submitClick: function submitClick() {
-      uni.navigateTo({
-        url: "submit" });
-
-      console.log("66666");
+    getStudioList: function getStudioList() {var _this = this;
+      this.$get('/studio/list').then(function (res) {
+        _this.studioBox = res.data;
+      }).catch(function (err) {
+        console.log("请求失败");
+        console.log(err);
+      });
     },
-    introClick: function introClick() {
-      uni.navigateTo({
-        url: "introduction" });
-
+    getAsseList: function getAsseList() {
+      this.$get('/studio/info/taskList/studio', {
+        studio: this.$store.state.studioName }).
+      then(function (res) {
+        console.log('请求成功');
+        console.log(res);
+      }).catch(function (err) {
+        console.log("请求失败");
+        console.log(err);
+      });
     },
-    teacherClick: function teacherClick() {
-      uni.navigateTo({
-        url: "teacher" });
-
-    },
-    cardClick: function cardClick() {
-      uni.navigateTo({
-        url: "asseDetail" });
-
-    },
-    getStudioList: function getStudioList() {
-      uni.request({
-        url: 'https://test.kabubuda.xyz:8443/studio/list',
-        header: {
-          'content-type': 'application/json' },
-
-        success: function success(res) {
-          console.log(res);
-          console.log("66666");
-        } });
-
+    getCompledList: function getCompledList() {
+      this.$get('/studio/info/taskList/my').then(function (res) {
+        console.log('请求成功');
+        console.log(res);
+      }).catch(function (err) {
+        console.log("请求失败");
+        console.log(err);
+      });
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

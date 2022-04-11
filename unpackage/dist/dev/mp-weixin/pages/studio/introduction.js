@@ -127,8 +127,10 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/DELL/Desktop/gitee项目/studio-app/pages/studio/introduction.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -159,6 +161,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+var _default =
+{
+  data: function data() {
+    return {
+      studioName: 'pai',
+      introduction: 'π工作室主要立足于前端、后台技术，是一个专注于web开发的校园IT技术团体，团队成员由数名大三、大二的优秀学子组成，努力为学校的信息化、多元化做出自己的贡献。工作室成员之间团结互助、共同开发项目，在实践中不断深化理解所学知识。同时也坚持安排成员为新生答疑解惑，并定期组织开展专业学习方面的考核，营造浓厚的学习氛围。',
+      pictures: [] };
+
+  },
+  mounted: function mounted() {
+    this.getStudioInfor();
+  },
+  methods: {
+    getStudioInfor: function getStudioInfor() {var _this = this;
+      this.$get('/studio/info', {
+        studioName: this.$store.state.studioName }).
+      then(function (res) {
+        console.log('请求成功');
+        console.log(res);
+        _this.introduction = res.data.introduction;
+        _this.pictures = res.data.picture,
+        _this.studioName = res.data.name;
+      }).catch(function (err) {
+        console.log("请求失败");
+        console.log(err);
+      });
+    } } };exports.default = _default;
 
 /***/ }),
 

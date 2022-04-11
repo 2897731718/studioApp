@@ -8,7 +8,7 @@ const store = new Vuex.Store({
 	state: {
 		pageName: 'home',
 		departmentIndex: 0,
-		studioName:'π'
+		studioName:'764'
 		
 	},
 	mutations: {

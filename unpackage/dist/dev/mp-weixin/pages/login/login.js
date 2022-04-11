@@ -185,11 +185,12 @@ var _default =
           uni.login({
             provider: 'weixin',
             success: function success(loginRes) {
+              console.log(1);
               console.log(loginRes.code);
               _this.WChatInfo = e.userInfo;
               uni.setStorageSync('WChatInfo', e.userInfo);
               uni.request({
-                url: 'https://test.kabubuda.xyz:8443/user/login/authorize',
+                url: 'https://test.kabubuda.xyz/user/login/authorize',
                 method: 'POST',
                 data: {
                   code: loginRes.code },
@@ -199,16 +200,32 @@ var _default =
                   'content-type': 'application/json' },
 
                 success: function success(res) {
-                  // console.log(res)
+                  console.log(res);
                   uni.setStorageSync('token', res.header.token);
                   uni.setStorageSync('openid', res.data.data.openid);
                   uni.setStorageSync('sessionKey', res.data.data.session_key);
                 } });
 
-              _this.$get('user/login', {}) // 获取身份信息
+              _this.$get('/user/login', {}) // 获取身份信息
               .then(function (res) {
-                // console.log(res.data.identity)
+                // console.log(uni.getStorageSync('WChatInfo').avatarUrl)
                 uni.setStorageSync('identity', res.data.identity);
+                if (res.data.identity == -1) {
+                  _this.$post('/user/info/add', {
+                    nickname: uni.getStorageSync('WChatInfo').nickName,
+                    avatarUrl: uni.getStorageSync('WChatInfo').avatarUrl,
+                    sex: uni.getStorageSync('WChatInfo').gender }).
+                  then(function (res) {
+                    console.log(res);
+
+                  });
+                }
+                if (uni.getStorageSync('identity') == -1) {
+                  _this.$get('/user/login', {}).
+                  then(function (res) {
+                    uni.setStorageSync('identity', res.data.identity);
+                  });
+                }
                 _this.loadingShow = !_this.loadingShow;
                 uni.redirectTo({
                   url: '/pages/index/index' });

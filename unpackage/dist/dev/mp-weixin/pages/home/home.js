@@ -91,11 +91,17 @@ var render = function() {
     }
   })
 
+  var m1 = encodeURIComponent(JSON.stringify(_vm.currentIndex))
+  var m2 = encodeURIComponent(JSON.stringify(_vm.currentIndex))
+  var m3 = encodeURIComponent(JSON.stringify(_vm.currentIndex))
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
-        l0: l0
+        l0: l0,
+        m1: m1,
+        m2: m2,
+        m3: m3
       }
     }
   )
@@ -337,7 +343,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var CubicImg = function CubicImg() {Promise.all(/*! require.ensure | components/CubicImg */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/CubicImg")]).then((function () {return resolve(__webpack_require__(/*! ../../components/CubicImg.vue */ 239));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var LsSwiper = function LsSwiper() {__webpack_require__.e(/*! require.ensure | components/LsSwiper */ "components/LsSwiper").then((function () {return resolve(__webpack_require__(/*! ../../components/LsSwiper.vue */ 247));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var EventCard = function EventCard() {__webpack_require__.e(/*! require.ensure | components/content/EventCard */ "components/content/EventCard").then((function () {return resolve(__webpack_require__(/*! ../../components/content/EventCard.vue */ 254));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StudioCard = function StudioCard() {__webpack_require__.e(/*! require.ensure | components/content/StudioCard */ "components/content/StudioCard").then((function () {return resolve(__webpack_require__(/*! ../../components/content/StudioCard.vue */ 261));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var CubicImg = function CubicImg() {Promise.all(/*! require.ensure | components/CubicImg */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/CubicImg")]).then((function () {return resolve(__webpack_require__(/*! ../../components/CubicImg.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var LsSwiper = function LsSwiper() {__webpack_require__.e(/*! require.ensure | components/LsSwiper */ "components/LsSwiper").then((function () {return resolve(__webpack_require__(/*! ../../components/LsSwiper.vue */ 254));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var EventCard = function EventCard() {__webpack_require__.e(/*! require.ensure | components/content/EventCard */ "components/content/EventCard").then((function () {return resolve(__webpack_require__(/*! ../../components/content/EventCard.vue */ 261));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StudioCard = function StudioCard() {__webpack_require__.e(/*! require.ensure | components/content/StudioCard */ "components/content/StudioCard").then((function () {return resolve(__webpack_require__(/*! ../../components/content/StudioCard.vue */ 268));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   data: function data() {
     return {
@@ -397,7 +403,22 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumera
       tabList: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
       currentIndex: 0,
       eventList: [],
-      eventShowList: [
+      // eventShowList: 
+      identity: 0,
+      addEventShow: false,
+      kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
+      kindIndex: 0,
+      address: '',
+      startTime: '',
+      endTime: '',
+      eventIntroduction: '' };
+
+
+  },
+  props: {
+    eventShowList: {
+      type: Array,
+      default: [
       {
         id: 0,
         eventName: '码上开讲',
@@ -420,23 +441,11 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumera
         address: 'e教899',
         startTime: '2021-10-1',
         endTime: '2021-10-29',
-        introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台' }],
+        introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台' }] } },
 
 
-      identity: 0,
-      addEventShow: false,
-      kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
-      kindIndex: 0,
-      address: '',
-      startTime: '',
-      endTime: '',
-      eventIntroduction: '' };
 
 
-  },
-  onLoad: function onLoad() {
-
-  },
   computed: _objectSpread({},
   (0, _vuex.mapState)(['departmentIndex'])),
 
@@ -475,7 +484,8 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumera
       this.addEventShow = !this.addEventShow;
     },
     getEventList: function getEventList() {
-      this.$get('', {}).
+      console.log('1');
+      this.$get('/contest/info', {}).
 
       then(function (res) {
         console.log(res);

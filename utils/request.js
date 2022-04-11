@@ -2,7 +2,7 @@
 // 本地接口
 // const commonUrl = "http://localhost:8080/";
 // 线上接口
-const commonUrl = "https://test.kabubuda.xyz:8443/"
+const commonUrl = "https://test.kabubuda.xyz"
 
 /**
  * @description POST请求封装
@@ -27,9 +27,10 @@ export function postRequest(url, data) {
 				"content-type": "application/json",
 				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId")
+				//'Origin': 'https://test.kabubuda.xyz'
 			},
 			success: function(res) {
-				console.log(res.header.token)
+				// console.log(res.header.token)
 				uni.hideLoading();
 				//返回什么就相应的做调整
 				if (res.statusCode == 200) {
@@ -72,6 +73,7 @@ export function getRequest(url, data) {
 				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId"),
 				// 'Origin': 'http://47.119.155.5:8081'
+				'Origin': 'https://test.kabubuda.xyz'
 			},
 			success: function(res) {
 				uni.hideLoading();

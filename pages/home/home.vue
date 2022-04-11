@@ -90,8 +90,8 @@
 			</view>
 			
 			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 0">
-				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration'" class="you-btn bg-third text-sm text-white" @click="toSignUpPage">报名科技月评</navigator>
-				<!-- 信息 使用 v-for  -->
+				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名科技月评</navigator>
+				<!-- 科技月评  -->
 				<event-card v-for="item in eventShowList" :key="item.id"
 							:eventName="item.eventName"
 							:address="item.address"
@@ -101,8 +101,8 @@
 				
 			</view>
 			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 1">
-				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration'" class="you-btn bg-third text-sm text-white" @click="toSignUpPage">报名软件创新</navigator>
-				<!-- 信息 使用 v-for  -->
+				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名软件创新</navigator>
+				<!-- 软件创新  -->
 				<event-card v-for="item in eventShowList" :key="item.id"
 							:eventName="item.eventName"
 							:address="item.address"
@@ -112,8 +112,8 @@
 				
 			</view>
 			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 2">
-				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration'" class="you-btn bg-third text-sm text-white" @click="toSignUpPage">报名码上学习</navigator>
-				<!-- 信息 使用 v-for  -->
+				<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名码上学习</navigator>
+				<!-- 马上学习  -->
 				<event-card v-for="item in eventShowList" :key="item.id"
 							:eventName="item.eventName"
 							:address="item.address"
@@ -123,7 +123,7 @@
 				
 			</view>
 			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 3">
-				<!-- 信息 使用 v-for  -->
+				<!-- 马上开奖  -->
 				<event-card v-for="item in eventShowList" :key="item.id"
 							:eventName="item.eventName"
 							:address="item.address"
@@ -133,7 +133,7 @@
 				
 			</view>
 			<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 4">
-				<!-- 信息 使用 v-for  -->
+				<!-- 先导课  -->
 				<event-card v-for="item in eventShowList" :key="item.id"
 							:eventName="item.eventName"
 							:address="item.address"
@@ -263,7 +263,22 @@
 				tabList: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
 				currentIndex: 0,
 				eventList: [],
-				eventShowList: [
+				// eventShowList: 
+				identity: 0,
+				addEventShow: false,
+				kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
+				kindIndex: 0,
+				address: '',
+				startTime: '',
+				endTime: '',
+				eventIntroduction: '',
+				
+			}
+		},
+		props: {
+			eventShowList: {
+				type: Array,
+				default: [
 					{
 						id: 0,
 						eventName: '码上开讲',
@@ -289,19 +304,7 @@
 						introduce: '大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台',
 					},
 				],
-				identity: 0,
-				addEventShow: false,
-				kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
-				kindIndex: 0,
-				address: '',
-				startTime: '',
-				endTime: '',
-				eventIntroduction: '',
-				
 			}
-		},
-		onLoad() {
-
 		},
 		computed: {
 			...mapState(['departmentIndex']),
@@ -341,7 +344,8 @@
 				this.addEventShow = !this.addEventShow
 			},
 			getEventList() {
-				this.$get('', {
+				console.log('1')
+				this.$get('/contest/info', {
 					
 				}).then(res => {
 					console.log(res)

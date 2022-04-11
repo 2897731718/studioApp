@@ -24,6 +24,7 @@
 	export default {
 		data() {
 			return {
+				eventShowList: [],
 				
 			}
 		},
@@ -32,10 +33,17 @@
 			
 		},
 		onLoad() {
-			
+			this.$toast('登陆成功', 2000, 'success', true);
+			this.getEventList()
 		},
 		methods: {
-			
+			getEventList() {
+				this.$get('/contest/info', {
+					
+				}).then(res => {
+					console.log(res)
+				})
+			}
 		}
 	}
 </script>

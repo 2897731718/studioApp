@@ -97,6 +97,9 @@ try {
   components = {
     uniDataPicker: function() {
       return Promise.all(/*! import() | uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker.vue */ 225))
+    },
+    lFile: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/l-file/components/l-file/l-file */ "uni_modules/l-file/components/l-file/l-file").then(__webpack_require__.bind(null, /*! @/uni_modules/l-file/components/l-file/l-file.vue */ 239))
     }
   }
 } catch (e) {
@@ -153,7 +156,39 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -192,63 +227,185 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 var _default =
 {
+  created: function created() {
+    this.getStudioLists();
+  },
   data: function data() {
     return {
-      submitList: ['姓名', '班级'],
-      subList: [{
-        title: '考核',
-        choice: [{
-          text: "第一轮",
-          value: "0210-001-1" },
-
-        {
-          text: "第二轮",
-          value: "0210-001-2" },
-
-        {
-          text: "第三轮",
-          value: "0210-001-3" }] },
-
-
-      {
-        title: '考核所属工作室',
-        choice: [{
-          text: "Π工作室",
-          value: "0210-001-1" },
-
-        {
-          text: "764工作室",
-          value: "0210-001-2" },
-
-        {
-          text: "蓝点工作室",
-          value: "0210-001-3" }] },
-
-
-      {
-        title: '考核方向',
-        choice: [{
-          text: "前端",
-          value: "0210-001-1" },
-
-        {
-          text: "后端",
-          value: "0210-001-2" },
-
-        {
-          text: "算法",
-          value: "0210-001-3" },
-
-        {
-          text: "大数据",
-          value: "0210-001-4" }] }] };
-
-
-
+      name: "",
+      classes: "",
+      round: "",
+      directions: "",
+      studio: "",
+      taskId: "",
+      filePath: "",
+      asseRound: {
+        // title: '考核轮次',
+        // choice: [{
+        // 		text: "第一轮",
+        // 		value: "0210-001-1",
+        // 	},
+        // 	{
+        // 		text: "第二轮",
+        // 		value: "0210-001-2"
+        // 	},
+        // 	{
+        // 		text: "第三轮",
+        // 		value: "0210-001-3"
+        // 	}
+        // ]
+      },
+      asseStudio: {
+        // title: '考核所属工作室',
+        // choice: [{
+        // 		text: "Π工作室",
+        // 		value: "0210-001-4",
+        // 	},
+        // 	{
+        // 		text: "764工作室",
+        // 		value: "0210-001-5"
+        // 	},
+        // 	{
+        // 		text: "蓝点工作室",
+        // 		value: "0210-001-6"
+        // 	}
+        // ]
+      },
+      direction: {
+        // title: '考核方向',
+        // choice: [{
+        // 		text: "前端",
+        // 		value: "0210-001-7",
+        // 	},
+        // 	{
+        // 		text: "后端",
+        // 		value: "0210-001-8"
+        // 	},
+        // 	{
+        // 		text: "算法",
+        // 		value: "0210-001-9"
+        // 	},
+        // 	{
+        // 		text: "大数据",
+        // 		value: "0210-001-10"
+        // 	}
+        // ]
+      } };
 
   },
   methods: {
+    getStudioLists: function getStudioLists() {var _this = this;
+      this.$get(
+      '/studio/task/allstudio').then(function (res) {
+        //console.log(res)
+        console.log('请求成功');
+        _this.asseStudio = res.data;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    submit: function submit() {
+      if (this.name == "") {
+        uni.showToast({
+          title: '姓名不为空',
+          icon: 'none',
+          duration: 1000,
+          mask: true });
+
+      } else if (this.classes == "") {
+        uni.showToast({
+          title: '班级不为空',
+          icon: 'none',
+          duration: 1000,
+          mask: true });
+
+      } else if (this.studio == "") {
+        uni.showToast({
+          title: '考核所属工作室不为空',
+          icon: 'none',
+          duration: 1000,
+          mask: true });
+
+      } else if (this.round == "") {
+        uni.showToast({
+          title: '考核轮次不为空',
+          icon: 'none',
+          duration: 1000,
+          mask: true });
+
+      } else if (this.direction == "") {
+        uni.showToast({
+          title: '考核方向不为空',
+          icon: 'none',
+          duration: 1000,
+          mask: true });
+
+      } else {
+        this.$post(
+        'studio/task/submit', {
+          name: this.name,
+          className: this.classes,
+          assessRound: this.round,
+          studio: this.studio,
+          direction: this.directions,
+          taskId: this.taskId }).
+        then(function (res) {
+          console.log('请求成功');
+        }).catch(function (err) {
+          console.log(err);
+        });
+        // uni.uploadFile({
+        // 	url: 'https://test.kabubuda.xyz/studio/task/upload', 
+        // 	filePath: this.filePath,
+        // 	name: 'file',
+        // 	formData: {
+        // 		tid:this.taskId,
+        // 		type:"taskEnroll"
+        // 	},
+        // 	header: {
+        // 		'content-type': 'application/form-data',
+        // 		'token': uni.getStorageSync("token")
+        // 	},
+        // 	success: (uploadFileRes) => {
+        // 		console.log(uploadFileRes);
+        // 		console.log("上传成功")
+        // 	},
+        // 	fail(err){
+        // 		console.log("上传失败")
+        // 		console.log(err)
+        // 	}
+        // });
+      }
+    },
+    onchange: function onchange(e) {
+      var value = e.detail.value;
+    },
+    onnodeclickStudio: function onnodeclickStudio(node) {var _this2 = this;
+      this.studio = node.text;
+      this.$get('/studio/task/round', { studioName: this.studio }).then(function (res) {
+        //console.log(res)
+        _this2.asseRound = res.data;
+      }).catch(function (err) {
+        console.log(err);
+      });
+      this.$get('/studio/task/direction', { studioName: this.studio }).then(function (res) {
+        //console.log(res)
+        _this2.direction = res.data;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    onnodeclickRound: function onnodeclickRound(node) {
+      this.round = node.text;
+      this.taskId = node.value;
+      console.log(this.taskId);
+    },
+    onnodeclickDirection: function onnodeclickDirection(node) {
+      this.directions = node.text;
+      //console.log(this.directions)
+    },
     onUpload: function onUpload() {
+
       /**
                                     * currentWebview: 当前webview
                                     * url：上传接口地址
@@ -262,29 +419,42 @@ var _default =
 
 
         //替换为你的上传接口地址
-        url: 'http://hlapi.jwell56.com/dropbox/document/upload',
+        url: 'https://test.kabubuda.xyz/studio/task/upload',
         // 服务端接收附件的key
         name: 'file',
         //根据你接口需求自定义 (优先不传content-type,安卓端无法收到参数再传)
         header: {
-          'Authorization': 'bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mbyI6eyJ1c2VyTmFtZSI6',
-          'uid': '27682',
-          'client': 'app',
-          'accountid': 'DPOA9487' }
+          'token': uni.getStorageSync("token") },
 
+        tid: this.taskId,
+        type: "taskEnroll"
 
-        // 限制选择附件的大小上限，默认10M
-        // maxSize: 20,
+        // 	// 限制选择附件的大小上限，默认10M
+        // 	// maxSize: 20,
 
-        // 若需要在body单独添加附件名或附件大小如下方式传入组件：
-        // addName: '后端要的附件名称字段key,此处请勿写name的同值如(file)，会覆盖name',
-        // addSize: '后端要的附件大小字段key'
+        // 	// 若需要在body单独添加附件名或附件大小如下方式传入组件：
+        // 	// addName: '后端要的附件名称字段key,此处请勿写name的同值如(file)，会覆盖name',
+        // 	// addSize: '后端要的附件大小字段key'
 
-        // body参数直接写key,value,如：
-        // date: '2020-1-1',
-        // key2: 'value2',
+        // 	// body参数直接写key,value,如：
+        // 	// date: '2020-1-1',
+        // 	// key2: 'value2',
       });
+      // wx.chooseMessageFile({
+      // 	count: 1,
+      // 	type: 'file',
+      // 	success(res) {
+      // 		console.log("1111"+res)
+      // 		this.filePath = res.tempFiles[0].path
+      // 		console.log(this.filePath)
+      // 		// tempFilePath可以作为img标签的src属性显示图片
+      // 	},
+      // 	fail(err) {
+      // 		console.log("选择失败")
+      // 	}
+      // })
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

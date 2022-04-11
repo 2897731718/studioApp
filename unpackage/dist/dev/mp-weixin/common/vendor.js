@@ -876,7 +876,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2075,18 +2075,18 @@ function normalizeComponent (
 // 本地接口
 // const commonUrl = "http://localhost:8080/";
 // 线上接口
-var commonUrl = "https://test.kabubuda.xyz:8443/";
+var commonUrl = "https://test.kabubuda.xyz";
 
 /**
-                                                    * @description POST请求封装
-                                                    * @param { String } url 请求的接口
-                                                    * @param { Object } data 请求的参数
-                                                    * @example 
-                                                    * this.$post(
-                                                    * 	'app/api', 
-                                                    * 	{name: 'yzp'}).then(res => {
-                                                    *     console.log('请求成功')}).catch(err => {console.log(err)})
-                                                    */
+                                              * @description POST请求封装
+                                              * @param { String } url 请求的接口
+                                              * @param { Object } data 请求的参数
+                                              * @example 
+                                              * this.$post(
+                                              * 	'app/api', 
+                                              * 	{name: 'yzp'}).then(res => {
+                                              *     console.log('请求成功')}).catch(err => {console.log(err)})
+                                              */
 function postRequest(url, data) {var _this = this;
   var promise = new Promise(function (resolve, reject) {
     var that = _this;
@@ -2100,9 +2100,10 @@ function postRequest(url, data) {var _this = this;
         "content-type": "application/json",
         'token': uni.getStorageSync("token")
         // Authorization: uni.getStorageSync("sessionId")
+        //'Origin': 'https://test.kabubuda.xyz'
       },
       success: function success(res) {
-        console.log(res.header.token);
+        // console.log(res.header.token)
         uni.hideLoading();
         //返回什么就相应的做调整
         if (res.statusCode == 200) {
@@ -2142,10 +2143,11 @@ function getRequest(url, data) {var _this2 = this;
       dataType: "json",
       header: {
         "content-type": "application/json",
-        'token': uni.getStorageSync("token")
+        'token': uni.getStorageSync("token"),
         // Authorization: uni.getStorageSync("sessionId"),
         // 'Origin': 'http://47.119.155.5:8081'
-      },
+        'Origin': 'https://test.kabubuda.xyz' },
+
       success: function success(res) {
         uni.hideLoading();
         if (res.statusCode == 200) {
@@ -2247,7 +2249,7 @@ var store = new _vuex.default.Store({
   state: {
     pageName: 'home',
     departmentIndex: 0,
-    studioName: 'π' },
+    studioName: '764' },
 
 
   mutations: {
@@ -8912,7 +8914,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8933,14 +8935,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9026,7 +9028,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_NAME":"tudioAssessmentApp","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -11103,11 +11105,11 @@ function initVueI18n(messages) {var fallbackLocale = arguments.length > 1 && arg
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__16A88E3" };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__5AFA57D" };exports.default = _default;
 
 /***/ }),
 
-/***/ 242:
+/***/ 249:
 /*!****************************************************************!*\
   !*** C:/Users/DELL/Desktop/gitee项目/studio-app/static/logo.jpg ***!
   \****************************************************************/
@@ -11118,7 +11120,7 @@ module.exports = "/static/logo.jpg";
 
 /***/ }),
 
-/***/ 280:
+/***/ 287:
 /*!*****************************************************************************************************************!*\
   !*** C:/Users/DELL/Desktop/gitee项目/studio-app/uni_modules/uni-load-more/components/uni-load-more/i18n/index.js ***!
   \*****************************************************************************************************************/
@@ -11126,9 +11128,9 @@ module.exports = "/static/logo.jpg";
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 281));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 282));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 283));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 288));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 289));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 290));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -11136,7 +11138,7 @@ var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 2
 
 /***/ }),
 
-/***/ 281:
+/***/ 288:
 /*!****************************************************************************************************************!*\
   !*** C:/Users/DELL/Desktop/gitee项目/studio-app/uni_modules/uni-load-more/components/uni-load-more/i18n/en.json ***!
   \****************************************************************************************************************/
@@ -11147,7 +11149,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"Pull up to show mo
 
 /***/ }),
 
-/***/ 282:
+/***/ 289:
 /*!*********************************************************************************************************************!*\
   !*** C:/Users/DELL/Desktop/gitee项目/studio-app/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hans.json ***!
   \*********************************************************************************************************************/
@@ -11158,7 +11160,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉显示更多
 
 /***/ }),
 
-/***/ 283:
+/***/ 290:
 /*!*********************************************************************************************************************!*\
   !*** C:/Users/DELL/Desktop/gitee项目/studio-app/uni_modules/uni-load-more/components/uni-load-more/i18n/zh-Hant.json ***!
   \*********************************************************************************************************************/
@@ -11169,7 +11171,7 @@ module.exports = JSON.parse("{\"uni-load-more.contentdown\":\"上拉顯示更多
 
 /***/ }),
 
-/***/ 291:
+/***/ 298:
 /*!****************************************************************************************************!*\
   !*** C:/Users/DELL/Desktop/gitee项目/studio-app/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \****************************************************************************************************/

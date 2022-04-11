@@ -48,8 +48,8 @@
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">组长班级</text>
 						<input class="text-black-accent text-xxs" type="text" v-model="classNumberLeader" placeholder="软件1910" maxlength="15"/>
-						<text class="fa fa-angle-right"></text>
 					</view>
+						<text class="fa fa-angle-right"></text>
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">组长姓名</text>
 						<input class="text-black-accent text-xxs" type="text" v-model="realNameLeader" placeholder="张三" maxlength="15"/>
@@ -216,8 +216,25 @@
 						提交报名
 					</view>
 				</view>
-				<!-- 算法比赛报名 -->
+				<!-- 码上学习报名 -->
 				<view class="content-box radius-sm fade-in margin-top-sm margin-bottom-sm shadow-sm flex-column flex-center" v-show="competitionIndex === 2">
+					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
+						<text class="margin-left-sm text-sm">班级</text>
+						<input class="text-black-accent text-xxs" type="text" v-model="classNumberStuding" placeholder="软件1910" maxlength="15"/>
+						<text class="fa fa-angle-right"></text>
+					</view>
+					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
+						<text class="margin-left-sm text-sm">姓名</text>
+						<input class="text-black-accent text-xxs" type="text" v-model="realNameStuding" placeholder="张三" maxlength="15"/>
+						<text class="fa fa-angle-right"></text>
+					</view>
+					
+					<view class="you-btn margin-tb-sm text-white bg-four flex-row flex-center" @click="confirmSignUpStuding">
+						提交报名
+					</view>
+				</view>
+				<!-- 算法比赛报名 -->
+				<view class="content-box radius-sm fade-in margin-top-sm margin-bottom-sm shadow-sm flex-column flex-center" v-show="competitionIndex === 3">
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">班级</text>
 						<input class="text-black-accent text-xxs" type="text" v-model="classNumberAlgorithm" placeholder="软件1910" maxlength="15"/>
@@ -235,23 +252,6 @@
 					</view>
 					
 					<view class="you-btn margin-tb-sm text-white bg-four flex-row flex-center" @click="confirmSignUpAlgorithm">
-						提交报名
-					</view>
-				</view>
-				<!-- 码上学习报名 -->
-				<view class="content-box radius-sm fade-in margin-top-sm margin-bottom-sm shadow-sm flex-column flex-center" v-show="competitionIndex === 3">
-					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
-						<text class="margin-left-sm text-sm">班级</text>
-						<input class="text-black-accent text-xxs" type="text" v-model="classNumberStuding" placeholder="软件1910" maxlength="15"/>
-						<text class="fa fa-angle-right"></text>
-					</view>
-					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
-						<text class="margin-left-sm text-sm">姓名</text>
-						<input class="text-black-accent text-xxs" type="text" v-model="realNameStuding" placeholder="张三" maxlength="15"/>
-						<text class="fa fa-angle-right"></text>
-					</view>
-					
-					<view class="you-btn margin-tb-sm text-white bg-four flex-row flex-center" @click="confirmSignUpStuding">
 						提交报名
 					</view>
 				</view>
@@ -278,7 +278,7 @@
 		data() {
 			return {
 				tipsContent: '',
-				competitionKind: ['软件创新', '科技乐评', '算法比赛', '码上学习'],
+				competitionKind: ['科技乐评', '软件创新', '码上学习', '算法比赛'],
 				competitionIndex: 0,
 				firstKindData: ['嵌入式', '软件组(web/小程序)'],
 				firstKindIndex: 0,
@@ -287,10 +287,10 @@
 				thirdKindData: ['个人赛', '小组赛'],
 				thirdKindIndex: 0,
 				projectName: '1',
-				stdNumberLeader: '2',
-				classNumberLeader: '3',
-				realNameLeader: '4',
-				qNumberLeader: '5',
+				stdNumberLeader: '2', // 组长学号
+				classNumberLeader: '3', // 组长班级
+				realNameLeader: '4',  // 组长姓名
+				qNumberLeader: '5',  // 组长qq
 				classNameOne: '8',
 				realNameOne: '9',
 				classNameTwo: '8',
@@ -306,6 +306,9 @@
 				realNameStuding: 'r',
 				
 			};
+		},
+		onLoad(option) {
+			// this.competitionIndex = JSON.parse(decodeURIComponent(option.item))
 		},
 		components: {
 			RotateCard,
@@ -326,17 +329,39 @@
 				console.log(this.thirdKindIndex)
 			},
 			confirmSignUpTechnology() {  // 科技月评软件组比赛报名
-				
+				this.$post('/contest/enroll', {
+					
+				}).then(res => {
+					console.log(res)
+				})
 			},
 			confirmSignUpInnovate() {  // 软件创新软件组比赛报名
-				
-			},
-			confirmSignUpAlgorithm() {  // 算法比赛报名
-				
+				this.$post('/contest/enroll', {
+					
+				}).then(res => {
+					console.log(res)
+				})
 			},
 			confirmSignUpStuding() { // 码上学习报名
-				
-			}
+				// this.$post('/contest/enroll', {
+				// 	className: this.classNumberLeader,
+				// 	name: this.realNameLeader,
+				// 	contact: this.qNumberLeader,
+				// 	// groupId: 
+				// }).then(res => {
+				// 	console.log(res)
+				// })
+			},
+			confirmSignUpAlgorithm() {  // 算法比赛报名
+				this.$post('/contest/enroll', {
+					className: this.classNumberLeader,
+					name: this.realNameLeader,
+					contact: this.qNumberLeader,
+					// groupId: 
+				}).then(res => {
+					console.log(res)
+				})
+			},
 		}
 	}
 </script>

@@ -20,7 +20,7 @@
 		<block slot="backText">返回</block>
 		<block slot="content">大创报名</block>
 	</cu-custom>
-	<view class="you-page radius-sm flex-column align-center">
+	<view class="you-page bg-white radius-sm flex-column align-center">
 			<!-- 提示卡片 -->
 			<view class="top-box flex-column flex-center">
 				<rotate-card :tipsContent="tipsContent"></rotate-card>
@@ -104,17 +104,17 @@
 		data() {
 			return {
 				tipsContent: '请按照下方示例格式填写报名信息，注意空格逗号等，提交过后无法查看提交信息，提示提交成功就是成功，如有疑问可以去QQ群问学长学姐，最后欢迎大家报名大创，加油！！！',
-				classNumber: '',
-				realName: '',
-				qNumber: '',
+				classNumber: '1910',
+				realName: 'zsw',
+				qNumber: '2897732',
 				genderData: ['男', '女'],
 				genderIndex: 0,
 				firstKindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
 				firstKindIndex: 0,
 				secondKindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
 				secondKindIndex: 0,
-				selfIntroduction: ``,
-				reason: ``,
+				selfIntroduction: `fdsfsd`,
+				reason: `sdfadsfds`,
 				submitShow: false,
 				
 			};
@@ -125,6 +125,7 @@
 		},
 		methods: {
 			choseGender: function(e) {
+				console.log(e)
 				this.genderIndex = e.detail.value
 			},
 			choseFirstKind: function(e) {
@@ -140,7 +141,28 @@
 				this.submitShow = !this.submitShow
 			},
 			submit() {
-				
+				console.log(uni.getStorageSync("token"))
+				this.$post('/cosi/enroll/department', {
+					name: this.realName,
+					gender: this.genderIndex,
+					className: this.classNumber,
+					contact_number: this.qNumber,
+					self_introduction: this.selfIntroduction,
+					reason: this.reason,
+					firstWish: this.firstKindIndex,
+					secondWish: this.secondKindIndex
+				}).then(res => {
+					console.log(res)
+					this.$toast('报名成功', 2000, 'success', true);
+					this.realName = ''
+					this.genderIndex = ''
+					this.classNumber,
+					this.qNumber = ''
+					this.selfIntroduction = ''
+					this.reason = ''
+					this.firstKindIndex = ''
+					this.secondKindIndex = ''
+				})
 				this.submitShow = !this.submitShow
 			},
 			
