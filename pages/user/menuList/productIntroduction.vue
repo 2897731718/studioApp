@@ -5,7 +5,7 @@
 		<block slot="content">产品介绍</block>
 	</cu-custom>
 	<view class="you-page flex-column">
-		<text class="title">开发人员</text>
+		<!-- <text class="title">开发人员</text>
 		<view class="person-box bg-white flex-column">
 			<text class="">前端:</text>
 			<view class="margin-top-sm text-new">
@@ -18,7 +18,7 @@
 				黄文杨 (首字母排序)
 			</view>
 		</view>
-		<text class="title">开发背景</text>
+		<text class="title">开发背景</text> -->
 		<view class="product-box text-new bg-white text-break">
 			{{ productContent }}
 		</view>

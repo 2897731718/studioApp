@@ -57,7 +57,7 @@
 		<!-- <view class="graphical-center bg-primary"></view> -->
 		<!-- <view class="new-page bg-primary"></view> -->
 		<!-- 工作室logo -->
-		<view class="studio-box margin-top-lg flex-column">
+		<!-- <view class="studio-box margin-top-lg flex-column">
 			<ls-swiper class="ls-swiper"
 			:list="imageList" imgKey="imgUrl"
 			:crown="true" :loop="true" :shadow='true' height='120' 
@@ -65,11 +65,10 @@
 			nextMargin='120' imgRadius="500"
 			@change="getImgId"/>
 		</view>
-		<!-- 工作室简介 -->
 		<studio-card v-show="cardIsShow == 1"
 					 :name='studioList.paiData.name'
 					 :indruction='studioList.paiData.indruction'
-					 :teacher='studioList.paiData.teacher'></studio-card>
+					 :teacher='studioList.paiData.teacher'></studio-card> -->
 		
 		<!-- 
 		 活动名称
@@ -81,7 +80,8 @@
 		<event-list></event-list>
 		
 		<!-- 悬浮按钮 控制添加赛事信息显示隐藏 -->
-		<navigator :url="'/pages/home/addEvent'" class="fixed-box radius-cr text-white flex-column flex-center" ></navigator>
+		<navigator :url="'/pages/home/addEvent'" v-if="identity == 2 || identity == 4"
+				   class="fixed-box radius-cr text-white flex-column flex-center" ></navigator>
 		
 		<!-- 添加赛事信息 -->
 		<view class="you-mask glass-morphism flex-column align-center" v-show="addEventShow" @touchmove.stop.prevent>
@@ -158,7 +158,7 @@
 					}
 				],
 				eventList: [],
-				identity: 0,
+				identity: uni.getStorageSync('identity'),
 				
 				
 			}

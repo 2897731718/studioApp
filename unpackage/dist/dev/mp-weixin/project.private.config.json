@@ -19,50 +19,9 @@
           "scene": null
         },
         {
-          "name": "pages/user/menuList/productIntroduction",
-          "pathName": "pages/user/menuList/productIntroduction",
+          "name": "pages/home/departmentProfile/departmentProfile",
+          "pathName": "pages/home/departmentProfile/departmentProfile",
           "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/user/menuList/personDetail",
-          "pathName": "pages/user/menuList/personDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/home/departmentSignUp/departmentSignUp",
-          "pathName": "pages/home/departmentSignUp/departmentSignUp",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/home/competitionRegistration/competitionRegistration",
-          "pathName": "pages/home/competitionRegistration/competitionRegistration",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/community/sendDetail/sendDetail",
-          "pathName": "pages/community/sendDetail/sendDetail",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/home/addEvent",
-          "pathName": "pages/home/addEvent",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/user/modifyInformation/modifyInformation",
-          "pathName": "pages/user/modifyInformation/modifyInformation",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/community/sendDetail/sendDetail",
-          "pathName": "pages/community/sendDetail/sendDetail",
           "scene": null
         }
       ]

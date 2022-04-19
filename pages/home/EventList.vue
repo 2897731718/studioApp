@@ -5,10 +5,11 @@
 	 结束时间
 	 地点
 	 简介
+	 这里最好还是后端写接口 筛选比较好
 	 -->
 	<view class="event-box margin-top-sm flex-column align-center">
 		<text class="title text-lg">赛事信息</text>
-		<view class="tabs margin-top-sm display-grid col-5">
+		<view class="tabs margin-top-sm display-grid col-4">
 			<view class="tab text-xs radius-xs flex-column flex-center" 
 				  v-for="item in tabList" 
 				  :key="item.tabId"
@@ -20,7 +21,7 @@
 		<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 0">
 			<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名科技月评</navigator>
 			<!-- 科技月评  -->
-			<event-card v-for="item in currentList" :key="item.contestId"
+			<event-card v-for="item in currentList" :key="item.contestId" v-show="item.status"
 						:eventName="item.contestName"
 						:address="item.contestPlace"
 						:startTime="item.beginTime"
@@ -32,43 +33,37 @@
 		<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 1">
 			<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名软件创新</navigator>
 			<!-- 软件创新  -->
-			<event-card v-for="item in currentList" :key="item.contestId"
+			<event-card v-for="item in currentList" :key="item.contestId" v-show="item.status"
 						:eventName="item.contestName"
 						:address="item.contestPlace"
 						:startTime="item.beginTime"
 						:endTime="item.endTime"
-						:introduce="item.contestIntroduction"></event-card>
+						:introduce="item.contestIntroduction"
+						@deleteEvent="handleDelete(item.contestId)"></event-card>
 			
 		</view>
 		<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 2">
 			<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名码上学习</navigator>
 			<!-- 马上学习  -->
-			<event-card v-for="item in currentList" :key="item.contestId"
+			<event-card v-for="item in currentList" :key="item.contestId" v-show="item.status"
 						:eventName="item.contestName"
 						:address="item.contestPlace"
 						:startTime="item.beginTime"
 						:endTime="item.endTime"
-						:introduce="item.contestIntroduction"></event-card>
+						:introduce="item.contestIntroduction"
+						@deleteEvent="handleDelete(item.contestId)"></event-card>
 			
 		</view>
 		<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 3">
-			<!-- 马上开奖  -->
-			<event-card v-for="item in currentList" :key="item.contestId"
+			<navigator navigatorTo :url="'/pages/home/competitionRegistration/competitionRegistration?item='+ encodeURIComponent(JSON.stringify(currentIndex))" class="you-btn bg-third text-sm text-white">报名算法比赛</navigator>
+			<!-- 算法比赛  -->
+			<event-card v-for="item in currentList" :key="item.contestId" v-show="item.status"
 						:eventName="item.contestName"
 						:address="item.contestPlace"
 						:startTime="item.beginTime"
 						:endTime="item.endTime"
-						:introduce="item.contestIntroduction"></event-card>
-			
-		</view>
-		<view class="tab-content margin-top-sm radius-sm flex-column align-center" v-show="currentIndex === 4">
-			<!-- 先导课  -->
-			<event-card v-for="item in currentList" :key="item.contestId"
-						:eventName="item.contestName"
-						:address="item.contestPlace"
-						:startTime="item.beginTime"
-						:endTime="item.endTime"
-						:introduce="item.contestIntroduction"></event-card>
+						:introduce="item.contestIntroduction"
+						@deleteEvent="handleDelete(item.contestId)"></event-card>
 			
 		</view>
 	</view>
@@ -91,12 +86,9 @@
 						name: '码上学习',
 						tabId: 2
 					},{
-						name: '码上开讲',
+						name: '算法比赛',
 						tabId: 3
-					},{
-						name: '先导课',
-						tabId: 4
-					},
+					}
 				],
 				currentIndex: 0,
 				currentList: [],
@@ -105,14 +97,20 @@
 			}
 		},
 		created() {
-			this.getEventList('科技月评')
+			this.getEventList()
+			
+			setTimeout(() => {
+				this.currentList = this.eventShowList.filter(item => {
+					return item.contestName == '科技月评'
+				})
+			}, 1000)
 		},
 		methods:{
 			selectTab: function(index) {
 				this.currentIndex = index
+				this.getEventList()
 				if (index == 0) {
 					this.currentList = this.eventShowList.filter(item => {
-						console.log(item.postType)
 						return item.contestName == '科技月评'
 					})
 				} else if (index == 1) {
@@ -125,7 +123,7 @@
 					})
 				} else if (index == 3) {
 					this.currentList = this.eventShowList.filter(item => {
-						return item.contestName == '码上开讲'
+						return item.contestName == '算法比赛'
 					})
 				} else if (index == 4) {
 					this.currentList = this.eventShowList.filter(item => {
@@ -139,17 +137,20 @@
 				}).then(res => {
 					console.log(res)
 					if(res) {
-						this.eventShowList = res.data.reverse()
+						this.eventShowList = res.data
 					}
 					
 				})
 				
 			},
-			handleDelete(contestId) {
-				this.$get('/cosi/contest/delete', {
+			handleDelete(contestId) { // 删除完了之后重新加载 并且将 tab 栏切换会第一个
+				this.$get('/cosi/contest/close', {
 					contestId
 				}).then(res => {
 					console.log(res)
+					this.$toast('关闭成功', 1000, 'success', true)
+					this.getEventList()
+					this.selectTab(0)
 				})
 			}
 		},

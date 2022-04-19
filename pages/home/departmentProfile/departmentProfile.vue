@@ -14,48 +14,18 @@
 				<!-- 部门简介 -->
 				<view class="top-box shadow-lg shadow-sm flex-row flex-center">
 					<view class="side-bar shadow-mi radius-sm bg-white grid row-6">
-						<!-- <view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[]"
+						<view class="btn text-sm text-new flex-row flex-center"
+							  :class="[departmentIndex === item.id? 'isSelect': '']"
 							  v-for="item in occupationList" :key="item.id"
 							  @click="changeOccupationInstroduce(item.id)">
-							{{ item.name }}
-						</view> -->
-						<view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[departmentIndex === 0? 'isSelect': '']"
-							  @click="changeOccupationInstroduce(0)">
-							  <text>理事长</text>
-						</view>
-						<view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[departmentIndex === 2? 'isSelect': '']"
-							  @click="changeOccupationInstroduce(2)">
-							<text>办公室</text>
-						</view>
-						<view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[departmentIndex === 3? 'isSelect': '']"
-							  @click="changeOccupationInstroduce(3)">
-							<text>竞赛部</text>
-						</view>
-						<view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[departmentIndex === 4? 'isSelect': '']"
-							  @click="changeOccupationInstroduce(4)">
-							<text>宣传策划部</text>
-						</view>
-						<view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[departmentIndex === 5? 'isSelect': '']"
-							  @click="changeOccupationInstroduce(5)">
-							<text>培训部</text>
-						</view>
-						<view class="btn text-sm text-primary flex-row flex-center"
-							  :class="[departmentIndex === 6? 'isSelect': '']"
-							  @click="changeOccupationInstroduce(6)">
-							<text>工联部</text>
+							<text>{{ item.name }}</text>
 						</view>
 					</view>
 					<view class="content-box fade-in bg-white radius-sm margin-left-sm shadow-xs flex-column flex-center"
 						  v-show="departmentIndex === 2"
 						  :animation="animationData">
 						<text class="text-lg text-roll">宣传策划部简介</text>
-						<view class="instroduce-content margin-top-sm text-second">
+						<view class="instroduce-content margin-top-sm text-new">
 							大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台。
 						</view>
 					</view>
@@ -63,7 +33,7 @@
 						  v-show="departmentIndex === 3"
 						  :animation="animationData">
 						<text class="text-lg text-roll">宣传策划部简介</text>
-						<view class="instroduce-content margin-top-sm text-second">
+						<view class="instroduce-content margin-top-sm text-new">
 							大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台。
 						</view>
 					</view>
@@ -71,7 +41,7 @@
 						  v-show="departmentIndex === 4"
 						  :animation="animationData">
 						<text class="text-lg text-roll">宣传策划部简介</text>
-						<view class="instroduce-content margin-top-sm text-second">
+						<view class="instroduce-content margin-top-sm text-new">
 							大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台。
 						</view>
 					</view>
@@ -79,7 +49,7 @@
 						  v-show="departmentIndex === 5"
 						  :animation="animationData">
 						<text class="text-lg text-roll">宣传策划部简介</text>
-						<view class="instroduce-content margin-top-sm text-second">
+						<view class="instroduce-content margin-top-sm text-new">
 							大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台。
 						</view>
 					</view>
@@ -87,7 +57,7 @@
 						  v-show="departmentIndex === 6"
 						  :animation="animationData">
 						<text class="text-lg text-roll">宣传策划部简介</text>
-						<view class="instroduce-content margin-top-sm text-second">
+						<view class="instroduce-content margin-top-sm text-new">
 							大学生创新创业中心成立于2017年，是软件学院三大组织之一，也是学院致力打造的一个突出专业学习、提供学习交流的平台。
 						</view>
 					</view>
@@ -107,7 +77,7 @@
 				</scroll-view>
 				<!-- 底部流动特效 -->
 				<view class="slider-box">
-					<view class="slider"></view>
+					<view class="slider bg-five"></view>
 				</view>
 				<!-- 添加成员信息 -->
 				<view class="you-mask glass-morphism flex-column flex-center" v-show="addConfirmShow" @touchmove.stop.prevent>
@@ -127,15 +97,15 @@
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">年级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="grade" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" placeholder="2019" v-model="grade" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realName" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" placeholder="张三" v-model="realName" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
-						<view class="you-btn text-lg bg-second text-white margin-top-lg flex-column flex-center" @click="sendMember">
+						<view class="you-btn text-lg bg-five text-white margin-top-lg flex-column flex-center" @click="sendMember">
 							确认添加成员
 						</view>
 					</view>
@@ -152,14 +122,14 @@
 					</view>
 				</view>
 				
-				<view class="fixed-box bg-white shadow-xs flex-row align-center justify-around" v-if="!identity">
+				<view class="fixed-box bg-white shadow-xs flex-row align-center justify-around" v-if="identity == 2 || identity == 4">
 					<view class="delete you-btn text-white bg-red" @click="delectSelect" v-show="!delectBtnShow">
 						删除成员
 					</view>
 					<view class="delete you-btn text-white bg-four" @click="cancelDelectSelect" v-show="delectBtnShow">
 						取消删除
 					</view>
-					<view class="add you-btn text-white bg-second" @click="addSelect">
+					<view class="add you-btn text-white bg-five" @click="addSelect">
 						添加成员
 					</view>
 				</view>
@@ -175,7 +145,7 @@
 			return {
 				occupationList: [
 					{
-						id: 0,
+						id: 1,
 						name: '理事'
 					},{
 						id: 2,
@@ -199,13 +169,13 @@
 				delectBtnShow: false,
 				delectConfirmShow: false, // 删除确认遮罩层
 				addConfirmShow: false, // 添加
-				identity: 0,
+				identity: uni.getStorageSync('identity'),
 				animationData: {},
-				kindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
+				kindData: ['理事', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
 				kindIndex: '0',
-				positionName: '理事长',
-				grade: '2019',
-				realName: '曾书伟',
+				positionName: '',
+				grade: '',
+				realName: '',
 				deleteMid: -1,
 				
 			};
@@ -279,6 +249,7 @@
 				}).then(res => {
 					this.$toast('添加成功', 1000, 'success', true)
 					console.log(res)
+					this.realName = ''
 					this.getMember(this.departmentIndex)
 				})
 				this.addConfirmShow = !this.addConfirmShow
@@ -286,7 +257,7 @@
 			getMember(index) {
 				// console.log(index+1)
 				this.$get('/cosi/dep/member/list', {
-					depId: +index + 1
+					depId: +index
 				}).then(res => {
 					this.memberList = res.data.reverse()
 					// this.memberList
@@ -326,7 +297,7 @@
 			}
 			
 			.isSelect {
-				background-color: #78BB7B;
+				background-color: #4BBBFA;
 				color: #FFFFFF;
 				border-radius: 20upx;
 				

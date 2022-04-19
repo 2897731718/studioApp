@@ -38,7 +38,7 @@
 			<view class="clipboard-btn radius-sm text-sm bg-gray margin-left-sm flex flex-center" @tap.stop="clipboardClick">复制</view>
 		</view> -->
 		<view class="state-detail margin-bottom-sm bg-white radius-xs flex-column align-center">
-			<text class="remind margin-top-sm text-xs text-o">图片上传至最新生成订单，生成新订单，图片重新上传</text>
+			<!-- <text class="remind margin-top-sm text-xs text-o">图片上传至最新生成订单，生成新订单，图片重新上传</text> -->
 			
 			<view class="photo-box border margin-top-sm margin-bottom-sm display-grid col-3">
 				<view class="add-box flex-column flex-center">

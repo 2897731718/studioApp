@@ -153,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} //
 //
 //
 //
@@ -195,13 +195,13 @@ var _default =
 {
   data: function data() {var _ref;
     return _ref = {
-      kindData: ['科技月评', '软件创新', '码上学习', '码上开讲', '先导课'],
+      kindData: ['科技月评', '软件创新', '码上学习', '算法比赛'],
       kindIndex: 0,
       datetimerange: [],
       endTime: '',
       eventIntroduction: '',
-      address: 'e教207' }, _defineProperty(_ref, "eventIntroduction",
-    '无'), _defineProperty(_ref, "contestName",
+      address: '' }, _defineProperty(_ref, "eventIntroduction",
+    ''), _defineProperty(_ref, "contestName",
     '科技月评'), _ref;
 
 
@@ -216,27 +216,36 @@ var _default =
       } else if (e.detail.value == 2) {
         this.contestName = '码上学习';
       } else if (e.detail.value == 3) {
-        this.contestName = '码上开讲';
-      } else if (e.detail.value == 4) {
-        this.contestName = '先导课';
+        this.contestName = '算法比赛';
       }
     },
-    sendEvent: function sendEvent() {// 写发送接口
-      console.log(this.contestName, this.datetimerange[1]);
-      this.$post('/cosi/contest/open', {
-        contestName: this.contestName,
-        place: this.address,
-        introduction: this.eventIntroduction,
-        beginTime: this.datetimerange[0],
-        endTime: this.datetimerange[1] }).
+    sendEvent: function sendEvent() {var _this = this; // 写发送接口
+      if (this.address == '' || this.datetimerange == []) {
+        this.$toast('数据不能为空', 1000, 'none', true);
+      } else {
+        this.$post('/cosi/contest/open', {
+          contestName: this.contestName,
+          place: this.address,
+          introduction: this.eventIntroduction,
+          beginTime: this.datetimerange[0],
+          endTime: this.datetimerange[1] }).
 
-      then(function (res) {
-        console.log(res);
-      });
+        then(function (res) {
+          _this.$toast('开启成功', 1000, 'success', true);
+          setTimeout(function () {
+            uni.redirectTo({
+              url: '../index/index' });
+
+          }, 1500);
+        });
+        this.addEventShow = !this.addEventShow;
+      }
+
       // console.log(this.datetimerange[0].substring(0, 16))
 
-      this.addEventShow = !this.addEventShow;
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

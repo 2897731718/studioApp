@@ -62,10 +62,21 @@
 .you-page .identity-box .picture-box {
   width: 80%;
   height: 240rpx;
+  position: relative;
 }
 .you-page .identity-box .picture-box image {
   height: 100%;
   width: 100%;
+}
+.you-page .identity-box .picture-box .delete-btn {
+  position: absolute;
+  width: 60rpx;
+  height: 60rpx;
+  top: 50%;
+  right: 50%;
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .you-page .content-box {
   padding: 20rpx;

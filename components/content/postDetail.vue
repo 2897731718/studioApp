@@ -40,7 +40,7 @@
 					<text class="text-bloder text-lg margin-left-sm margin-bottom-xs">{{ nickname }}</text>
 					<view class="autograph text-xs margin-left-sm flex align-center">
 						<text class= "autograph-in text-break margin-right-sm">{{ autograph }}</text>
-						<text class="time">{{ time }}</text>
+						<text class="time text-break">{{ time }}</text>
 					</view>
 				</view>
 				<view class="comment-btn you-btn bg-red text-xxs radius-sm shadow-xs text-white flex flex-center" 
@@ -54,7 +54,7 @@
 				</view>
 				<view class="photo-box margin-top-sm margin-bottom-sm display-grid col-3" v-if="contentImg[0]">
 					<view class="img-box" v-for="item in contentImg" :key="item.imageId">
-						<image :src="item.imageUrl" ></image>
+						<image :src="item.imageUrl" @click="previewImage(item.imageUrl)"></image>
 					</view>
 				</view>
 				
@@ -80,11 +80,15 @@ export default {
 	name: 'postDetail',
 	data() {
 		return {
-			myOpenId: ''
+			myOpenId: '',
+			imageList: []
 		}
 	},
 	created() {
 		this.myOpenId = uni.getStorageSync('openid')
+		this.imageList = this.contentImg.map(e => {
+			return e.imageUrl
+		})
 	},
 	props:{
 		postId: {
@@ -97,15 +101,15 @@ export default {
 		},
 		headImg: {
 			type: String,
-			default: '../../static/background.jpeg',
+			default: '',
 		},
 		nickname: {
 			type: String,
-			default: 'popoppop',
+			default: '',
 		},
 		autograph: {
 			// type: String,
-			default: '欧拉欧拉欧拉欧拉欧拉',
+			default: '',
 		},
 		time: {
 			// type: String,
@@ -153,7 +157,23 @@ export default {
 		},
 		handleDelete() {
 			this.$emit('deletePost')
-		}
+		},
+		// 预览图片
+		previewImage: function(url) {
+			// this.$emit('previewImage', index)
+			// let imgList = this.contentImg[index];
+			// console.log(this.imageList);
+			uni.previewImage({
+				// 如果 是电脑相对路径的话 会一直转圈 无法预览
+				current: url,
+				urls: this.imageList,
+				loop: true,
+				success: function(res) {
+					
+				}
+			})
+			
+		},
 	}
 }
 </script>

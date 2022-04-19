@@ -32,3 +32,16 @@ console.log(uni.getStorageSync("token"))
 问题：分享 点赞是否显示点赞数 这样就要做组件
 
 scrollView 
+
+this.$toast('开启成功', 1000, 'success', true)
+setTimeout(() => {
+	uni.navigateBack({
+		delta: 1
+	});
+}, 1500)
+identy
+大创管理员 2
+工作室管理员 3
+总管理员 4
+
+isShowCommunity == 1 显示模块

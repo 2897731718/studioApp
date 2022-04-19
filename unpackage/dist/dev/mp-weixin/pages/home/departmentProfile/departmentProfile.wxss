@@ -42,7 +42,7 @@
   font-size: 14px;
 }
 .you-page .top-box .side-bar .isSelect {
-  background-color: #78BB7B;
+  background-color: #4BBBFA;
   color: #FFFFFF;
   border-radius: 20rpx;
 }

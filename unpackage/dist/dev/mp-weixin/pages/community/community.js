@@ -114,7 +114,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var postDetail = function postDetail() {__webpack_require__.e(/*! require.ensure | components/content/postDetail */ "components/content/postDetail").then((function () {return resolve(__webpack_require__(/*! ../../components/content/postDetail.vue */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ListScroll = function ListScroll() {__webpack_require__.e(/*! require.ensure | components/ListScroll */ "components/ListScroll").then((function () {return resolve(__webpack_require__(/*! ../../components/ListScroll.vue */ 383));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _iterableToArray(iter) {if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) return _arrayLikeToArray(arr);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}var postDetail = function postDetail() {__webpack_require__.e(/*! require.ensure | components/content/postDetail */ "components/content/postDetail").then((function () {return resolve(__webpack_require__(/*! ../../components/content/postDetail.vue */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var ListScroll = function ListScroll() {__webpack_require__.e(/*! require.ensure | components/ListScroll */ "components/ListScroll").then((function () {return resolve(__webpack_require__(/*! ../../components/ListScroll.vue */ 286));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -166,18 +166,17 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       tabList: [
       {
         name: '技术帖',
-        tabId: 0 },
+        tabId: 1 },
 
       {
         name: '生活帖',
-        tabId: 1 }],
+        tabId: 2 }],
 
 
-      currentIndex: 0,
-      currentList: [],
+      currentIndex: 1,
       postList: [],
       pageCurrent: 1,
-      pageSize: 10,
+      pageSize: 20,
       isLoading: true };
 
 
@@ -188,22 +187,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
   created: function created() {
-    this.getPostList();
+    this.isLoading = false;
+    this.getPostList(1);
   },
   methods: {
     tabSelect: function tabSelect(index) {
       this.currentIndex = index;
-      if (index == 0) {
-        this.currentList = this.postList.filter(function (item) {
-          console.log(item.post.postType);
-          return item.post.postType == 0;
-        });
-      } else if (index == 1) {
-        this.currentList = this.postList.filter(function (item) {
-          console.log(item.post.postType);
-          return item.post.postType == 1;
-        });
-      }
+      this.pageCurrent = 1; // 切换了之后要重新开始计数请求
+      this.postList = [];
+      this.getPostList(index);
     },
     handleShare: function handleShare() {
       console.log('handleShare');
@@ -218,30 +210,52 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       console.log('加载更多');
       this.pageCurrent++;
       this.isLoading = false;
-      this.getPostList();
-      // this.page
+      this.getPostList(this.currentIndex);
+
     },
-    getPostList: function getPostList() {var _this = this;
+    getPostList: function getPostList(postType) {var _this = this;
       /* 
-                                                            加载更多的时候 会页数增加 但是之前的数据要保留才行
-                                                            所以要拼接
-                                                            */
-      this.$get('/community/post/posts', {
+                                                                    加载更多的时候 会页数增加 但是之前的数据要保留才行
+                                                                    所以要拼接
+                                                                    */
+      this.$get('/community/post/all', {
         current: this.pageCurrent,
-        size: this.pageSize }).
+        size: this.pageSize,
+        sort: 1,
+        type: postType }).
       then(function (res) {
+        console.log(res.data);
         var oldPostList = _this.postList;
         _this.postList = [].concat(_toConsumableArray(oldPostList), _toConsumableArray(res.data.posts));
+        _this.$toast('加载成功', 1000, 'success', true);
         _this.isLoading = true;
-        console.log(_this.postList);
-        // console.log(res)
+        // console.log(this.postList)
       });
     },
-    handleDelete: function handleDelete(postId) {
+    // firstGet() {
+    // 	this.pageCurrent = 1
+    // 	this.$get('/community/post/posts', {
+    // 		current: this.pageCurrent,
+    // 		size: this.pageSize
+    // 	}).then(res => {
+    // 		this.postList = res.data.posts
+    // 		this.currentList = this.postList.filter(item => {
+    // 			return item.post.postType == 0
+    // 		}) // 进入页面 默认显示
+    // 		this.$toast('加载成功', 1000, 'success', true)
+    // 		this.isLoading = true
+    // 		console.log(this.postList)
+    // 		// console.log(res)
+    // 	})
+    // },
+    handleDelete: function handleDelete(postId) {var _this2 = this;
       this.$get('/community/post/delete', {
         postId: postId }).
-      then(function (res) {
-        console.log(res);
+      then(function (res) {// 删除之后重新加载
+        _this2.getPostList(1);
+        _this2.pageCurrent = 1;
+        _this2.postList = [];
+        _this2.$toast('删除成功', 1000, 'success', true);
       });
     } } };exports.default = _default;
 

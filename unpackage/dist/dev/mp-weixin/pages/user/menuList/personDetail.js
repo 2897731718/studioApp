@@ -18,29 +18,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.user.signature.toString()
-
-  var l0 = _vm.__map(_vm.postList, function(item, __i2__) {
-    var $orig = _vm.__get_orig(item)
-
-    var g1 = item.postTime.toString()
-    var g2 = item.postContent.toString()
-    return {
-      $orig: $orig,
-      g1: g1,
-      g2: g2
-    }
-  })
-
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        g0: g0,
-        l0: l0
-      }
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -181,6 +158,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   data: function data() {
     return {
@@ -206,16 +184,17 @@ __webpack_require__.r(__webpack_exports__);
       tabList: [
       {
         name: '技术帖',
-        tabId: 0 },
+        tabId: 1 },
 
       {
         name: '生活帖',
-        tabId: 1 }],
+        tabId: 2 }],
 
 
+      currentIndex: 1,
       currentList: [],
-      currentIndex: 0,
       openId: '',
+      myOpenId: uni.getStorageSync('openid'),
       user: {},
       postList: [] };
 
@@ -224,9 +203,13 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     postDetail: postDetail },
 
-  mounted: function mounted() {
+  mounted: function mounted() {var _this = this;
     this.getUser();
-    // this.getMyPosts()
+    setTimeout(function () {
+      _this.currentList = _this.postList.filter(function (item) {
+        return item.postType == 1;
+      });
+    }, 500);
   },
   onLoad: function onLoad(e) {
     this.openId = JSON.parse(decodeURIComponent(e.openid));
@@ -276,39 +259,42 @@ __webpack_require__.r(__webpack_exports__);
     },
     tabSelect: function tabSelect(index) {
       this.currentIndex = index;
-      if (index == 0) {
-        this.currentList = this.postList.filter(function (item) {
-          console.log(item.postType);
-          return item.postType == 0;
-        });
-      } else if (index == 1) {
+      console.log(index, 'tab');
+      if (index == 1) {
         this.currentList = this.postList.filter(function (item) {
           return item.postType == 1;
         });
+      } else if (index == 2) {
+        this.currentList = this.postList.filter(function (item) {
+          return item.postType == 2;
+        });
       }
     },
-    getUser: function getUser() {var _this = this;
+    getUser: function getUser() {var _this2 = this;
       this.$get('/community/user/home', {
         openId: this.openId }).
       then(function (res) {
-        // console.log(res)
-        _this.postList = res.data.posts.reverse();
-        _this.user = res.data.user;
-        console.log(_this.postList);
-        console.log(_this.postList[1].images);
+        console.log(res);
+        _this2.postList = res.data.posts;
+        _this2.user = res.data.user;
+        // console.log(this.postList)
+        // console.log(this.postList[1].images)
       });
-    }
-    // getMyPosts() {
-    // 	this.$get('/community/post/list', {
-    // 		openId: this.openId
-    // 	}).then(res => {
-    // 		console.log(res,1111)
-    // 		// this.postList = res.data.posts
-    // 		// this.user = res.data.user
-    // 		// console.log(this.postList)
-    // 	})
-    // }
-  } };exports.default = _default;
+    },
+    handleDelete: function handleDelete(postId) {var _this3 = this;
+      this.$get('/community/post/delete', {
+        postId: postId }).
+      then(function (res) {// 删除之后重新加载
+        _this3.getUser();
+        setTimeout(function () {
+          _this3.currentList = _this3.postList.filter(function (item) {
+            return item.postType == 1;
+          });
+        }, 500);
+        _this3.currentIndex = 1;
+        _this3.$toast('删除成功', 1000, 'success', true);
+      });
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

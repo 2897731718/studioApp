@@ -3,12 +3,12 @@
  -->
 <template>
 	<view class="cube">
-		<img class="img1" src="../static/logo.jpg">
-		<img class="img2" src="../static/logo.jpg">
-		<img class="img3" src="../static/logo.jpg">
-		<img class="img4" src="../static/logo.jpg">
-		<img class="img5" src="../static/logo.jpg">
-		<img class="img6" src="../static/logo.jpg">
+		<img class="img1" src="https://s2.loli.net/2022/04/18/DMjlYqdctXL218m.jpg">
+		<img class="img2" src="https://s2.loli.net/2022/04/18/DMjlYqdctXL218m.jpg">
+		<img class="img3" src="https://s2.loli.net/2022/04/18/DMjlYqdctXL218m.jpg">
+		<img class="img4" src="https://s2.loli.net/2022/04/18/DMjlYqdctXL218m.jpg">
+		<img class="img5" src="https://s2.loli.net/2022/04/18/DMjlYqdctXL218m.jpg">
+		<img class="img6" src="https://s2.loli.net/2022/04/18/DMjlYqdctXL218m.jpg">
 	</view>
 </template>
 

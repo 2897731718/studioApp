@@ -42,7 +42,7 @@
 					</view>
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">组长学号</text>
-						<input class="text-black-accent text-xxs" type="text" v-model="stdNumberLeader" placeholder="软件1910" maxlength="15"/>
+						<input class="text-black-accent text-xxs" type="text" v-model="stdNumberLeader" placeholder="20191923" maxlength="15"/>
 						<text class="fa fa-angle-right"></text>
 					</view>
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
@@ -141,7 +141,7 @@
 					</view>
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">组长学号</text>
-						<input class="text-black-accent text-xxs" type="text" v-model="stdNumberLeader" placeholder="软件1910" maxlength="15"/>
+						<input class="text-black-accent text-xxs" type="text" v-model="stdNumberLeader" placeholder="20191923" maxlength="15"/>
 						<text class="fa fa-angle-right"></text>
 					</view>
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
@@ -277,7 +277,10 @@
 	export default {
 		data() {
 			return {
-				tipsContent: '',
+				tipsContent: `请确保报名信息填报正确再提交个人信息，输入的格式一定要规范，
+				提交成功后不必再次提交，组员没有就不填写，
+				报名信息会在报名截止之后导出发布再QQ群重新核对，
+				请务必加群留意群消息，谢谢配合！预祝大家取得好成绩！！！`,
 				groupNames: '',
 				competitionKind: ['科技月评', '软件创新', '码上学习', '算法比赛'],
 				competitionIndex: 0,
@@ -287,47 +290,47 @@
 				secondKindIndex: 0,
 				thirdKindData: ['个人赛', '小组赛'],
 				thirdKindIndex: 0,
-				projectName: '1',
-				stdNumberLeader: '2', // 组长学号
-				classNumberLeader: '3', // 组长班级
-				realNameLeader: '4',  // 组长姓名
-				qNumberLeader: '5',  // 组长qq
+				projectName: '',
+				stdNumberLeader: '', // 组长学号
+				classNumberLeader: '', // 组长班级
+				realNameLeader: '',  // 组长姓名
+				qNumberLeader: '',  // 组长qq
 				memberList: [
 					{
-						classNameOne: '1',
-						realNameOne: '1',
+						classNameOne: '',
+						realNameOne: '',
 					},
 					{
-						classNameTwo: '2',
-						realNameTwo: '2',
+						classNameTwo: '',
+						realNameTwo: '',
 					},
 					{
-						classNameThree: '3',
-						realNameThree: '3',
+						classNameThree: '',
+						realNameThree: '',
 					},
 					{
-						classNameFour: '4',
-						realNameFour: '4',
+						classNameFour: '',
+						realNameFour: '',
 					}
 				],
-				classNameOne: '8',
-				realNameOne: '9',
-				classNameTwo: '8',
-				realNameTwo: '9',
-				classNameThree: '8',
-				realNameThree: '9',
-				classNameFour: '8',
-				realNameFour: '9',
-				classNumberAlgorithm: 'z',
-				realNameAlgorithm: 's',
-				qNumberAlgorithm: 'w',
-				classNumberStuding: 'e',
-				realNameStuding: 'r',
+				classNameOne: '',
+				realNameOne: '',
+				classNameTwo: '',
+				realNameTwo: '',
+				classNameThree: '',
+				realNameThree: '',
+				classNameFour: '',
+				realNameFour: '',
+				classNumberAlgorithm: '', // 算法比赛报名信息
+				realNameAlgorithm: '',
+				qNumberAlgorithm: '',
+				classNumberStuding: '',
+				realNameStuding: '',
 				
 			};
 		},
 		onLoad(option) {
-			// this.competitionIndex = JSON.parse(decodeURIComponent(option.item))
+			this.competitionIndex = JSON.parse(decodeURIComponent(option.item))
 			this.getEnrollPre()
 		},
 		components: {
@@ -366,6 +369,11 @@
 				}).then(res => {
 					console.log(res)
 					this.$toast('科技月评报名成功', 1000, 'success', true);
+					setTimeout(() => {
+						uni.navigateBack({
+							delta: 1
+						})
+					}, 1000)
 				})
 			},
 			confirmSignUpInnovate() {  // 软件创新软件组比赛报名
@@ -384,6 +392,11 @@
 				}).then(res => {
 					console.log(res)
 					this.$toast('软件创新报名成功', 1000, 'success', true);
+					setTimeout(() => {
+						uni.navigateBack({
+							delta: 1
+						})
+					}, 1000)
 				})
 			},
 			confirmSignUpStuding() { // 码上学习报名
@@ -403,11 +416,16 @@
 				}).then(res => {
 					console.log(res)
 					this.$toast('码上学习报名成功', 1000, 'success', true);
+					setTimeout(() => {
+						uni.navigateBack({
+							delta: 1
+						})
+					}, 1000)
 				})
 			},
 			confirmSignUpAlgorithm() {  // 算法比赛报名
 			console.log(this.realNameAlgorithm)
-				this.$post('/cosi/contest/enroll', {
+				this.$post('/cosi/contest/enroll', { // 因为共用的一个报名链接 所以其他字段要默认填写一些其他信息
 					contestName: '算法比赛',
 					contestId: '4',
 					grapeName: '1',
@@ -423,6 +441,11 @@
 				}).then(res => {
 					console.log(res)
 					this.$toast('算法比赛报名成功', 1000, 'success', true);
+					setTimeout(() => {
+						uni.navigateBack({
+							delta: 1
+						})
+					}, 1000)
 				})
 			},
 			async getEnrollPre() {

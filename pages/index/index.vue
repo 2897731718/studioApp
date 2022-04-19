@@ -14,28 +14,17 @@
 		<studio v-if="pageName=='studio'"></studio>
 		<community v-if="pageName=='community'"></community>
 		<user v-if="pageName=='user'"></user>
-		<bottom-tab-bar class="bottom-tab"></bottom-tab-bar>
+		<bottom-tab-bar class="bottom-tab" v-if="isShowCommunity"></bottom-tab-bar>
 	</view>
-	<!-- <list-scroll>
-		<view class="you-page flex-column align-center">
-			
-			<home v-if="pageName=='home'"></home>
-			<studio v-if="pageName=='studio'"></studio>
-			<community v-if="pageName=='community'"></community>
-			<user v-if="pageName=='user'"></user>
-			<bottom-tab-bar class="bottom-tab"></bottom-tab-bar>
-		</view>
-	</list-scroll> -->
 </view>
 </template>
 
 <script>
 	import { mapState, mapMutations } from 'vuex'
-	import ListScroll from '../../components/ListScroll.vue'
 	export default {
 		data() {
 			return {
-				eventShowList: [],
+				isShowCommunity: uni.getStorageSync('isShowCommunity'),
 				
 			}
 		},
@@ -43,38 +32,12 @@
 			...mapState(['pageName']),
 			
 		},
-		created() {
-			// this.getPostList()
-		},
 		onLoad() {
-			this.$toast('登陆成功', 1000, 'success', true);
-			// this.getEventList()
-			// this.getPostList()
+			this.$toast('加载成功', 1000, 'success', true);
 		},
 		methods: {
-			getEventList() {
-				this.$get('/cosi/contest/info', {
-					openId: uni.getStorageInfoSync('openid')
-				}).then(res => {
-					console.log(res, 3)
-				})
-				
-			},
-			getPostList() {
-				this.$get('/community/post/list', {
-					openId: uni.getStorageInfoSync('openid')
-				}).then(res => {
-					console.log(res, 4)
-				})
-			},
-			loadmore(e) {
-				console.log(e, 11)
-				this.$emit('loadMore')
-			}
+			
 		},
-		components: {
-			ListScroll
-		}
 		
 	}
 </script>

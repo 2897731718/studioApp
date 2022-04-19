@@ -104,17 +104,19 @@
 		data() {
 			return {
 				tipsContent: '请按照下方示例格式填写报名信息，注意空格逗号等，提交过后无法查看提交信息，提示提交成功就是成功，如有疑问可以去QQ群问学长学姐，最后欢迎大家报名大创，加油！！！',
-				classNumber: '1910',
-				realName: 'zsw',
-				qNumber: '2897732',
-				genderData: ['男', '女'],
+				classNumber: '',
+				realName: '',
+				qNumber: '',
+				genderData: ['男','女'],
 				genderIndex: 0,
 				firstKindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
 				firstKindIndex: 0,
+				firstKindName: '理事长',
 				secondKindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
 				secondKindIndex: 0,
-				selfIntroduction: `fdsfsd`,
-				reason: `sdfadsfds`,
+				secondKindName: '理事长',
+				selfIntroduction: ``,
+				reason: ``,
 				submitShow: false,
 				
 			};
@@ -130,9 +132,39 @@
 			},
 			choseFirstKind: function(e) {
 				this.firstKindIndex = e.detail.value
+				if(this.firstKindIndex === 0) {
+					this.firstKindName = '理事长'
+				} else if (this.firstKindIndex === 1) {
+					this.firstKindName = '副理事长'
+				} else if (this.firstKindIndex === 2) {
+					this.firstKindName = '办公室'
+				} else if (this.firstKindIndex === 3) {
+					this.firstKindName = '竞赛部'
+				} else if (this.firstKindIndex === 4) {
+					this.firstKindName = '宣传策划部'
+				} else if (this.firstKindIndex === 5) {
+					this.firstKindName = '培训部'
+				} else if (this.firstKindIndex === 6) {
+					this.firstKindName = '工联部'
+				}
 			},
 			choseSecondKind: function(e) {
 				this.secondKindIndex = e.detail.value
+				if(this.secondKindIndex === 0) {
+					this.secondKindName = '理事长'
+				} else if (this.secondKindIndex === 1) {
+					this.secondKindName = '副理事长'
+				} else if (this.secondKindIndex === 2) {
+					this.secondKindName = '办公室'
+				} else if (this.secondKindIndex === 3) {
+					this.secondKindName = '竞赛部'
+				} else if (this.secondKindIndex === 4) {
+					this.secondKindName = '宣传策划部'
+				} else if (this.secondKindIndex === 5) {
+					this.secondKindName = '培训部'
+				} else if (this.secondKindIndex === 6) {
+					this.secondKindName = '工联部'
+				}
 			},
 			confirmSignUp() {
 				this.submitShow = !this.submitShow
@@ -141,27 +173,23 @@
 				this.submitShow = !this.submitShow
 			},
 			submit() {
-				console.log(uni.getStorageSync("token"))
-				this.$post('/cosi/enroll/department', {
+				console.log(this.firstKindName, this.secondKindName, +this.firstKindIndex + 1)
+				this.$post('/cosi/dep/enroll', {
 					name: this.realName,
-					gender: this.genderIndex,
+					gender: +this.genderIndex + 1,
 					className: this.classNumber,
 					contact_number: this.qNumber,
 					self_introduction: this.selfIntroduction,
 					reason: this.reason,
-					firstWish: this.firstKindIndex,
-					secondWish: this.secondKindIndex
+					depId: +this.firstKindIndex + 1,
+					firstWish: this.firstKindName,
+					secondWish: this.secondKindName
 				}).then(res => {
 					console.log(res)
 					this.$toast('报名成功', 2000, 'success', true);
-					this.realName = ''
-					this.genderIndex = ''
-					this.classNumber,
-					this.qNumber = ''
-					this.selfIntroduction = ''
-					this.reason = ''
-					this.firstKindIndex = ''
-					this.secondKindIndex = ''
+					uni.navigateBack({
+						delta: 1
+					})
 				})
 				this.submitShow = !this.submitShow
 			},

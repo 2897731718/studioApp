@@ -25,7 +25,7 @@
 				<view class="fa fa-angle-left radius-cr text-center" ></view>
 			</view>
 			<view class="bg-box">
-				<image src="../../../static/13.jpg" mode=""></image>
+				<image src="https://s2.loli.net/2022/04/18/tPTY76dhur3OFwU.jpg" mode=""></image>
 				
 				<view class="detail-box flex-row align-center">
 					<view class="hed-img avatar-lg radius-cr shadow-mi">
@@ -60,12 +60,12 @@
 					<text class="fa fa-user-circle margin-left-xl text-xl"></text>
 					<text class="margin-left-xl" v-show="user.sex == 0 || user.sex == 1">男</text>
 					<text class="margin-left-xl" v-show="user.sex == 2">女</text>
-					<text class="fa fa-angle-right" @click="toInformation" aria-hidden="true"></text>
+					<text class="fa fa-angle-right" @click="toInformation" aria-hidden="true" v-if="openId == myOpenId"></text>
 				</view>
 				<view class="box-in bg-white flex-row align-center">
 					<text class="fa fa-pencil margin-left-xl text-xl"></text>
 					<text class="margin-left-xl">{{ user.signature }}</text>
-					<text class="fa fa-angle-right" @click="toInformation" aria-hidden="true"></text>
+					<text class="fa fa-angle-right" @click="toInformation" aria-hidden="true" v-if="openId == myOpenId"></text>
 				</view>
 			</view>
 			<view class="head-tab bg-white flex-row justify-around">
@@ -83,18 +83,19 @@
 				</view>
 			</view>
 			<view class="posts-list bg-gray flex-column align-center" >
-				<post-detail v-for="item in postList" :key="item.postId"
+				<post-detail v-for="item in currentList" :key="item.postId"
 							 :openId='item.openid'
 							 :postId='item.postId'
 							 :headImg='user.avatar'
 							 :nickname='user.nickName'
-							 :autograph='user.signature.toString()'
-							 :time="item.postTime.toString()"
-							 :postContent='item.postContent.toString()'
+							 :autograph='user.signature'
+							 :time="item.postTime"
+							 :postContent='item.postContent'
 							 :contentImg='item.images'
 							 :encourageState='item.postStatus'
 							 @share='handleShare'
-							 @encourage='handleEncourage'></post-detail>
+							 @encourage='handleEncourage'
+							 @deletePost='handleDelete(item.postId)'></post-detail>
 			</view>
 			
 		</view>
@@ -130,16 +131,17 @@
 				tabList: [
 					{
 						name: '技术帖',
-						tabId: 0
+						tabId: 1
 					},
 					{
 						name: '生活帖',
-						tabId: 1
+						tabId: 2
 					},
 				],
+				currentIndex: 1,
 				currentList: [],
-				currentIndex: 0,
 				openId: '',
+				myOpenId: uni.getStorageSync('openid'),
 				user: {},
 				postList:[],
 				
@@ -150,7 +152,11 @@
 		},
 		mounted() {
 			this.getUser()
-			// this.getMyPosts()
+			setTimeout(() => {
+				this.currentList = this.postList.filter(item => {
+					return item.postType == 1
+				})
+			},500)
 		},
 		onLoad(e) {
 			this.openId = JSON.parse(decodeURIComponent(e.openid))
@@ -200,14 +206,14 @@
 			},
 			tabSelect(index) {
 				this.currentIndex = index
-				if (index == 0) {
-					this.currentList = this.postList.filter(item => {
-						console.log(item.postType)
-						return item.postType == 0
-					})
-				} else if (index == 1) {
+				console.log(index, 'tab')
+				if (index == 1) {
 					this.currentList = this.postList.filter(item => {
 						return item.postType == 1
+					})
+				} else if (index == 2) {
+					this.currentList = this.postList.filter(item => {
+						return item.postType == 2
 					})
 				}
 			},
@@ -215,23 +221,27 @@
 				this.$get('/community/user/home', {
 					openId: this.openId
 				}).then(res => {
-					// console.log(res)
-					this.postList = res.data.posts.reverse()
+					console.log(res)
+					this.postList = res.data.posts
 					this.user = res.data.user
-					console.log(this.postList)
-					console.log(this.postList[1].images)
+					// console.log(this.postList)
+					// console.log(this.postList[1].images)
 				})
 			},
-			// getMyPosts() {
-			// 	this.$get('/community/post/list', {
-			// 		openId: this.openId
-			// 	}).then(res => {
-			// 		console.log(res,1111)
-			// 		// this.postList = res.data.posts
-			// 		// this.user = res.data.user
-			// 		// console.log(this.postList)
-			// 	})
-			// }
+			handleDelete(postId) {
+				this.$get('/community/post/delete', {
+					postId 
+				}).then(res => { // 删除之后重新加载
+					this.getUser()
+					setTimeout(() => {
+						this.currentList = this.postList.filter(item => {
+							return item.postType == 1
+						})
+					},500)
+					this.currentIndex = 1
+					this.$toast('删除成功', 1000, 'success', true)
+				})
+			},
 		}
 	}
 </script>

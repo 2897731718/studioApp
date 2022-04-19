@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var RotateCard = function RotateCard() {__webpack_require__.e(/*! require.ensure | components/content/RotateCard */ "components/content/RotateCard").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/RotateCard.vue */ 216));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 54));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var RotateCard = function RotateCard() {__webpack_require__.e(/*! require.ensure | components/content/RotateCard */ "components/content/RotateCard").then((function () {return resolve(__webpack_require__(/*! ../../../components/content/RotateCard.vue */ 216));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -409,7 +409,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 {
   data: function data() {
     return {
-      tipsContent: '',
+      tipsContent: "\u8BF7\u786E\u4FDD\u62A5\u540D\u4FE1\u606F\u586B\u62A5\u6B63\u786E\u518D\u63D0\u4EA4\u4E2A\u4EBA\u4FE1\u606F\uFF0C\u8F93\u5165\u7684\u683C\u5F0F\u4E00\u5B9A\u8981\u89C4\u8303\uFF0C\n\t\t\t\u63D0\u4EA4\u6210\u529F\u540E\u4E0D\u5FC5\u518D\u6B21\u63D0\u4EA4\uFF0C\u7EC4\u5458\u6CA1\u6709\u5C31\u4E0D\u586B\u5199\uFF0C\n\t\t\t\u62A5\u540D\u4FE1\u606F\u4F1A\u5728\u62A5\u540D\u622A\u6B62\u4E4B\u540E\u5BFC\u51FA\u53D1\u5E03\u518DQQ\u7FA4\u91CD\u65B0\u6838\u5BF9\uFF0C\n\t\t\t\u8BF7\u52A1\u5FC5\u52A0\u7FA4\u7559\u610F\u7FA4\u6D88\u606F\uFF0C\u8C22\u8C22\u914D\u5408\uFF01\u9884\u795D\u5927\u5BB6\u53D6\u5F97\u597D\u6210\u7EE9\uFF01\uFF01\uFF01",
+
+
+
       groupNames: '',
       competitionKind: ['科技月评', '软件创新', '码上学习', '算法比赛'],
       competitionIndex: 0,
@@ -419,47 +422,47 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       secondKindIndex: 0,
       thirdKindData: ['个人赛', '小组赛'],
       thirdKindIndex: 0,
-      projectName: '1',
-      stdNumberLeader: '2', // 组长学号
-      classNumberLeader: '3', // 组长班级
-      realNameLeader: '4', // 组长姓名
-      qNumberLeader: '5', // 组长qq
+      projectName: '',
+      stdNumberLeader: '', // 组长学号
+      classNumberLeader: '', // 组长班级
+      realNameLeader: '', // 组长姓名
+      qNumberLeader: '', // 组长qq
       memberList: [
       {
-        classNameOne: '1',
-        realNameOne: '1' },
+        classNameOne: '',
+        realNameOne: '' },
 
       {
-        classNameTwo: '2',
-        realNameTwo: '2' },
+        classNameTwo: '',
+        realNameTwo: '' },
 
       {
-        classNameThree: '3',
-        realNameThree: '3' },
+        classNameThree: '',
+        realNameThree: '' },
 
       {
-        classNameFour: '4',
-        realNameFour: '4' }],
+        classNameFour: '',
+        realNameFour: '' }],
 
 
-      classNameOne: '8',
-      realNameOne: '9',
-      classNameTwo: '8',
-      realNameTwo: '9',
-      classNameThree: '8',
-      realNameThree: '9',
-      classNameFour: '8',
-      realNameFour: '9',
-      classNumberAlgorithm: 'z',
-      realNameAlgorithm: 's',
-      qNumberAlgorithm: 'w',
-      classNumberStuding: 'e',
-      realNameStuding: 'r' };
+      classNameOne: '',
+      realNameOne: '',
+      classNameTwo: '',
+      realNameTwo: '',
+      classNameThree: '',
+      realNameThree: '',
+      classNameFour: '',
+      realNameFour: '',
+      classNumberAlgorithm: '', // 算法比赛报名信息
+      realNameAlgorithm: '',
+      qNumberAlgorithm: '',
+      classNumberStuding: '',
+      realNameStuding: '' };
 
 
   },
   onLoad: function onLoad(option) {
-    // this.competitionIndex = JSON.parse(decodeURIComponent(option.item))
+    this.competitionIndex = JSON.parse(decodeURIComponent(option.item));
     this.getEnrollPre();
   },
   components: {
@@ -498,6 +501,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       then(function (res) {
         console.log(res);
         _this.$toast('科技月评报名成功', 1000, 'success', true);
+        setTimeout(function () {
+          uni.navigateBack({
+            delta: 1 });
+
+        }, 1000);
       });
     },
     confirmSignUpInnovate: function confirmSignUpInnovate() {var _this2 = this; // 软件创新软件组比赛报名
@@ -516,6 +524,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       then(function (res) {
         console.log(res);
         _this2.$toast('软件创新报名成功', 1000, 'success', true);
+        setTimeout(function () {
+          uni.navigateBack({
+            delta: 1 });
+
+        }, 1000);
       });
     },
     confirmSignUpStuding: function confirmSignUpStuding() {var _this3 = this; // 码上学习报名
@@ -535,11 +548,16 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       then(function (res) {
         console.log(res);
         _this3.$toast('码上学习报名成功', 1000, 'success', true);
+        setTimeout(function () {
+          uni.navigateBack({
+            delta: 1 });
+
+        }, 1000);
       });
     },
     confirmSignUpAlgorithm: function confirmSignUpAlgorithm() {var _this4 = this; // 算法比赛报名
       console.log(this.realNameAlgorithm);
-      this.$post('/cosi/contest/enroll', {
+      this.$post('/cosi/contest/enroll', { // 因为共用的一个报名链接 所以其他字段要默认填写一些其他信息
         contestName: '算法比赛',
         contestId: '4',
         grapeName: '1',
@@ -555,6 +573,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       then(function (res) {
         console.log(res);
         _this4.$toast('算法比赛报名成功', 1000, 'success', true);
+        setTimeout(function () {
+          uni.navigateBack({
+            delta: 1 });
+
+        }, 1000);
       });
     },
     getEnrollPre: function getEnrollPre() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var result;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
@@ -563,6 +586,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
                 _this5.firstKindData = result.data.groupNames;case 4:case "end":return _context.stop();}}}, _callee);}))();
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

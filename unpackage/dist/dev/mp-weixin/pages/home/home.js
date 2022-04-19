@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -234,7 +234,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var CubicImg = function CubicImg() {Promise.all(/*! require.ensure | components/CubicImg */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/CubicImg")]).then((function () {return resolve(__webpack_require__(/*! ../../components/CubicImg.vue */ 258));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var LsSwiper = function LsSwiper() {__webpack_require__.e(/*! require.ensure | components/LsSwiper */ "components/LsSwiper").then((function () {return resolve(__webpack_require__(/*! ../../components/LsSwiper.vue */ 266));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StudioCard = function StudioCard() {__webpack_require__.e(/*! require.ensure | components/content/StudioCard */ "components/content/StudioCard").then((function () {return resolve(__webpack_require__(/*! ../../components/content/StudioCard.vue */ 273));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var EventList = function EventList() {__webpack_require__.e(/*! require.ensure | pages/home/EventList */ "pages/home/EventList").then((function () {return resolve(__webpack_require__(/*! ./EventList.vue */ 280));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var CubicImg = function CubicImg() {__webpack_require__.e(/*! require.ensure | components/CubicImg */ "components/CubicImg").then((function () {return resolve(__webpack_require__(/*! ../../components/CubicImg.vue */ 258));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var LsSwiper = function LsSwiper() {__webpack_require__.e(/*! require.ensure | components/LsSwiper */ "components/LsSwiper").then((function () {return resolve(__webpack_require__(/*! ../../components/LsSwiper.vue */ 265));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var StudioCard = function StudioCard() {__webpack_require__.e(/*! require.ensure | components/content/StudioCard */ "components/content/StudioCard").then((function () {return resolve(__webpack_require__(/*! ../../components/content/StudioCard.vue */ 272));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var EventList = function EventList() {__webpack_require__.e(/*! require.ensure | pages/home/EventList */ "pages/home/EventList").then((function () {return resolve(__webpack_require__(/*! ./EventList.vue */ 279));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 {
   data: function data() {
     return {
@@ -292,7 +292,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
 
 
       eventList: [],
-      identity: 0 };
+      identity: uni.getStorageSync('identity') };
 
 
 
@@ -333,6 +333,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
     // EventCard,
     StudioCard: StudioCard,
     EventList: EventList } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

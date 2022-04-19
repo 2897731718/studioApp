@@ -45,6 +45,9 @@
 			<view class="add-btn radius-sm flex flex-center" @tap="addPicture" v-show="!imageShow">上传学生证正面</view>
 			<view class="picture-box margin-top-sm" v-show="imageShow">
 				<image :src="imageList[0]" mode="" ></image>
+				<view class="delete-btn radius-cr flex-row flex-center" @click="deleteImage()">
+					<text class="fa fa-times text-lg text-red"></text>
+				</view>
 			</view>
 		</view>
 		<text class="title">备注信息</text>
@@ -56,7 +59,7 @@
 		<view class="btn-box margin-top-sm flex flex-center">
 			<view class="you-btn bg-four text-white" @tap="sendApply">
 				<text class="fa fa-check margin-right-sm"></text>
-				提交
+				提交申请
 			</view>
 		</view>
 	</view>	
@@ -67,10 +70,10 @@
 	export default {
 		data() {
 			return {
-				className: '1910',
-				realName: 'zs',
+				className: '',
+				realName: '',
 				positionName: '理事长',
-				manageKindData: ['大创管理员', '工作室管理员'],
+				manageKindData: ['大创管理员', '工作室管理员','总管理员'],
 				kindIndex: 0,
 				content: '',
 				imageList: [],
@@ -91,18 +94,11 @@
 						console.log(res.tempFiles);
 						this.imageList = res.tempFilePaths;
 						this.imageShow = !this.imageShow
-						// this.imageList.unshift(res.tempFilePaths); // 加到数组开头的 第一个
-						// let _imageList = this.imageList[0]
-						
-						// this.sendPicture(this.imageList)
 						
 					})
 				})
 			},
 			sendPicture: function(path) {
-				// console.log(path)
-				// let imageList = path
-				// console.log(this.postId, 111)
 				console.log(path[0])
 				uni.uploadFile({
 					url: 'https://test.kabubuda.xyz/user/identity/img', //仅为示例，非真实的接口地址
@@ -117,22 +113,37 @@
 					},
 					success: (res) => {
 						console.log(res)
-						
 					}
 				})
 			},
 			sendApply() {
-				this.$post('/user/identity/apply', {
-					className: this.className,
-					name: this.realName,
-					applyIId: +this.kindIndex + 1,
-					position: this.positionName,
-					content: this.content
-				}).then(res => {
-					this.applyId = res.data.aid
-					this.sendPicture(this.imageList)
-				})
-			}
+				console.log(this.imageList)
+				if(this.imageList.length === 0) {
+					this.$toast('学生证未上传', 1000, 'none', true)
+				} else {
+					this.$post('/user/identity/apply', {
+						className: this.className,
+						name: this.realName,
+						applyIId: +this.kindIndex + 2,
+						position: this.positionName,
+						content: this.content
+					}).then(res => {
+						this.applyId = res.data.aid
+						this.sendPicture(this.imageList)
+						this.$toast('申请成功', 1000, 'success', true)
+						setTimeout(() => {
+							uni.navigateBack({
+								delta: 1
+							});
+						}, 1500)
+					})
+				}
+			},
+			deleteImage: function() {
+				this.imageList.splice(0, 1)
+				console.log(this.imageList)
+				this.imageShow = !this.imageShow
+			},
 		},
 		
 	}
@@ -184,10 +195,22 @@
 		.picture-box {
 			width: 80%;
 			height: 240upx;
+			position: relative;
 			
 			image {
 				height: 100%;
 				width: 100%;
+			}
+			
+			.delete-btn {
+				position: absolute;
+				width: 60rpx;
+				height: 60rpx;
+				top: 50%;
+				right: 50%;
+				transform: translate(50%, -50%);
+				background-color: rgba(0,0,0,.3);
+				
 			}
 		}
 	}

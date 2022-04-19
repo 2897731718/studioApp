@@ -6116,7 +6116,6 @@ text {
  */
 .slider {
 	width: inherit;
-	background-color: #C4E1C5;
 	position: absolute;
 	bottom: 0;
 	transition: all ease 0.4s;
@@ -6228,8 +6227,8 @@ to {
 }
 }
 .fade-in {
-	-webkit-animation: fadeIn 1.3s;
-	        animation: fadeIn 1.3s;
+	-webkit-animation: fadeIn 0.8s;
+	        animation: fadeIn 0.8s;
 }
 @keyframes fadeIn {
 from {

@@ -35,7 +35,7 @@
   position: relative;
 }
 .box .event-information .comment-btn {
-  width: 100rpx;
+  width: 140rpx;
   height: 50rpx;
   position: absolute;
   top: 20rpx;

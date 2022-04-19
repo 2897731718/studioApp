@@ -4,11 +4,11 @@
  -->
 <template>
 	<view class="box">
-		<view class="card bg-primary flex-column flex-center">
+		<view class="card bg-white shadow-sm flex-column flex-center">
 			<view class="text-roll">
 				温馨提示
 			</view>
-			<view class="tips-content text-xs margin-top-sm text-break">
+			<view class="tips-content text-xs text-new margin-top-sm text-break">
 				{{ tipsContent }}
 			</view>
 		</view>
@@ -53,7 +53,7 @@
 		
 		.tips-content {
 			// border: 2upx solid #333333;
-			width: 80%;
+			width: 90%;
 			height: 74%;
 			
 		}

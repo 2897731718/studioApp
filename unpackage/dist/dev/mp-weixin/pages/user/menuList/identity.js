@@ -195,14 +195,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
-      className: '1910',
-      realName: 'zs',
+      className: '',
+      realName: '',
       positionName: '理事长',
-      manageKindData: ['大创管理员', '工作室管理员'],
+      manageKindData: ['大创管理员', '工作室管理员', '总管理员'],
       kindIndex: 0,
       content: '',
       imageList: [],
@@ -223,18 +226,11 @@ var _default =
           console.log(res.tempFiles);
           _this.imageList = res.tempFilePaths;
           _this.imageShow = !_this.imageShow;
-          // this.imageList.unshift(res.tempFilePaths); // 加到数组开头的 第一个
-          // let _imageList = this.imageList[0]
-
-          // this.sendPicture(this.imageList)
 
         } });
 
     },
     sendPicture: function sendPicture(path) {
-      // console.log(path)
-      // let imageList = path
-      // console.log(this.postId, 111)
       console.log(path[0]);
       uni.uploadFile({
         url: 'https://test.kabubuda.xyz/user/identity/img', //仅为示例，非真实的接口地址
@@ -249,21 +245,36 @@ var _default =
 
         success: function success(res) {
           console.log(res);
-
         } });
 
     },
     sendApply: function sendApply() {var _this2 = this;
-      this.$post('/user/identity/apply', {
-        className: this.className,
-        name: this.realName,
-        applyIId: +this.kindIndex + 1,
-        position: this.positionName,
-        content: this.content }).
-      then(function (res) {
-        _this2.applyId = res.data.aid;
-        _this2.sendPicture(_this2.imageList);
-      });
+      console.log(this.imageList);
+      if (this.imageList.length === 0) {
+        this.$toast('学生证未上传', 1000, 'none', true);
+      } else {
+        this.$post('/user/identity/apply', {
+          className: this.className,
+          name: this.realName,
+          applyIId: +this.kindIndex + 2,
+          position: this.positionName,
+          content: this.content }).
+        then(function (res) {
+          _this2.applyId = res.data.aid;
+          _this2.sendPicture(_this2.imageList);
+          _this2.$toast('申请成功', 1000, 'success', true);
+          setTimeout(function () {
+            uni.navigateBack({
+              delta: 1 });
+
+          }, 1500);
+        });
+      }
+    },
+    deleteImage: function deleteImage() {
+      this.imageList.splice(0, 1);
+      console.log(this.imageList);
+      this.imageShow = !this.imageShow;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -205,11 +205,15 @@ var _default =
   name: 'postDetail',
   data: function data() {
     return {
-      myOpenId: '' };
+      myOpenId: '',
+      imageList: [] };
 
   },
   created: function created() {
     this.myOpenId = uni.getStorageSync('openid');
+    this.imageList = this.contentImg.map(function (e) {
+      return e.imageUrl;
+    });
   },
   props: {
     postId: {
@@ -222,15 +226,15 @@ var _default =
 
     headImg: {
       type: String,
-      default: '../../static/background.jpeg' },
+      default: '' },
 
     nickname: {
       type: String,
-      default: 'popoppop' },
+      default: '' },
 
     autograph: {
       // type: String,
-      default: '欧拉欧拉欧拉欧拉欧拉' },
+      default: '' },
 
     time: {
       // type: String,
@@ -278,6 +282,22 @@ var _default =
     },
     handleDelete: function handleDelete() {
       this.$emit('deletePost');
+    },
+    // 预览图片
+    previewImage: function previewImage(url) {
+      // this.$emit('previewImage', index)
+      // let imgList = this.contentImg[index];
+      // console.log(this.imageList);
+      uni.previewImage({
+        // 如果 是电脑相对路径的话 会一直转圈 无法预览
+        current: url,
+        urls: this.imageList,
+        loop: true,
+        success: function success(res) {
+
+        } });
+
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

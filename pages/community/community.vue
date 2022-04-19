@@ -14,7 +14,7 @@
 		</view>
 		<list-scroll @loadMore="loadMore">
 			<view class="posts-list flex-column align-center" >
-				<post-detail v-for="item in currentList" :key="item.post.postId"
+				<post-detail v-for="item in postList" :key="item.post.postId"
 							 :openId="item.post.openid"
 							 :postId='item.post.postId'
 							 :headImg='item.user.avatar'
@@ -50,18 +50,17 @@
 				tabList: [
 					{
 						name: '技术帖',
-						tabId: 0
+						tabId: 1
 					},
 					{
 						name: '生活帖',
-						tabId: 1
+						tabId: 2
 					},
 				],
-				currentIndex: 0,
-				currentList: [],
+				currentIndex: 1,
 				postList:[],
 				pageCurrent: 1,
-				pageSize: 10,
+				pageSize: 20,
 				isLoading: true,
 				
 			};
@@ -72,22 +71,15 @@
 			
 		},
 		created() {
-			this.getPostList()
+			this.isLoading = false
+			this.getPostList(1)
 		},
 		methods: {
 			tabSelect: function(index) {
 				this.currentIndex = index;
-				if (index == 0) {
-					this.currentList = this.postList.filter(item => {
-						console.log(item.post.postType)
-						return item.post.postType == 0
-					})
-				} else if (index == 1) {
-					this.currentList = this.postList.filter(item => {
-						console.log(item.post.postType)
-						return item.post.postType == 1
-					})
-				}
+				this.pageCurrent = 1 // 切换了之后要重新开始计数请求
+				this.postList = []
+				this.getPostList(index)
 			},
 			handleShare: function() {
 				console.log('handleShare')
@@ -102,30 +94,52 @@
 				console.log('加载更多')
 				this.pageCurrent++
 				this.isLoading = false
-				this.getPostList()
-				// this.page
+				this.getPostList(this.currentIndex)
+				
 			},
-			getPostList() {
+			getPostList(postType) {
 				/* 
 				 加载更多的时候 会页数增加 但是之前的数据要保留才行
 				 所以要拼接
 				 */
-				this.$get('/community/post/posts', {
+				this.$get('/community/post/all', {
 					current: this.pageCurrent,
-					size: this.pageSize
+					size: this.pageSize,
+					sort: 1,
+					type: postType
 				}).then(res => {
+					console.log(res.data)
 					let oldPostList = this.postList
 					this.postList = [...oldPostList, ...res.data.posts]
+					this.$toast('加载成功', 1000, 'success', true)
 					this.isLoading = true
-					console.log(this.postList)
-					// console.log(res)
+					// console.log(this.postList)
 				})
 			},
+			// firstGet() {
+			// 	this.pageCurrent = 1
+			// 	this.$get('/community/post/posts', {
+			// 		current: this.pageCurrent,
+			// 		size: this.pageSize
+			// 	}).then(res => {
+			// 		this.postList = res.data.posts
+			// 		this.currentList = this.postList.filter(item => {
+			// 			return item.post.postType == 0
+			// 		}) // 进入页面 默认显示
+			// 		this.$toast('加载成功', 1000, 'success', true)
+			// 		this.isLoading = true
+			// 		console.log(this.postList)
+			// 		// console.log(res)
+			// 	})
+			// },
 			handleDelete(postId) {
 				this.$get('/community/post/delete', {
 					postId 
-				}).then(res => {
-					console.log(res)
+				}).then(res => { // 删除之后重新加载
+					this.getPostList(1)
+					this.pageCurrent = 1 
+					this.postList = []
+					this.$toast('删除成功', 1000, 'success', true)
 				})
 			},
 			

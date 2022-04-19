@@ -271,43 +271,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   data: function data() {
     return {
       occupationList: [
       {
-        id: 0,
+        id: 1,
         name: '理事' },
       {
         id: 2,
@@ -331,13 +301,13 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       delectBtnShow: false,
       delectConfirmShow: false, // 删除确认遮罩层
       addConfirmShow: false, // 添加
-      identity: 0,
+      identity: uni.getStorageSync('identity'),
       animationData: {},
-      kindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
+      kindData: ['理事', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
       kindIndex: '0',
-      positionName: '理事长',
-      grade: '2019',
-      realName: '曾书伟',
+      positionName: '',
+      grade: '',
+      realName: '',
       deleteMid: -1 };
 
 
@@ -411,6 +381,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
       then(function (res) {
         _this2.$toast('添加成功', 1000, 'success', true);
         console.log(res);
+        _this2.realName = '';
         _this2.getMember(_this2.departmentIndex);
       });
       this.addConfirmShow = !this.addConfirmShow;
@@ -418,7 +389,7 @@ var _vuex = __webpack_require__(/*! vuex */ 15);function ownKeys(object, enumera
     getMember: function getMember(index) {var _this3 = this;
       // console.log(index+1)
       this.$get('/cosi/dep/member/list', {
-        depId: +index + 1 }).
+        depId: +index }).
       then(function (res) {
         _this3.memberList = res.data.reverse();
         // this.memberList

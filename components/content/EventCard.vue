@@ -4,8 +4,9 @@
 			<view class="top-box margin-tb-xs flex-row align-center">
 				<text class="event-name margin-left-sm">{{ eventName }}</text>
 			</view>
-			<view class="comment-btn you-btn bg-red text-xxs radius-sm shadow-xs text-white flex flex-center"
-				  @click="handleDelete()">删除</view>
+			<view class="comment-btn you-btn bg-four text-xxs radius-sm shadow-xs text-white flex flex-center"
+				  v-if="identity == 2 || identity == 4"
+				  @click="handleDelete()">关闭赛事</view>
 			<text class="line-four"></text>
 			<view class="center-box flex-column flex-center">
 				<view class="box-in margin-tb-xs flex-row justify-between align-center">
@@ -34,7 +35,7 @@
 		name: 'EventCard',
 		data() {
 			return {
-				
+				identity: uni.getStorageSync('identity')
 			}
 		},
 		props: {
@@ -82,7 +83,7 @@
 		position: relative;
 		
 		.comment-btn {
-			width: 100upx;
+			width: 140upx;
 			height: 50upx;
 			position: absolute;
 			top: 20upx;

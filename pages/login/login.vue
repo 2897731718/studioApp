@@ -59,7 +59,7 @@
 										'content-type': 'application/json',
 									},
 									success: res => {
-										console.log(res.header.token)
+										console.log(res)
 										uni.setStorageSync('token', res.header.token)
 										uni.setStorageSync('openid', res.data.data.openid)
 										uni.setStorageSync('sessionKey', res.data.data.session_key)
@@ -68,6 +68,7 @@
 										.then(res => {
 											console.log(res, 1)
 											uni.setStorageSync('identity', res.data.identity)
+											uni.setStorageSync('isShowCommunity', res.data.isShowCommunity)
 											// 刚开始身份为空 新用户 就要添加身份
 											if (res.data.identity == -1) {
 												this.$post('/user/info/add', {
@@ -76,11 +77,12 @@
 													sex: uni.getStorageSync('WChatInfo').gender
 												}).then(res => {
 													console.log(res, 2)
+													// 添加完之后 身份 由 0 变为 1 然后要重新更改本地的身份
 													uni.setStorageSync('identity', res.data.identity)
-													// 添加完
+													
 												})
 											}
-											// 获取到的身份发生改变 重新获取
+											// 获取到的身份发生改变 重新获取 例如申请管理员身份通过
 											if (res.data.identity != uni.getStorageSync('identity')) {
 												this.$get('/user/login', {})
 												.then(res => {
