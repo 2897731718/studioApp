@@ -5,11 +5,17 @@
 		<block slot="content">个人详情</block>
 	</cu-custom>
 	<view class="head-tab-show bg-white flex-row justify-around" v-show="tabShow" :style="[{top:CustomBar + 'px'}]">
-		<view class="tab-item flex-row flex-center" 
+		<!-- <view class="tab-item flex-row flex-center" 
 			  v-for="(tabItem, index) in tabList" :key="index"
 			  :class="{'activeTab': currentIndex == index, '': currentIndex != index}"
 			  @click="tabSelect(index)">
 			<text>{{ tabItem }}</text>
+		</view> -->
+		<view class="tab-item flex-row flex-center"
+			  v-for="tabItem in tabList" :key="tabItem.tabId"
+			  :class="{'activeTab': currentIndex == tabItem.tabId, '': currentIndex != tabItem.tabId}"
+			  @click="tabSelect(tabItem.tabId)">
+			<text >{{ tabItem.name }}</text>
 		</view>
 	</view>
 	
@@ -23,63 +29,70 @@
 				
 				<view class="detail-box flex-row align-center">
 					<view class="hed-img avatar-lg radius-cr shadow-mi">
-						<image class="avatar-lg radius-cr" src="../../../static/background.jpeg" mode=""></image>
+						<image class="avatar-lg radius-cr" :src="user.avatar" mode=""></image>
 					</view>
 					<view class="content-box flex-column justify-center">
-						<text class="nickname text-lg text-white text-bold margin-bottom-xl">opopop</text>
-						<text>手机号: 暂未填写手机号</text>
+						<text class="nickname text-lg text-white text-bold margin-bottom-xl">{{ user.nickName }}</text>
+						<text>QQ号: {{ user.contactNumber }}</text>
 					</view>
-					<view class="btn-box flex-row flex-center">
-						<!-- 关注页面的灰色按钮 -->
+					<!-- <view class="btn-box flex-row flex-center">
+						
 						<view class="btn flex-row flex-center bg-white shadow-xs comment-btn" v-show="isFocus == '1'" @click="handleCancel">
 							<text>已关注</text>
 						</view>
 						<view class="btn flex-row flex-center text-second bg-white shadow-xs common-btn" v-show="isFocus == '0'" @click="handleAttention">
 							<text>关注</text>
 						</view>
-						<!-- 粉丝页面未关注的蓝色按钮 -->
-					</view>
+						
+					</view> -->
 				</view>
 				
 			</view>
 			<view class="person-box">
-				<view class="menu-box flex-row justify-around">
+				<!-- <view class="menu-box flex-row justify-around">
 					<view class="item-box text-xs flex-column flex-center"
 						  v-for="(item, index) in menuList" :key="index" @tap="toPage(index)">
 						<text class="text-bloder">{{ item.count }}</text>
 						<text>{{ item.name }}</text>
 					</view>
-				</view>
+				</view> -->
 				<view class="box-in bg-white flex-row align-center">
 					<text class="fa fa-user-circle margin-left-xl text-xl"></text>
-					<text class="margin-left-xl">男</text>
+					<text class="margin-left-xl" v-show="user.sex == 0 || user.sex == 1">男</text>
+					<text class="margin-left-xl" v-show="user.sex == 2">女</text>
 					<text class="fa fa-angle-right" @click="toInformation" aria-hidden="true"></text>
 				</view>
 				<view class="box-in bg-white flex-row align-center">
 					<text class="fa fa-pencil margin-left-xl text-xl"></text>
-					<text class="margin-left-xl">按时吃饭 按时长肉</text>
+					<text class="margin-left-xl">{{ user.signature }}</text>
 					<text class="fa fa-angle-right" @click="toInformation" aria-hidden="true"></text>
 				</view>
 			</view>
 			<view class="head-tab bg-white flex-row justify-around">
-				<view class="tab-item flex-row flex-center" 
+				<!-- <view class="tab-item flex-row flex-center" 
 					  v-for="(tabItem, index) in tabList" :key="index"
 					  :class="{'activeTab': currentIndex == index, '': currentIndex != index}"
 					  @click="tabSelect(index)">
 					<text>{{ tabItem }}</text>
+				</view> -->
+				<view class="tab-item flex-row flex-center"
+					  v-for="tabItem in tabList" :key="tabItem.tabId"
+					  :class="{'activeTab': currentIndex == tabItem.tabId, '': currentIndex != tabItem.tabId}"
+					  @click="tabSelect(tabItem.tabId)">
+					<text >{{ tabItem.name }}</text>
 				</view>
 			</view>
 			<view class="posts-list bg-gray flex-column align-center" >
 				<post-detail v-for="item in postList" :key="item.postId"
+							 :openId='item.openid'
 							 :postId='item.postId'
-							 :img='item.headImg'
-							 :nickname='item.nickname'
-							 :autograph='item.autograph'
-							 :time="item.time"
-							 :postContent='item.postContent'
-							 :link='item.link'
-							 :contentImg='item.contentImg'
-							 :encourageState='item.encourageState'
+							 :headImg='user.avatar'
+							 :nickname='user.nickName'
+							 :autograph='user.signature.toString()'
+							 :time="item.postTime.toString()"
+							 :postContent='item.postContent.toString()'
+							 :contentImg='item.images'
+							 :encourageState='item.postStatus'
 							 @share='handleShare'
 							 @encourage='handleEncourage'></post-detail>
 			</view>
@@ -114,50 +127,21 @@
 						name: '关注'
 					},
 				],
-				tabList: ['技术墙', '表白墙'],
-				currentIndex: 0,
-				postList:[
+				tabList: [
 					{
-						postId: 1,
-						headImg: '../../static/logo.jpg',
-						nickname: 'popopo',
-						autograph: 'uiqureiwtuqietuioq',
-						time: '2021-1-7',
-						postContent: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
-				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
-						link: 'https://uniapp.dcloud.io/api/system/clipboard',
-						contentImg: '',
-						encourageState: 0,
-						
+						name: '技术帖',
+						tabId: 0
 					},
 					{
-						postId: 1,
-						headImg: '../../static/logo.jpg',
-						nickname: 'popopo',
-						autograph: 'uiqureiwtuqietuioq',
-						time: '2021-1-7',
-						postContent: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
-				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
-						link: 'https://uniapp.dcloud.io/api/system/clipboardsfddfsdf',
-						contentImg: '../../static/background.jpeg',
-						encourageState: 1,
-					},
-					{
-						postId: 1,
-						headImg: '../../static/logo.jpg',
-						nickname: 'popopo',
-						autograph: 'uiqureiwtuqietuioq',
-						time: '2021-1-7',
-						postContent: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
-				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
-						link: 'https://uniapp.dcloud.io/api/system/clipboardsafdsfsdfsadfdfdsf',
-						contentImg: '../../static/background.jpeg',
-						encourageState: 1,
+						name: '生活帖',
+						tabId: 1
 					},
 				],
+				currentList: [],
+				currentIndex: 0,
+				openId: '',
+				user: {},
+				postList:[],
 				
 			};
 		},
@@ -165,7 +149,12 @@
 			postDetail,
 		},
 		mounted() {
-			
+			this.getUser()
+			// this.getMyPosts()
+		},
+		onLoad(e) {
+			this.openId = JSON.parse(decodeURIComponent(e.openid))
+			console.log(this.openId)
 		},
 		methods: {
 			BackPage() {
@@ -210,9 +199,39 @@
 				});
 			},
 			tabSelect(index) {
-				console.log(index)
 				this.currentIndex = index
-			}
+				if (index == 0) {
+					this.currentList = this.postList.filter(item => {
+						console.log(item.postType)
+						return item.postType == 0
+					})
+				} else if (index == 1) {
+					this.currentList = this.postList.filter(item => {
+						return item.postType == 1
+					})
+				}
+			},
+			getUser() {
+				this.$get('/community/user/home', {
+					openId: this.openId
+				}).then(res => {
+					// console.log(res)
+					this.postList = res.data.posts.reverse()
+					this.user = res.data.user
+					console.log(this.postList)
+					console.log(this.postList[1].images)
+				})
+			},
+			// getMyPosts() {
+			// 	this.$get('/community/post/list', {
+			// 		openId: this.openId
+			// 	}).then(res => {
+			// 		console.log(res,1111)
+			// 		// this.postList = res.data.posts
+			// 		// this.user = res.data.user
+			// 		// console.log(this.postList)
+			// 	})
+			// }
 		}
 	}
 </script>

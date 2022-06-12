@@ -52,37 +52,37 @@
 				</view>
 			</view>
 			<!-- 考核卡片 -->
-			<view class="check_area" @click="cardClick" v-if="menuIndex==0">
-				<navigator url="/pages/studio/asseDetail" class="check_card">
-					<p class="check_title">764工作室大一第一次考核题</p>
+			<view class="check_area" @click="getAsseList" v-if="menuIndex==0">
+				<navigator v-for="(item,index) in asseBox" :key="item.sid" :url="'/pages/studio/asseDetail?title='+item.taskTitle+'&content='+item.taskContent" class="check_card" >
+					<p class="check_title">{{item.taskTitle}}</p>
 					<p class="check_time" style="color: red;">
 						<text class="fa fa-clock-o text-red margin-right-sm"></text>
-						结束时间：2021.01.20 18:00
-						<view class="check_state flex-row flex-center">进行中</view>
+						结束时间：{{item.endTime}}
+						<view class="check_state flex-row flex-center">{{item.taskStatus==1?"进行中":"已过期"}}</view>
 					</p>
 					<p class="check_time">
 						<text class="fa fa-clock-o margin-right-sm"></text>
-						开始时间：2021.01.15 18:00
+						开始时间：{{item.beginTime}}
 					</p>
 				</navigator>
 			</view>
 			<!-- 已提交 -->
-			<view class="check_area" @click="cardClick" v-if="menuIndex==1">
-				<navigator url="/pages/studio/asseDetail" class="check_card">
-					<p class="check_title">764工作室大一第一次考核题</p>
+			<view class="check_area" @click="getCompledList" v-if="menuIndex==1" v-for="(item,index) in compledBox" :key="item.content">
+				<navigator :url="'/pages/studio/compleDetail?title='+item.title+'&content='+item.content" class="check_card">
+					<p class="check_title">{{item.title}}</p>
 					<p class="check_time" style="color: red;">
 						<text class="fa fa-clock-o text-red margin-right-sm"></text>
-						结束时间：2021.01.20 18:00
-						<view class="check_state flex-row flex-center">进行中</view>
+						结束时间：{{item.endTime}}
+						<view class="check_state flex-row flex-center">{{item.status==1?"进行中":"已过期"}}</view>
 					</p>
 					<p class="check_time">
 						<text class="fa fa-clock-o margin-right-sm"></text>
-						开始时间：2021.01.15 18:00
+						开始时间：{{item.startTime}}
 					</p>
 				</navigator>
 			</view>
 			<!-- 答案 -->
-			<view class="check_area" @click="cardClick" v-if="menuIndex==2">
+			<view class="check_area" @click="getAnswerList" v-if="menuIndex==2">
 				<navigator url="/pages/studio/asseDetail" class="check_card">
 					<p class="check_title">764工作室大一第一次考核题</p>
 					<p class="check_time" style="color: red;">
@@ -129,7 +129,7 @@
 				currentStudio: '764',
 				asseBox:[],
 				compledBox:[],
-				answerBox:[]
+				answerBox:[],
 			}
 
 		},
@@ -141,6 +141,7 @@
 		        handler (newStudio, oldStudio) {
 		            this.getAsseList()
 					this.getCompledList()
+					this.getAnswerList()
 		        },
 		        immediate: true
 		    }
@@ -166,8 +167,9 @@
 				this.$get('/studio/info/taskList/studio',{
 					studio:this.$store.state.studioName
 				}).then(res => {
-					console.log('请求成功')
+					console.log('assess请求成功')
 					console.log(res)
+					this.asseBox = res.data
 				}).catch(err => {
 					console.log("请求失败")
 					console.log(err)
@@ -175,8 +177,21 @@
 			},
 			getCompledList() {
 				this.$get('/studio/info/taskList/my').then(res => {
-					console.log('请求成功')
+					console.log('comple请求成功')
 					console.log(res)
+					this.compledBox = res.data
+				}).catch(err => {
+					console.log("请求失败")
+					console.log(err)
+				})
+			},
+			getAnswerList() {
+				this.$get('/studio/tasks/answer',{
+					studioName:this.$store.state.studioName
+				}).then(res => {
+					console.log('answer请求成功')
+					console.log(res)
+					this.answerBox = res.data
 				}).catch(err => {
 					console.log("请求失败")
 					console.log(err)

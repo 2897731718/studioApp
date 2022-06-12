@@ -11,19 +11,24 @@ url = url + '?user.userName=' + userName + '&user.password=' + encodeURIComponen
 第二种：
 
 
-uni.request({
-	url: 'https://test.kabubuda.xyz:8443/user/login/authorize',
-	method: 'POST',
-	data: {
-		code: loginRes.code
-	},
-	dataType: "json",
-	header: {
-		'content-type': 'application/json',
-	},
-	success: res => {
-		console.log(res)
-	}
-})
-
+console.log(uni.getStorageSync("token"))
+				uni.request({
+					url: 'https://test.kabubuda.xyz/cosi/contest/pre',
+					method: 'GET',
+					data: {
+						test: '1'
+					},
+					dataType: "json",
+					header: {
+						'content-type': 'application/json',
+						'token': uni.getStorageSync("token"),
+						'Origin': 'https://test.kabubuda.xyz',
+						// Authorization: uni.getStorageSync("sessionId"),
+					},
+					success: res => {
+						console.log(res)
+					}
+				})
 问题：分享 点赞是否显示点赞数 这样就要做组件
+
+scrollView 

@@ -106,7 +106,8 @@
 }
 .you-page .you-mask .member-page {
   width: 70vw;
-  height: 500rpx;
+  min-height: 660rpx;
+  height: auto;
   position: relative;
 }
 .you-page .you-mask .member-page text:only-of-type {

@@ -4,9 +4,9 @@
  -->
 <template>
 	<view class="box-main margin-bottom-xl flex-column bg-white fade-in">
-		<navigator :url="'/pages/community/postPage/postPage?post_id=' + postId">
+		<!-- <navigator :url="'/pages/community/postPage/postPage?post_id=' + postId">
 			<view class="top-box active margin-lr-sm margin-top-sm flex align-center">
-				<navigator class="img-box avatar-sm radius-cr" url="/pages/user/menuList/personDetail">
+				<navigator class="img-box avatar-sm radius-cr" :url="'/pages/user/menuList/personDetail?openid=' + encodeURIComponent(JSON.stringify(openid))">
 					<image class="avatar-sm radius-cr shadow-xs" :src="headImg" mode=""></image>
 				</navigator>
 				<view class="box-in flex-column justify-center">
@@ -27,21 +27,50 @@
 					<image :src="contentImg" mode=""></image>
 				</view>
 			</view>
-		</navigator>
+		</navigator> -->
+		<view>
+			<view class="top-box active margin-lr-sm margin-top-sm flex align-center">
+				<navigator class="img-box avatar-sm radius-cr" v-if="openId" :url="'/pages/user/menuList/personDetail?openid=' + encodeURIComponent(JSON.stringify(openId))">
+					<image class="avatar-sm radius-cr shadow-xs" :src="headImg" mode=""></image>
+				</navigator>
+				<view class="img-box avatar-sm radius-cr" v-if="!openId">
+					<image class="avatar-sm radius-cr shadow-xs" :src="headImg" mode=""></image>
+				</view>
+				<view class="box-in flex-column justify-center">
+					<text class="text-bloder text-lg margin-left-sm margin-bottom-xs">{{ nickname }}</text>
+					<view class="autograph text-xs margin-left-sm flex align-center">
+						<text class= "autograph-in text-break margin-right-sm">{{ autograph }}</text>
+						<text class="time">{{ time }}</text>
+					</view>
+				</view>
+				<view class="comment-btn you-btn bg-red text-xxs radius-sm shadow-xs text-white flex flex-center" 
+					  @click="handleDelete()" v-if="openId == myOpenId">删除</view>
+			</view>
+			<view class="content-box active flex-column margin-lr-sm text-pre-wrap">
+				<text class="content-in margin-left-sm" v-if='postContent != undefined'>{{ postContent }}</text>
+				<view class="link-box flex align-center" v-if="false">
+					<text class="text-five">{{ link }}</text>
+					<view class="clipboard-btn radius-sm text-xxs bg-gray margin-left-sm flex flex-center" @tap.stop="clipboardClick">复制</view>
+				</view>
+				<view class="photo-box margin-top-sm margin-bottom-sm display-grid col-3" v-if="contentImg[0]">
+					<view class="img-box" v-for="item in contentImg" :key="item.imageId">
+						<image :src="item.imageUrl" ></image>
+					</view>
+				</view>
+				
+			</view>
+		</view>
 		<view class="bottom-box margin-lr-sm flex justify-between" v-if="true">
-			<view class="btn-box flex flex-center" @tap.stop="handleShare">
+			<!-- <view class="btn-box flex flex-center" @tap.stop="handleShare">
 				<view class="fa fa-share-alt"></view>
-				<!-- <view class="">分享</view> -->
 			</view>
 			<navigator :url="'/pages/community/postPage/postPage?post_id=' + postId" 
 					   class="btn-box flex flex-center" @tap.stop="handleComment" hover-class="other-navigator-hover">
 				<view class="fa fa-commenting-o"></view>
-				<!-- <view class="">0</view> -->
 			</navigator>
 			<view class="btn-box flex flex-center" @tap.stop="handleEncourage">
 				<view class="fa fa-thumbs-o-up" :class="{'': encourageState == 0, 'text-second': encourageState == 1}"></view>
-				<!-- <view class="">0</view> -->
-			</view>	
+			</view>	 -->
 		</view>
 	</view>
 </template>
@@ -51,13 +80,20 @@ export default {
 	name: 'postDetail',
 	data() {
 		return {
-			
+			myOpenId: ''
 		}
+	},
+	created() {
+		this.myOpenId = uni.getStorageSync('openid')
 	},
 	props:{
 		postId: {
-			type: Number,
+			type: String,
 			default: 0,
+		},
+		openId: {
+			type: String,
+			default: '',
 		},
 		headImg: {
 			type: String,
@@ -68,26 +104,24 @@ export default {
 			default: 'popoppop',
 		},
 		autograph: {
-			type: String,
+			// type: String,
 			default: '欧拉欧拉欧拉欧拉欧拉',
 		},
 		time: {
-			type: String,
+			// type: String,
 			default: '2022-1-22',
 		},
 		postContent: {
-			type: String,
-			default: `hfjdshfjsjkdasjjjjjjjjjsaaaaaaaaaaa
-				
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa无😊😊`,
+			// type: String,
+			default: '',
 		},
 		link: {
 			type: String,
 			default: '',
 		},
 		contentImg: {
-			type: String,
-			default: '',
+			type: Array,
+			default: [],
 		},
 		encourageState: {
 			type: Number,
@@ -116,6 +150,9 @@ export default {
 			        // })
 			    }
 			});
+		},
+		handleDelete() {
+			this.$emit('deletePost')
 		}
 	}
 }
@@ -127,13 +164,13 @@ export default {
 	width: 100vw;
 	// min-height: 400upx;
 	height: auto;
-	position: relative;
+	
 	
 	.top-box {
 		// border: 2upx solid #0081FF;
 		width: 94vw;
 		height: 160upx;
-		
+		position: relative;
 		
 		.box-in {
 			// border: 2upx solid #0081FF;
@@ -156,6 +193,16 @@ export default {
 					font-weight: 100;
 				}
 			}
+		}
+		
+		.comment-btn {
+			width: 100upx;
+			height: 50upx;
+			position: absolute;
+			top: 20upx;
+			right: 20upx;
+			font-size: 14px;
+			
 		}
 	}
 	
@@ -191,6 +238,28 @@ export default {
 				height: inherit;
 			}
 		}
+		
+		.photo-box {
+			width: 100%;
+			min-height: 210upx;
+			height: auto;
+			place-items: center;
+			
+			.img-box {
+				// width: 170rpx;
+				height: 210upx;
+				width: 210upx;
+				padding: 10upx;
+				
+				image {
+					width: 100%;
+					height: 100%;
+					
+				}
+				
+			}
+			
+		}
 	}
 	
 	.bottom-box {
@@ -210,8 +279,8 @@ export default {
 	
 }
 
-.active:active {
-	background-color: #F1F2F6;
-	opacity: .4;
-}
+// .active:active {
+// 	background-color: #F1F2F6;
+// 	opacity: .4;
+// }
 </style>

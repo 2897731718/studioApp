@@ -17,7 +17,10 @@
     "pages/studio/asseDetail",
     "pages/studio/introduction",
     "pages/studio/submit",
-    "pages/studio/teacher"
+    "pages/studio/teacher",
+    "pages/home/addEvent",
+    "pages/studio/answerDetail",
+    "pages/studio/compleDetail"
   ],
   "subPackages": [],
   "window": {
@@ -34,6 +37,5 @@
     "community": "/pages/community/community",
     "studio": "/pages/studio/studio",
     "user": "/pages/user/user"
-  },
-  "sitemapLocation": "sitemap16.json"
+  }
 }

@@ -32,6 +32,15 @@
   min-height: 300rpx;
   padding: 20rpx 0;
   background-color: #ffffff;
+  position: relative;
+}
+.box .event-information .comment-btn {
+  width: 100rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  font-size: 14px;
 }
 .box .event-information .top-box {
   width: 90%;

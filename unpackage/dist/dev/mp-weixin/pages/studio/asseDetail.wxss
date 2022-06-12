@@ -71,7 +71,7 @@
 .bottom_box button.data-v-6d2c5b25 {
   width: 45vw;
   height: 8vh;
-  background-color: skyblue;
+  background-color: #4bbbfa;
   border-radius: 8px;
   display: -webkit-box;
   display: -webkit-flex;

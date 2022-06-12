@@ -96,12 +96,12 @@
 				<!-- 成员信息 -->
 				<scroll-view class="scroll-view margin-top-sm"
 							 scroll-y="true" show-scrollbar="false">
-					<view class="content-box flex-column align-center" v-for="item in memberList" :key="item.id">
+					<view class="content-box flex-column align-center" v-for="item in memberList" :key="item.mid">
 						<view class="member-box text-lg text-new shadow-xl radius-sm flex-row align-center justify-around">
 							<view class="">{{ item.grade }}级</view>
 							<view class="">{{ item.position }}</view>
-							<view class="">{{ item.name }}</view>
-							<view class="you-btn text-white bg-red flex-column flex-center" v-show="delectBtnShow" @click="delectMember">删除</view>
+							<view class="">{{ item.realName }}</view>
+							<view class="you-btn text-white bg-red flex-column flex-center" v-show="delectBtnShow" @click="delectMember(item.mid)">删除</view>
 						</view>
 					</view>
 				</scroll-view>
@@ -114,11 +114,16 @@
 					<view class="member-page shadow-mi bg-white radius-sm flex-column flex-center">
 						<text class="fa fa-times text-lg" @click="cancelSendMember"></text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center">
-							<text class="margin-left-sm text-sm">职位</text>
+							<text class="margin-left-sm text-sm">部门划分</text>
 							<picker class="text-black" :range="kindData" mode="selector" @change="choseKind">
 								{{ kindData[kindIndex] }}
 							</picker>
 							<text class="fa fa-angle-right" aria-hidden="true"></text>
+						</view>
+						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
+							<text class="margin-left-sm text-sm">具体职位</text>
+							<input class="text-black-accent text-xxs" type="text" placeholder="竞赛部部长" v-model="positionName" maxlength="15"/>
+							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">年级</text>
@@ -189,68 +194,7 @@
 						name: '工联部'
 					}
 				],
-				memberList: [
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟'
-					},
-					{
-						id: '0',
-						grade: 2019,
-						position: '副理事长',
-						name: '曾书伟123'
-					},
-				],
+				memberList: [],
 				bottomBarShow: false,
 				delectBtnShow: false,
 				delectConfirmShow: false, // 删除确认遮罩层
@@ -258,9 +202,11 @@
 				identity: 0,
 				animationData: {},
 				kindData: ['理事长', '副理事长', '办公室', '竞赛部', '宣传策划部', '培训部', '工联部'],
-				kindIndex: 0,
-				grade: 2019,
+				kindIndex: '0',
+				positionName: '理事长',
+				grade: '2019',
 				realName: '曾书伟',
+				deleteMid: -1,
 				
 			};
 		},
@@ -274,6 +220,7 @@
 				
 			})
 			this.animationData = animation
+			this.getMember(this.departmentIndex)
 		},
 		computed: {
 			...mapState(['departmentIndex'])
@@ -287,6 +234,8 @@
 				// 	this.animationData.height(`340upx`).step()
 				// 	this.animationData.export()
 				// }, 300)
+				// console.log(this.departmentIndex)
+				this.getMember(index)
 			},
 			delectSelect() {
 				this.delectBtnShow = !this.delectBtnShow
@@ -294,31 +243,62 @@
 			cancelDelectSelect() {
 				this.delectBtnShow = !this.delectBtnShow
 			},
-			delectMember() {
+			delectMember(mid) {
+				this.deleteMid = mid
+				// console.log(this.deleteMid, mid)
 				this.delectConfirmShow = !this.delectConfirmShow
 			},
 			cancelDelect() {
 				this.delectConfirmShow = !this.delectConfirmShow
 			},
 			confirmDelect() { // 要写删除接口
-				
-				
+				console.log(this.deleteMid)
+				this.$get('/cosi/dep/member/delete', {
+					mId: this.deleteMid
+				}).then(res => {
+					console.log(res)
+					this.getMember(this.departmentIndex)
+					this.$toast('删除成功', 500, 'success', true)
+				})
 				this.delectConfirmShow = !this.delectConfirmShow
 			},
 			addSelect() {
 				this.addConfirmShow = !this.addConfirmShow
 			},
 			choseKind: function(e) {
-				console.log(e)
+				// console.log(e)
 				this.kindIndex= e.detail.value;
 			},
 			sendMember() { // 要添加成员接口 
-				
+				this.$post('/cosi/dep/member/add', {
+					grade: this.grade,
+					realName: this.realName,
+					depId: +this.kindIndex + 1,
+					position: this.positionName,
+					
+				}).then(res => {
+					this.$toast('添加成功', 1000, 'success', true)
+					console.log(res)
+					this.getMember(this.departmentIndex)
+				})
 				this.addConfirmShow = !this.addConfirmShow
+			},
+			getMember(index) {
+				// console.log(index+1)
+				this.$get('/cosi/dep/member/list', {
+					depId: +index + 1
+				}).then(res => {
+					this.memberList = res.data.reverse()
+					// this.memberList
+					console.log(this.memberList)
+				})
 			},
 			cancelSendMember() {
 				this.addConfirmShow = !this.addConfirmShow
 			},
+			deleteMember(index) {
+				
+			}
 			
 		}
 	}
@@ -423,7 +403,8 @@
 		
 		.member-page {
 			width: 70vw;
-			height: 500upx;
+			min-height: 660upx;
+			height: auto;
 			position: relative;
 			
 			text:only-of-type {

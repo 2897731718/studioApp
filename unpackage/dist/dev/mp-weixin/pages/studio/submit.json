@@ -2,7 +2,6 @@
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
-    "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker",
-    "l-file": "/uni_modules/l-file/components/l-file/l-file"
+    "uni-data-picker": "/uni_modules/uni-data-picker/components/uni-data-picker/uni-data-picker"
   }
 }

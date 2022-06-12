@@ -41,6 +41,29 @@
           "pathName": "pages/home/competitionRegistration/competitionRegistration",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/community/sendDetail/sendDetail",
+          "pathName": "pages/community/sendDetail/sendDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/addEvent",
+          "pathName": "pages/home/addEvent",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/user/modifyInformation/modifyInformation",
+          "pathName": "pages/user/modifyInformation/modifyInformation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/community/sendDetail/sendDetail",
+          "pathName": "pages/community/sendDetail/sendDetail",
+          "scene": null
         }
       ]
     }

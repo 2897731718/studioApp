@@ -5773,7 +5773,8 @@ text {
 .you-page {
 	width: 100vw;
 	min-height: 100vh;
-	height: auto;
+	/* height: auto;
+ */
 	/* background-color: #ffffff;
  */
 	background-color: #F4F5F5;

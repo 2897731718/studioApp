@@ -48,8 +48,8 @@
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">组长班级</text>
 						<input class="text-black-accent text-xxs" type="text" v-model="classNumberLeader" placeholder="软件1910" maxlength="15"/>
-					</view>
 						<text class="fa fa-angle-right"></text>
+					</view>
 					<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 						<text class="margin-left-sm text-sm">组长姓名</text>
 						<input class="text-black-accent text-xxs" type="text" v-model="realNameLeader" placeholder="张三" maxlength="15"/>
@@ -64,12 +64,12 @@
 						<text>组员1</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameOne" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[0].classNameOne" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameOne" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[0].realNameOne" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -77,12 +77,12 @@
 						<text>组员2</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameTwo" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[1].classNameTwo" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameTwo" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[1].realNameTwo" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -90,12 +90,12 @@
 						<text>组员3</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameThree" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[2].classNameThree" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameThree" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[2].realNameThree" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -103,12 +103,12 @@
 						<text>组员4</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameFour" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[3].classNameFour" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameFour" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[3].realNameFour" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -163,12 +163,12 @@
 						<text>组员1</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameOne" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[0].classNameOne" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameOne" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[0].realNameOne" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -176,12 +176,12 @@
 						<text>组员2</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameTwo" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[1].classNameTwo" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameTwo" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[1].realNameTwo" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -189,12 +189,12 @@
 						<text>组员3</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameThree" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[2].classNameThree" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameThree" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[2].realNameThree" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -202,12 +202,12 @@
 						<text>组员4</text>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">班级</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="classNameFour" placeholder="软件1910" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[3].classNameFour" placeholder="软件1910" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 						<view class="box-in margin-top-sm radius-xs flex-row align-center text-left">
 							<text class="margin-left-sm text-sm">姓名</text>
-							<input class="text-black-accent text-xxs" type="text" v-model="realNameFour" placeholder="张三" maxlength="15"/>
+							<input class="text-black-accent text-xxs" type="text" v-model="memberList[3].realNameFour" placeholder="张三" maxlength="15"/>
 							<text class="fa fa-angle-right"></text>
 						</view>
 					</view>
@@ -278,7 +278,8 @@
 		data() {
 			return {
 				tipsContent: '',
-				competitionKind: ['科技乐评', '软件创新', '码上学习', '算法比赛'],
+				groupNames: '',
+				competitionKind: ['科技月评', '软件创新', '码上学习', '算法比赛'],
 				competitionIndex: 0,
 				firstKindData: ['嵌入式', '软件组(web/小程序)'],
 				firstKindIndex: 0,
@@ -291,6 +292,24 @@
 				classNumberLeader: '3', // 组长班级
 				realNameLeader: '4',  // 组长姓名
 				qNumberLeader: '5',  // 组长qq
+				memberList: [
+					{
+						classNameOne: '1',
+						realNameOne: '1',
+					},
+					{
+						classNameTwo: '2',
+						realNameTwo: '2',
+					},
+					{
+						classNameThree: '3',
+						realNameThree: '3',
+					},
+					{
+						classNameFour: '4',
+						realNameFour: '4',
+					}
+				],
 				classNameOne: '8',
 				realNameOne: '9',
 				classNameTwo: '8',
@@ -309,6 +328,7 @@
 		},
 		onLoad(option) {
 			// this.competitionIndex = JSON.parse(decodeURIComponent(option.item))
+			this.getEnrollPre()
 		},
 		components: {
 			RotateCard,
@@ -329,39 +349,88 @@
 				console.log(this.thirdKindIndex)
 			},
 			confirmSignUpTechnology() {  // 科技月评软件组比赛报名
-				this.$post('/contest/enroll', {
-					
-				}).then(res => {
-					console.log(res)
-				})
-			},
-			confirmSignUpInnovate() {  // 软件创新软件组比赛报名
-				this.$post('/contest/enroll', {
-					
-				}).then(res => {
-					console.log(res)
-				})
-			},
-			confirmSignUpStuding() { // 码上学习报名
-				// this.$post('/contest/enroll', {
-				// 	className: this.classNumberLeader,
-				// 	name: this.realNameLeader,
-				// 	contact: this.qNumberLeader,
-				// 	// groupId: 
-				// }).then(res => {
-				// 	console.log(res)
-				// })
-			},
-			confirmSignUpAlgorithm() {  // 算法比赛报名
-				this.$post('/contest/enroll', {
+			console.log(this.thirdKindIndex + 1)
+				this.$post('/cosi/contest/enroll', {
+					contestName: '科技月评',
+					contestId: '1',
+					grapeName: this.secondKindIndex + 1,
+					enrolleeNum: this.thirdKindIndex + 1,
 					className: this.classNumberLeader,
 					name: this.realNameLeader,
 					contact: this.qNumberLeader,
-					// groupId: 
+					sno: this.stdNumberLeader,
+					itemName: this.projectName,
+					groupId: this.firstKindIndex + 1,
+					crews: this.memberList,
+					
 				}).then(res => {
 					console.log(res)
+					this.$toast('科技月评报名成功', 1000, 'success', true);
 				})
 			},
+			confirmSignUpInnovate() {  // 软件创新软件组比赛报名
+				this.$post('/cosi/contest/enroll', {
+					name: this.realNameLeader,
+					className: this.classNumberLeader,
+					contestName: '软件创新',
+					contestId: '2',
+					grapeName: this.secondKindIndex + 1,
+					contact: this.qNumberLeader,
+					sno: this.stdNumberLeader,
+					itemName: this.projectName,
+					groupId: this.firstKindIndex + 1,
+					enrolleeNum: this.thirdKindIndex + 1,
+					crews: this.memberList,
+				}).then(res => {
+					console.log(res)
+					this.$toast('软件创新报名成功', 1000, 'success', true);
+				})
+			},
+			confirmSignUpStuding() { // 码上学习报名
+				this.$post('/cosi/contest/enroll', {
+					contestName: '码上学习',
+					contestId: '3',
+					grapeName: '1',
+					className: this.classNumberStuding,
+					name: this.realNameStuding,
+					contact: 'qq',
+					sno: '20191923',
+					itemName: '大创小程序',
+					groupId: '1',
+					enrolleeNum: '1'
+					
+					
+				}).then(res => {
+					console.log(res)
+					this.$toast('码上学习报名成功', 1000, 'success', true);
+				})
+			},
+			confirmSignUpAlgorithm() {  // 算法比赛报名
+			console.log(this.realNameAlgorithm)
+				this.$post('/cosi/contest/enroll', {
+					contestName: '算法比赛',
+					contestId: '4',
+					grapeName: '1',
+					className: this.classNumberAlgorithm,
+					name: this.realNameAlgorithm,
+					contact: this.qNumberAlgorithm,
+					sno: '20191923',
+					itemName: '大创小程序',
+					groupId: '1',
+					enrolleeNum: '1'
+					
+					
+				}).then(res => {
+					console.log(res)
+					this.$toast('算法比赛报名成功', 1000, 'success', true);
+				})
+			},
+			async getEnrollPre() {
+				let result = await this.$get('/cosi/contest/pre', {
+					test: '1'
+				})
+				this.firstKindData = result.data.groupNames
+			}
 		}
 	}
 </script>

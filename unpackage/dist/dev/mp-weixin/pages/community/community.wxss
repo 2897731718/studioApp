@@ -24,10 +24,11 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.you-page {
+.my-page {
   position: relative;
+  padding-bottom: 70rpx;
 }
-.you-page .head-tab {
+.my-page .head-tab {
   width: 100vw;
   height: 100rpx;
   border-bottom: 2rpx solid #F4F5F5;
@@ -35,14 +36,14 @@
   top: 0;
   z-index: 99;
 }
-.you-page .head-tab .tab-item {
+.my-page .head-tab .tab-item {
   height: 100rpx;
   position: relative;
 }
-.you-page .head-tab .activeTab {
+.my-page .head-tab .activeTab {
   color: #4BBBFA;
 }
-.you-page .head-tab .activeTab::after {
+.my-page .head-tab .activeTab::after {
   content: '';
   width: 80rpx;
   height: 10rpx;
@@ -72,18 +73,22 @@ to {
     opacity: 1;
 }
 }
-.you-page .posts-list {
+.my-page .posts-list {
   width: 100vw;
   padding-top: 110rpx;
 }
-.you-page .send-box {
+.my-page .loding-box {
+  width: 100vw;
+  height: 120rpx;
+}
+.my-page .send-box {
   width: 100rpx;
   height: 100rpx;
   position: fixed;
   bottom: 180rpx;
   right: 54rpx;
 }
-.you-page .send-box .send {
+.my-page .send-box .send {
   font-size: 26px;
 }
 

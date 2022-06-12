@@ -53,13 +53,20 @@
 					</uni-data-picker>
 				</view>
 				<!-- 上传 -->
-				<view class="small_box">
+				<!-- <view class="small_box">
 					<p>
 						<text class="" style="color: red;">*</text>
 						上传文件
 					</p>
 					<l-file ref="lFile" @up-success="onSuccess"></l-file>
 					<img src="/static/upload.png" alt="" @tap="onUpload">
+				</view> -->
+				<view class="small_box">
+					<p>
+						<text class="" style="color: red;">*</text>
+						网盘链接
+					</p>
+					<input type="text" class="input_box" placeholder="请输入内容" v-model="link">
 				</view>
 			</view>
 			<button type="default" @click="submit()">提交</button>
@@ -81,6 +88,7 @@
 				studio: "",
 				taskId: "",
 				filePath: "",
+				link: "",
 				asseRound: {
 					// title: '考核轮次',
 					// choice: [{
@@ -182,7 +190,14 @@
 						duration: 1000,
 						mask: true
 					})
-				} else {
+				} else if(this.link == "") {
+					uni.showToast({
+						title: '网盘链接不为空',
+						icon: 'none',
+						duration: 1000,
+						mask: true
+					})
+				}else {
 					this.$post(
 						'studio/task/submit', {
 							name: this.name,
@@ -190,33 +205,26 @@
 							assessRound: this.round,
 							studio: this.studio,
 							direction: this.directions,
-							taskId: this.taskId
+							taskId: this.taskId,
+							link: this.link
 						}).then(res => {
 						console.log('请求成功')
+						uni.showToast({
+							title: '提交成功',
+							icon: 'none',
+							duration: 1000,
+							mask: true
+						})
+						this.name = "";
+						this.classes = "";
+						this.studio = "";
+						this.round = "";
+						this.directions = "";
+						this.taskId = "";
+						this.link = "";
 					}).catch(err => {
 						console.log(err)
 					})
-					// uni.uploadFile({
-					// 	url: 'https://test.kabubuda.xyz/studio/task/upload', 
-					// 	filePath: this.filePath,
-					// 	name: 'file',
-					// 	formData: {
-					// 		tid:this.taskId,
-					// 		type:"taskEnroll"
-					// 	},
-					// 	header: {
-					// 		'content-type': 'application/form-data',
-					// 		'token': uni.getStorageSync("token")
-					// 	},
-					// 	success: (uploadFileRes) => {
-					// 		console.log(uploadFileRes);
-					// 		console.log("上传成功")
-					// 	},
-					// 	fail(err){
-					// 		console.log("上传失败")
-					// 		console.log(err)
-					// 	}
-					// });
 				}
 			},
 			onchange(e) {
