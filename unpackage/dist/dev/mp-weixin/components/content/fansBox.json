@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "sex-box": "/components/content/sexBox"
-  }
-}

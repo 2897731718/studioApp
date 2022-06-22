@@ -1,1 +1,0 @@
-<view class="box"><view class="card bg-white shadow-sm flex-column flex-center"><view class="text-roll">温馨提示</view><view class="tips-content text-xs text-new margin-top-sm text-break">{{''+tipsContent+''}}</view></view></view>

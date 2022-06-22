@@ -1,1 +1,0 @@
-<view class="{{['sex-box','flex-row','bg-pink','flex-center','text-white',(sex=='2')?'bg-pink':'',(sex=='1')?'bg-blue':'']}}"><text class="{{['fa',(sex=='1')?'fa-mars':'',(sex=='2')?'fa-venus':'']}}"></text></view>
