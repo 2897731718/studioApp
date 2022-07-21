@@ -1,1 +1,0 @@
-<view class="box flex-row justify-center"><view class="studio-brief-box margin-top-sm shadow-xs radius-sm flex-column"><view class="studio-name text-roll text-bold text-lg">{{''+name+' 工作室'}}</view><view class="brief-box margin-top-lg text-sm"><view class="margin-top-xs">{{''+indruction+''}}</view></view><view class="teacher-box">{{'指导老师: '+teacher+'老师'}}</view></view></view>
