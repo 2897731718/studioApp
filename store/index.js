@@ -8,6 +8,7 @@ const store = new Vuex.Store({
 	state: {
 		pageName: 'home',
 		departmentIndex: 0,
+		studioName:'764'
 		
 	},
 	mutations: {
@@ -19,6 +20,11 @@ const store = new Vuex.Store({
 		// sideTabbar
 		changeDepartmentIndex(state, index) {
 			state.departmentIndex = index
+			console.log(index)
+		},
+		changeStudioName(state,studioName) {
+			state.studioName = studioName
+			console.log(state.studioName)
 			// console.log(index)
 		}
 	}

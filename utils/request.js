@@ -27,8 +27,11 @@ export function postRequest(url, data) {
 				"content-type": "application/json",
 				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId")
+
+				//'Origin': 'https://test.kabubuda.xyz'
+
 				'Origin': 'https://test.kabubuda.xyz',
-				
+
 			},
 			success: function(res) {
 				// console.log(res.header.token)
@@ -74,6 +77,7 @@ export function getRequest(url, data) {
 				'token': uni.getStorageSync("token"),
 				// Authorization: uni.getStorageSync("sessionId"),
 				// 'Origin': 'http://47.119.155.5:8081'
+				'Origin': 'https://test.kabubuda.xyz'
 			},
 			success: function(res) {
 				uni.hideLoading();

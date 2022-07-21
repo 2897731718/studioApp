@@ -60,6 +60,12 @@
 									},
 									success: res => {
 										console.log(res)
+<<<<<<< HEAD
+=======
+
+										console.log(res.header.token)
+
+>>>>>>> dymBranch
 										uni.setStorageSync('token', res.header.token)
 										uni.setStorageSync('openid', res.data.data.openid)
 										uni.setStorageSync('sessionKey', res.data.data.session_key)

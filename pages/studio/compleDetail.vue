@@ -1,23 +1,22 @@
 <template>
-	<view>
-		<cu-custom :isBack="true" bgColor="bg-five text-white">
-			<block slot="backText">返回</block>
-			<block slot="content">考核详情</block>
-		</cu-custom>
-		<view class="you-page">
-			<p class="studio_title">{{title}}</p>
-			<!-- 简介 -->
-			<view class="award_box">
-				<view class="title"></view>
-				<text>考核内容</text>
-				<p>{{content}}</p>
-			</view>
-			<view class="bottom_box">
-				<button @click="DownLoad">下载文档</button>
-				<button @click="assClick">提交考核</button>
-			</view>
+<view>
+	<cu-custom :isBack="true" bgColor="bg-five text-white">
+		<block slot="backText">返回</block>
+		<block slot="content">考核详情</block>
+	</cu-custom>
+	<view class="you-page">
+		<p class="studio_title">{{title}}</p>
+		<!-- 简介 -->
+		<view class="award_box">
+			<view class="title"></view>
+			<text>考核内容</text>
+			<p>{{content}}</p>
+		</view>
+		<view class="bottom_box">
+			<button @click="DownLoad">下载文档</button>
 		</view>
 	</view>
+</view>
 </template>
 
 <script>
@@ -29,16 +28,11 @@
 		},
 		data() {
 			return {
-				title: "",
-				content: ""
+				title:"",
+				content:""
 			}
 		},
-		methods: {
-			assClick() {
-				uni.navigateTo({
-					url: "submit"
-				})
-			},
+		methods:{
 			DownLoad() {
 				uni.downloadFile({
 					url: 'http://192.168.0.200:8058/files/200200711.doc', //下载地址接口返回
@@ -86,22 +80,19 @@
 		margin: 2vh 4vw;
 		font-weight: bolder;
 		font-size: 1.2rem;
-
+		
 	}
-
 	.award_box {
 		display: flex;
 		flex-wrap: wrap;
-
 		.title {
 			width: 1vw;
 			height: 3vh;
 			border-radius: 2px;
 			background-color: skyblue;
 			margin: 2vh 1vh;
-
+			
 		}
-
 		text {
 			font-size: 1rem;
 			width: 90vw;
@@ -111,7 +102,6 @@
 			font-weight: bold;
 			// background-color: red;
 		}
-
 		p {
 			font-size: 0.9rem;
 			padding-left: 5vw;
@@ -119,18 +109,16 @@
 			font-weight: bold;
 		}
 	}
-
 	.bottom_box {
 		width: 100vw;
 		height: 12vh;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 		button {
 			width: 45vw;
 			height: 8vh;
-			background-color: rgb(75, 187, 250);
+			background-color: rgb(75,187,250);
 			border-radius: 8px;
 			display: flex;
 			align-items: center;
@@ -138,3 +126,4 @@
 		}
 	}
 </style>
+
